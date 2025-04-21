@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://7tq1fhsq0c2n"]
+
+[ext_resource type="Texture2D" uid="uid://cahtc4qhj5g21" path="res://textures/bullet_hole_0.png" id="1_t1qx7"]
+
+[node name="BulletHole" type="Decal"]
+transform = Transform3D(0.25, 0, 0, 0, 0.268, 0, 0, 0, 0.268, 0, 0, 0)
+size = Vector3(0.75, 0.75, 0.75)
+texture_albedo = ExtResource("1_t1qx7")

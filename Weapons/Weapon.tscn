@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://csj7vcqrenjsi"]
+
+[ext_resource type="Script" uid="uid://barqei8kroiys" path="res://Weapons/initweapon.gd" id="1_tj3qj"]
+[ext_resource type="Resource" uid="uid://br3d0d4h0w75d" path="res://Weapons/1911.tres" id="2_vgibi"]
+[ext_resource type="ArrayMesh" uid="uid://c8to27gsvd3nf" path="res://Models/Blender/1911/1911.res" id="3_habq8"]
+
+[node name="Weapon" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.25, -0.4, -0.5)
+script = ExtResource("1_tj3qj")
+weaponType = ExtResource("2_vgibi")
+swaySpeed = 1.0
+
+[node name="WeaponMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = ExtResource("3_habq8")
+
+[node name="WeaponShadow" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = ExtResource("3_habq8")

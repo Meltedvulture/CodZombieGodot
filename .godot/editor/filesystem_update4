@@ -1,0 +1,17 @@
+res://environment/WE_test.tres
+res://materials/grid.tres
+res://Models/Weapons/crowbarMesh.res
+res://Weapons/Crowbar.tres
+res://Themes/UI/debugStyleBoxFlat.tres
+res://Themes/UI/Debug.tres
+res://controllers/fps_controller.tscn
+res://Weapons/initweapon.gd
+res://levels/level_001.tscn
+res://Weapons/Weapon.tscn
+res://Models/Weapons/Crowbar cull.tres
+res://Weapons/Weapons.gd
+res://Weapons/1911.tres
+res://controllers/scripts/State Machine/spriting_player_state.gd
+res://controllers/scripts/State Machine/idle_player_state.gd
+res://controllers/scripts/State Machine/walking_player_state.gd
+res://controllers/scripts/State Machine/crouching_player_state.gd

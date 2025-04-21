@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Weapons" load_steps=3 format=3 uid="uid://br3d0d4h0w75d"]
+
+[ext_resource type="ArrayMesh" uid="uid://c8to27gsvd3nf" path="res://Models/Blender/1911/1911.res" id="1_3lv3b"]
+[ext_resource type="Script" uid="uid://c0afljd65dkhp" path="res://Weapons/Weapons.gd" id="1_f3ian"]
+
+[resource]
+script = ExtResource("1_f3ian")
+name = &"1911"
+Damage = 20
+clip = 8
+reserve = 32
+maxReserve = 80
+rpm = 800
+Accuracy = 1
+melee = false
+boltAction = false
+position = Vector3(0.25, -0.4, -0.5)
+rotation = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+sway_min = Vector2(-30, -20)
+sway_max = Vector2(30, 20)
+swaySpeedPosition = 0.06
+swaySpeedRotation = 0.1
+swayAmountPosition = 0.2
+swayAmountRotation = 30.0
+idleSwayAdjustment = 1.0
+idleSwayRotationStrength = 300.0
+randomSwayAmount = 2.0
+mesh = ExtResource("1_3lv3b")
+shadow = true
+metadata/_custom_type_script = "uid://c0afljd65dkhp"
