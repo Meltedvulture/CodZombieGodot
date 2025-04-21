@@ -1,11 +1,13 @@
-[gd_scene load_steps=29 format=3 uid="uid://c3ffql15mo0aj"]
+[gd_scene load_steps=32 format=3 uid="uid://c3ffql15mo0aj"]
 
 [ext_resource type="Script" uid="uid://dgpa2g1406d8w" path="res://controllers/scripts/fps_controller.gd" id="1_pgc1p"]
 [ext_resource type="Material" uid="uid://b4gwd5h7ixvct" path="res://materials/player.tres" id="2_gldw4"]
 [ext_resource type="PackedScene" uid="uid://csj7vcqrenjsi" path="res://Weapons/Weapon.tscn" id="3_5w0k0"]
 [ext_resource type="Script" uid="uid://da4bqfupciool" path="res://controllers/reticle.gd" id="3_xc2pf"]
+[ext_resource type="Resource" uid="uid://c606mjyycwvn4" path="res://Weapons/Crowbar.tres" id="4_tg6sc"]
 [ext_resource type="Theme" uid="uid://de2nek577lf7m" path="res://Themes/UI/Debug.tres" id="4_y677r"]
 [ext_resource type="Script" uid="uid://dvspsmhr73myh" path="res://controllers/scripts/debug_panel.gd" id="5_co0pi"]
+[ext_resource type="ArrayMesh" uid="uid://bgacku3pgbu6g" path="res://Models/Weapons/crowbarMesh.res" id="5_yvtcv"]
 [ext_resource type="Script" uid="uid://dkk1lhseynn15" path="res://controllers/scripts/State Machine/stateMachine.gd" id="6_co0pi"]
 [ext_resource type="Script" uid="uid://dd8ov1iyaklk5" path="res://controllers/scripts/State Machine/idle_player_state.gd" id="7_gshig"]
 [ext_resource type="LabelSettings" uid="uid://dskxen8j6183q" path="res://materials/Ammo Counter Label Settings.tres" id="8_fyafc"]
@@ -56,6 +58,65 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapon/WeaponBolt:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Weapon:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.25, -0.4, -0.5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Weapon:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.469494, 2.0944, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Weapon/WeaponMagazine:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Weapon/WeaponBolt:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tg6sc"]
 _data = {
@@ -97,9 +158,73 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.0664254, 0.159454, 0.174533, -0.075, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.1, 0.5)
 }
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapon/WeaponBolt:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0, -0.101683, -0.1, -0.0333333, 0, 0.05, 0, 0, -0.05, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.1, 0.25)
+}
+
+[sub_resource type="Animation" id="Animation_3og01"]
+resource_name = "reload"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.733333, 0.9, 1.2, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.25, -0.4, -0.5), Vector3(0.238397, -0.310453, -0.598773), Vector3(0.227544, -0.405285, -0.62859), Vector3(0.227544, -0.305285, -0.62859), Vector3(0.227544, -0.305285, -0.62859), Vector3(0.228, -0.214, -0.629), Vector3(0.290066, -0.403557, -0.643689), Vector3(0.25, -0.4, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.333333, 0.733333, 0.9, 1.2, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.91986, -0.139626), Vector3(9.45642e-09, 1.91986, 0.322886), Vector3(0.357792, 1.91986, 0), Vector3(0.357792, 1.91986, 0), Vector3(0.357792, 1.91986, 0.0349066), Vector3(-0.239072, 1.04252, 0.221662), Vector3(0, 1.5708, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon/WeaponMagazine:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.5, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.2, -0.5, 0), Vector3(-0.2, -0.5, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapon/WeaponBolt:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.5, 1.7, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.1, 0, 0), Vector3(0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h7h5r"]
 _data = {
+&"reload": SubResource("Animation_3og01"),
 &"shoot": SubResource("Animation_yvtcv")
 }
 
@@ -532,9 +657,24 @@ enable_shadows = true
 [node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
 
 [node name="Weapon" parent="CameraController/Camera3D/WeaponRig" node_paths=PackedStringArray("reserveLabel", "clipLabel", "weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
+transform = Transform3D(-0.5, 0.39182, 0.772319, 0, 0.891798, -0.452435, -0.866025, -0.226217, -0.445899, 0.25, -0.4, -0.5)
+weaponType = ExtResource("4_tg6sc")
 reserveLabel = NodePath("../../../../UserInterface/HBoxContainer/Reserve")
 clipLabel = NodePath("../../../../UserInterface/HBoxContainer/Clip")
 weaponAnimationPlayer = NodePath("../weaponAnimations")
+
+[node name="WeaponMesh" parent="CameraController/Camera3D/WeaponRig/Weapon" index="0"]
+mesh = ExtResource("5_yvtcv")
+
+[node name="WeaponMagazine" parent="CameraController/Camera3D/WeaponRig/Weapon" index="1"]
+mesh = null
+
+[node name="WeaponBolt" parent="CameraController/Camera3D/WeaponRig/Weapon" index="2"]
+mesh = null
+
+[node name="WeaponShadow" parent="CameraController/Camera3D/WeaponRig/Weapon" index="3"]
+visible = false
+mesh = ExtResource("5_yvtcv")
 
 [node name="weaponAnimations" type="AnimationPlayer" parent="CameraController/Camera3D/WeaponRig"]
 libraries = {
@@ -635,7 +775,7 @@ grow_vertical = 0
 [node name="Clip" type="Label" parent="UserInterface/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "8"
+text = "0"
 label_settings = ExtResource("8_fyafc")
 
 [node name="Label" type="Label" parent="UserInterface/HBoxContainer"]
@@ -645,7 +785,7 @@ label_settings = ExtResource("8_fyafc")
 
 [node name="Reserve" type="Label" parent="UserInterface/HBoxContainer"]
 layout_mode = 2
-text = "32"
+text = "0"
 label_settings = ExtResource("8_fyafc")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState")]
@@ -684,3 +824,5 @@ script = ExtResource("13_l8yvu")
 metadata/_custom_type_script = "uid://chrx5rfmff27h"
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
+
+[editable path="CameraController/Camera3D/WeaponRig/Weapon"]

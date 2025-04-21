@@ -6,11 +6,12 @@ extends Resource
 @export_category("Shooting and Ammo")
 @export var Damage = 20
 @export var clip = 8
+@export var maxClip = 8
 @export var reserve = 32
 @export var maxReserve = 80
 @export var rpm = 450
-##Accuracy of 1 means perfect accuracy, higher is more inaccurate
-@export var Accuracy = 1
+##Accuracy of 0 means perfect accuracy, higher is more inaccurate
+@export var Accuracy : float = 0
 @export var melee : bool = false
 
 
@@ -37,4 +38,6 @@ extends Resource
 @export_range(0.1,10.0,0.1) var randomSwayAmount : float = 5.0
 @export_category("Visual Settings")
 @export var mesh : Mesh
+@export var magazine : Mesh
+@export var bolt : Mesh
 @export var shadow : bool

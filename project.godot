@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="001 - Basic Setup"
+config/name="CodZombiesGodot"
 run/main_scene="res://levels/level_001.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
@@ -25,6 +25,10 @@ window/size/viewport_width=1360
 window/size/viewport_height=768
 window/size/borderless=true
 window/size/always_on_top=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg")
 
 [input]
 

@@ -4,6 +4,12 @@ extends Node3D
 
 class_name WeaponController
 
+# OnReady variables
+@onready var weaponMesh : MeshInstance3D = %WeaponMesh
+@onready var weaponMagazine : MeshInstance3D = %WeaponMagazine
+@onready var weaponBolt : MeshInstance3D = %WeaponBolt
+@onready var weaponShadow : MeshInstance3D = %WeaponShadow
+
 # Exported variables
 @export var weaponType : Weapons:
 	set(value):
@@ -18,9 +24,7 @@ class_name WeaponController
 		if Engine.is_editor_hint():
 			loadWeapon()
 
-# OnReady variables
-@onready var weaponMesh : MeshInstance3D = %WeaponMesh
-@onready var weaponShadow : MeshInstance3D = %WeaponShadow
+
 
 # Internal variables
 var mouseMovement : Vector2
@@ -33,13 +37,13 @@ var idleSwayRotationStrength
 var rng = RandomNumberGenerator.new()
 var weaponBobAmount : Vector2 = Vector2(0,0)
 var reserveAmmo
+var maxClipAmmo
 var clipAmmo
 var canShoot : bool = true
 var weaponName
-
+var weaponAccuracy
 var time_per_shot: float = 0.1  # Default time between shots (calculated dynamically)
 var cooldown_timer: float = 0.0  # Tracks the remaining cooldown time
-
 var bulletHole = preload("res://Scenes/Bullet Hole.tscn")
 
 @export var reserveLabel : Label
@@ -72,7 +76,10 @@ func loadWeapon() -> void:
 	
 	weaponName = weaponType.name
 	weaponMesh.mesh = weaponType.mesh  # Set weapon mesh
+	weaponMagazine.mesh = weaponType.magazine  # Set weapon mesh
+	weaponBolt.mesh = weaponType.bolt  # Set weapon mesh
 	weaponShadow.mesh = weaponType.mesh  # Set weapon mesh
+	
 	position = weaponType.position      # Set weapon position
 	rotation_degrees = weaponType.rotation  # Set weapon rotation
 	scale = weaponType.scale # Set weapon rotation
@@ -81,10 +88,12 @@ func loadWeapon() -> void:
 	idleSwayRotationStrength = weaponType.idleSwayRotationStrength
 	randomSwayAmount = weaponType.randomSwayAmount
 	clipAmmo = weaponType.clip
+	maxClipAmmo = weaponType.maxClip
 	reserveAmmo = weaponType.reserve
 	clipLabel.text = str(clipAmmo)
 	reserveLabel.text = str(reserveAmmo)
 	time_per_shot = 60.0 / weaponType.rpm  # Calculate time between shots
+	weaponAccuracy = weaponType.Accuracy
 
 func sway_weapon(delta, isIdle: bool) -> void:
 	if weaponType == null:
@@ -149,7 +158,15 @@ func shoot() -> void:
 		var spaceState = camera.get_world_3d().direct_space_state
 		var screenCenter = get_viewport().size / 2
 		var origin = camera.project_ray_origin(screenCenter)
-		var endpoint = origin + camera.project_ray_normal(screenCenter) * 1000
+		
+		var accuracyAdjustment = Vector3 (
+		rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
+		rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
+		rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy)
+		)
+		
+		
+		var endpoint = origin + camera.project_ray_normal(screenCenter) * 1000 + accuracyAdjustment * 10
 		var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
 		query.collide_with_bodies = true
 		var result = spaceState.intersect_ray(query)
@@ -180,6 +197,17 @@ func updateLabels():
 
 func reloadWeapon():
 	canShoot = false
+	weaponAnimationPlayer.play(weaponName + "/" + "reload", -1, 1, false)
+	await weaponAnimationPlayer.animation_finished
+	if reserveAmmo >= maxClipAmmo:
+		reserveAmmo -= maxClipAmmo
+		clipAmmo = maxClipAmmo
+	else:
+		clipAmmo = reserveAmmo
+		reserveAmmo -= reserveAmmo
+	updateLabels() 
+	canShoot = true
+	
 
 func _process(delta: float) -> void:
 	if cooldown_timer > 0:

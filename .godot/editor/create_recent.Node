@@ -1,10 +1,10 @@
+MeshInstance3D
 AnimationPlayer
 Label
 HBoxContainer
 Control
 CollisionShape3D
 StaticBody3D
-MeshInstance3D
 Decal
 SpotLight3D
 Node3D
@@ -12,4 +12,3 @@ Camera3D
 SubViewportContainer
 SubViewport
 State
-PlayerMovementState
