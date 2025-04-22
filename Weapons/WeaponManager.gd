@@ -48,6 +48,7 @@ var bulletHole = preload("res://Scenes/Bullet Hole.tscn")
 
 @export var reserveLabel : Label
 @export var clipLabel : Label
+@export var pointsLabel : Label
 @export var weaponAnimationPlayer : AnimationPlayer
 
 
@@ -55,7 +56,7 @@ var bulletHole = preload("res://Scenes/Bullet Hole.tscn")
 func _ready() -> void:
 	# Initialize with a default weapon type if none is selected
 	if weaponType == null:
-		weaponType = load("res://Weapons/Crowbar.tres")
+		weaponType = load("res://Weapons/1911.tres")
 	loadWeapon()
 
 func _input(event):
@@ -173,6 +174,10 @@ func shoot() -> void:
 		
 		var hitPosition = result.get("position")
 		var hitNormal = result.get("normal")
+		var hitBody = result.get("collider")  # Get the object that was hit
+		if hitBody and hitBody.has_method("take_damage"):
+			hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
+		
 		clipAmmo -= 1
 		updateLabels()
 		weaponAnimationPlayer.stop()
@@ -194,17 +199,24 @@ func shoot() -> void:
 func updateLabels():
 	clipLabel.text = str(clipAmmo)
 	reserveLabel.text = str(reserveAmmo)
+	pointsLabel.text = str(Global.points)
 
 func reloadWeapon():
 	canShoot = false
-	weaponAnimationPlayer.play(weaponName + "/" + "reload", -1, 1, false)
-	await weaponAnimationPlayer.animation_finished
-	if reserveAmmo >= maxClipAmmo:
-		reserveAmmo -= maxClipAmmo
+	if clipAmmo > 0:
+		weaponAnimationPlayer.play(weaponName + "/" + "fullReload", -1, 1, false)
+		await weaponAnimationPlayer.animation_finished
+	else:
+		weaponAnimationPlayer.play(weaponName + "/" + "emptyReload", -1, 1, false)
+		await weaponAnimationPlayer.animation_finished
+		
+	var ammoNeeded = maxClipAmmo - clipAmmo
+	if reserveAmmo >= ammoNeeded:
+		reserveAmmo -= ammoNeeded
 		clipAmmo = maxClipAmmo
 	else:
-		clipAmmo = reserveAmmo
-		reserveAmmo -= reserveAmmo
+		clipAmmo += reserveAmmo
+		reserveAmmo = 0
 	updateLabels() 
 	canShoot = true
 	
@@ -214,6 +226,9 @@ func _process(delta: float) -> void:
 		cooldown_timer -= delta  # Decrease the cooldown timer
 	else:
 		canShoot = true  # Allow shooting once the cooldown ends
+	if !Engine.is_editor_hint():
+		if Input.is_action_just_pressed("reload") and clipAmmo != maxClipAmmo:
+			reloadWeapon()
 
 
 #func _physics_process(delta) -> void:

@@ -20,6 +20,9 @@ var isCrouching : bool = false
 
 var currentRotation : float
 
+var red = Color(0.75,0.0,0.0,1.0)
+var white = Color(1.0,1.0,1.0,1.0)
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = 12
@@ -56,6 +59,7 @@ func _update_camera(delta):
 	
 func _ready():
 	Global.player = self
+	Global.roundChange.connect(flashLabel)
 	# Get mouse input
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	#Prevents player from activating crouch cast
@@ -94,3 +98,12 @@ func updateInput(speed: float, acceleration: float, deceleration: float) -> void
 func updateVelocity() -> void:
 		move_and_slide()
 		Global.debug.addProperty("Player Y Velocity", velocity.y, 1)
+
+func flashLabel():
+	var tween = create_tween()
+	tween.set_loops(6)
+
+	tween.tween_property(%RoundLabel.label_settings, "font_color", white, 1.0)
+	tween.tween_property(%RoundLabel.label_settings, "font_color", red, 1.0)
+
+#WORK ON THIS PELASE AHHHHHHHHHHHHHHHHHH

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cshij46ivwwxy"]
+
+[ext_resource type="Script" uid="uid://d0frvk5yhjni5" path="res://Scripts/ZombieRoundManager.gd" id="1_ek4ll"]
+
+[node name="ZombieRoundManager" type="Node3D"]
+script = ExtResource("1_ek4ll")

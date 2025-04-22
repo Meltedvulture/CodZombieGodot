@@ -1,0 +1,49 @@
+{
+	"asset":{
+		"generator":"Khronos glTF Blender I/O v4.1.63",
+		"version":"2.0"
+	},
+	"scene":0,
+	"scenes":[
+		{
+			"extras":{
+				"blenrig_guide":{
+					"state_keyframe_insert_available":0
+				},
+				"wiggle":{
+					"is_rendering":0
+				},
+				"skinify":{
+					"connect_mesh":0,
+					"connect_parents":0,
+					"generate_all":0,
+					"thickness":0.800000011920929,
+					"finger_thickness":0.25,
+					"apply_mod":1,
+					"parent_armature":1,
+					"sub_level":1
+				},
+				"flip_fluid":{},
+				"flip_fluid_helper":{
+					"is_auto_frame_load_cmd_operator_running":0,
+					"alembic_output_filepath":"//wood_2K_b655fc86-23f2-4caa-a3b0-90656d93837d.abc",
+					"is_alembic_output_filepath_set":1
+				},
+				"flip_fluid_material_library":{
+					"library_path":"C:\\Users\\User\\AppData\\Roaming\\Blender Foundation\\Blender\\4.1\\scripts\\addons\\flip_fluids_addon\\materials\\material_library"
+				},
+				"sun_pos_properties":{
+					"show_surface":0,
+					"show_analemmas":0,
+					"show_north":0,
+					"latitude":0.0,
+					"day_of_year":112,
+					"sun_object":{},
+					"object_collection":{}
+				},
+				"fluid_painter":{}
+			},
+			"name":"upload"
+		}
+	]
+}

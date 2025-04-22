@@ -1,16 +1,17 @@
-res://Models/Blender/1911/1911 Body.res
-res://Models/Blender/1911/1911 Magazine.res
-res://Models/Blender/1911/1911 Slide.res
-res://Weapons/Weapon.tscn
+res://Prefabs/Barrier.tscn
 res://environment/WE_test.tres
 res://materials/grid.tres
 res://Weapons/1911.tres
 res://Themes/UI/debugStyleBoxFlat.tres
 res://Themes/UI/Debug.tres
 res://materials/Ammo Counter Label Settings.tres
-res://controllers/fps_controller.tscn
+res://materials/RoundLabelSettings.tres
+res://Scripts/barrier.gd
+res://Scenes/Zombie.tscn
+res://Scenes/zombie.gd
 res://levels/level_001.tscn
-res://Weapons/initweapon.gd
-res://Weapons/Weapons.gd
-res://Models/Weapons/crowbarMesh.res
-res://Weapons/Crowbar.tres
+res://Scripts/zombieSpawnPoint.gd
+res://controllers/fps_controller.tscn
+res://Weapons/Weapon.tscn
+res://Prefabs/Zombie Spawnpoint.tscn
+res://Prefabs/Buyable Door.tscn

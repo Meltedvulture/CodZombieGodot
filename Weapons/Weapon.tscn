@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://csj7vcqrenjsi"]
 
-[ext_resource type="Script" uid="uid://barqei8kroiys" path="res://Weapons/initweapon.gd" id="1_tj3qj"]
+[ext_resource type="Script" uid="uid://barqei8kroiys" path="res://Weapons/WeaponManager.gd" id="1_tj3qj"]
 [ext_resource type="Resource" uid="uid://br3d0d4h0w75d" path="res://Weapons/1911.tres" id="2_vgibi"]
 [ext_resource type="ArrayMesh" uid="uid://sc3763do7vdf" path="res://Models/Blender/1911/1911 Body.res" id="3_uof4y"]
 [ext_resource type="ArrayMesh" uid="uid://2jml4vntecq4" path="res://Models/Blender/1911/1911 Magazine.res" id="4_psotp"]

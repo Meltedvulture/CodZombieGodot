@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("1_f3ian")
 name = &"1911"
-Damage = 20
+Damage = 200
 clip = 8
 maxClip = 8
 reserve = 32

@@ -4,14 +4,13 @@
 [ext_resource type="Material" uid="uid://b4gwd5h7ixvct" path="res://materials/player.tres" id="2_gldw4"]
 [ext_resource type="PackedScene" uid="uid://csj7vcqrenjsi" path="res://Weapons/Weapon.tscn" id="3_5w0k0"]
 [ext_resource type="Script" uid="uid://da4bqfupciool" path="res://controllers/reticle.gd" id="3_xc2pf"]
-[ext_resource type="Resource" uid="uid://c606mjyycwvn4" path="res://Weapons/Crowbar.tres" id="4_tg6sc"]
 [ext_resource type="Theme" uid="uid://de2nek577lf7m" path="res://Themes/UI/Debug.tres" id="4_y677r"]
 [ext_resource type="Script" uid="uid://dvspsmhr73myh" path="res://controllers/scripts/debug_panel.gd" id="5_co0pi"]
-[ext_resource type="ArrayMesh" uid="uid://bgacku3pgbu6g" path="res://Models/Weapons/crowbarMesh.res" id="5_yvtcv"]
 [ext_resource type="Script" uid="uid://dkk1lhseynn15" path="res://controllers/scripts/State Machine/stateMachine.gd" id="6_co0pi"]
 [ext_resource type="Script" uid="uid://dd8ov1iyaklk5" path="res://controllers/scripts/State Machine/idle_player_state.gd" id="7_gshig"]
 [ext_resource type="LabelSettings" uid="uid://dskxen8j6183q" path="res://materials/Ammo Counter Label Settings.tres" id="8_fyafc"]
 [ext_resource type="Script" uid="uid://dv2uyfesuk4fh" path="res://controllers/scripts/State Machine/walking_player_state.gd" id="8_jmoha"]
+[ext_resource type="LabelSettings" uid="uid://bmudpq33dnwwx" path="res://materials/RoundLabelSettings.tres" id="8_tg6sc"]
 [ext_resource type="Script" uid="uid://7oev0hm280x0" path="res://controllers/scripts/State Machine/spriting_player_state.gd" id="9_bneyr"]
 [ext_resource type="Script" uid="uid://c7o2fiahsh0tl" path="res://controllers/scripts/State Machine/crouching_player_state.gd" id="10_jdr2h"]
 [ext_resource type="Script" uid="uid://cednwk8gblcux" path="res://controllers/scripts/State Machine/sliding_player_state.gd" id="11_rk4xh"]
@@ -123,53 +122,6 @@ _data = {
 &"RESET": SubResource("Animation_fyafc")
 }
 
-[sub_resource type="Animation" id="Animation_yvtcv"]
-length = 0.5
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Weapon:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-0.4, -0.25, 0, 0.25, 0, -0.4, -0.25, 0, 0.25, 0, -0.4, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 0.5)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Weapon:position:z")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-0.5, -0.25, 0, 0.0459601, 0.0726442, -0.4, -0.108532, -0.00131434, 0.177329, -0.0275298, -0.5, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 0.5)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Weapon:rotation:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.0664254, 0.159454, 0.174533, -0.075, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 0.5)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Weapon/WeaponBolt:position:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2),
-"points": PackedFloat32Array(0, 0, 0, 0, -0.101683, -0.1, -0.0333333, 0, 0.05, 0, 0, -0.05, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.1, 0.25)
-}
-
 [sub_resource type="Animation" id="Animation_3og01"]
 resource_name = "reload"
 length = 2.0
@@ -222,9 +174,97 @@ tracks/3/keys = {
 "values": [Vector3(0, 0, 0), Vector3(-0.1, 0, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_tg6sc"]
+resource_name = "fullReload"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.733333, 0.9, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.25, -0.4, -0.5), Vector3(0.238397, -0.310453, -0.598773), Vector3(0.227544, -0.405285, -0.62859), Vector3(0.227544, -0.305285, -0.62859), Vector3(0.227544, -0.305285, -0.62859), Vector3(0.228, -0.214, -0.629), Vector3(0.25, -0.4, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.333333, 0.733333, 0.9, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.91986, -0.139626), Vector3(9.45642e-09, 1.91986, 0.322886), Vector3(0.357792, 1.91986, 0), Vector3(0.357792, 1.91986, 0), Vector3(0.357792, 1.91986, 0.0349066), Vector3(0, 1.5708, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon/WeaponMagazine:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.5, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.2, -0.5, 0), Vector3(-0.2, -0.5, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yvtcv"]
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.4, -0.25, 0, 0.25, 0, -0.4, -0.25, 0, 0.25, 0, -0.4, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:z")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.5, -0.25, 0, 0.0459601, 0.0726442, -0.4, -0.108532, -0.00131434, 0.177329, -0.0275298, -0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.0664254, 0.159454, 0.174533, -0.075, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapon/WeaponBolt:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0, -0.101683, -0.1, -0.0333333, 0, 0.05, 0, 0, -0.05, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.1, 0.25)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h7h5r"]
 _data = {
-&"reload": SubResource("Animation_3og01"),
+&"emptyReload": SubResource("Animation_3og01"),
+&"fullReload": SubResource("Animation_tg6sc"),
 &"shoot": SubResource("Animation_yvtcv")
 }
 
@@ -629,7 +669,7 @@ _data = {
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ca8e7"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER", "ANIMATIONPLAYER", "CROUCH_SHAPECAST", "weaponController")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER", "ANIMATIONPLAYER", "CROUCH_SHAPECAST", "weaponController")]
 script = ExtResource("1_pgc1p")
 MOUSE_SENSITIVITY = 0.15
 CAMERA_CONTROLLER = NodePath("CameraController/Camera3D")
@@ -656,25 +696,12 @@ enable_shadows = true
 
 [node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
 
-[node name="Weapon" parent="CameraController/Camera3D/WeaponRig" node_paths=PackedStringArray("reserveLabel", "clipLabel", "weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
-transform = Transform3D(-0.5, 0.39182, 0.772319, 0, 0.891798, -0.452435, -0.866025, -0.226217, -0.445899, 0.25, -0.4, -0.5)
-weaponType = ExtResource("4_tg6sc")
-reserveLabel = NodePath("../../../../UserInterface/HBoxContainer/Reserve")
-clipLabel = NodePath("../../../../UserInterface/HBoxContainer/Clip")
+[node name="Weapon" parent="CameraController/Camera3D/WeaponRig" node_paths=PackedStringArray("reserveLabel", "clipLabel", "pointsLabel", "weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
+transform = Transform3D(-0.500004, 0.391819, 0.772317, 0, 0.891797, -0.452435, -0.866023, -0.226219, -0.445902, 0.25, -0.4, -0.5)
+reserveLabel = NodePath("../../../../UserInterface/Ammo/Reserve")
+clipLabel = NodePath("../../../../UserInterface/Ammo/Clip")
+pointsLabel = NodePath("../../../../UserInterface/Points/Points")
 weaponAnimationPlayer = NodePath("../weaponAnimations")
-
-[node name="WeaponMesh" parent="CameraController/Camera3D/WeaponRig/Weapon" index="0"]
-mesh = ExtResource("5_yvtcv")
-
-[node name="WeaponMagazine" parent="CameraController/Camera3D/WeaponRig/Weapon" index="1"]
-mesh = null
-
-[node name="WeaponBolt" parent="CameraController/Camera3D/WeaponRig/Weapon" index="2"]
-mesh = null
-
-[node name="WeaponShadow" parent="CameraController/Camera3D/WeaponRig/Weapon" index="3"]
-visible = false
-mesh = ExtResource("5_yvtcv")
 
 [node name="weaponAnimations" type="AnimationPlayer" parent="CameraController/Camera3D/WeaponRig"]
 libraries = {
@@ -758,7 +785,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UserInterface"]
+[node name="Ammo" type="HBoxContainer" parent="UserInterface"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -772,21 +799,54 @@ offset_bottom = -54.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Clip" type="Label" parent="UserInterface/HBoxContainer"]
+[node name="Clip" type="Label" parent="UserInterface/Ammo"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "0"
+text = "8"
 label_settings = ExtResource("8_fyafc")
 
-[node name="Label" type="Label" parent="UserInterface/HBoxContainer"]
+[node name="Label" type="Label" parent="UserInterface/Ammo"]
 layout_mode = 2
 text = "/"
 label_settings = ExtResource("8_fyafc")
 
-[node name="Reserve" type="Label" parent="UserInterface/HBoxContainer"]
+[node name="Reserve" type="Label" parent="UserInterface/Ammo"]
 layout_mode = 2
-text = "0"
+text = "32"
 label_settings = ExtResource("8_fyafc")
+
+[node name="Points" type="HBoxContainer" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -259.0
+offset_right = 170.0
+offset_bottom = -171.0
+grow_vertical = 0
+
+[node name="Points" type="Label" parent="UserInterface/Points"]
+layout_mode = 2
+text = "500"
+label_settings = ExtResource("8_fyafc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -135.0
+offset_right = 61.0
+offset_bottom = -47.0
+grow_vertical = 0
+
+[node name="RoundLabel" type="Label" parent="UserInterface/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1"
+label_settings = ExtResource("8_tg6sc")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState")]
 script = ExtResource("6_co0pi")
@@ -822,6 +882,11 @@ metadata/_custom_type_script = "uid://chrx5rfmff27h"
 [node name="FallingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("13_l8yvu")
 metadata/_custom_type_script = "uid://chrx5rfmff27h"
+
+[node name="InteractionCast" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, -2)
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
 

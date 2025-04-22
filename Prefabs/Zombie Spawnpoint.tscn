@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c70ryqujysrye"]
+
+[ext_resource type="Script" uid="uid://c32i1l36loome" path="res://Scripts/zombieSpawnPoint.gd" id="1_toyjs"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_toyjs"]
+radius = 0.25
+height = 0.5
+
+[node name="ZombieSpawnpoint" type="Node3D"]
+script = ExtResource("1_toyjs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_toyjs")
