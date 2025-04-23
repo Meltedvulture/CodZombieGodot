@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://boxc1r3sdaj7"]
+[gd_scene load_steps=11 format=4 uid="uid://boxc1r3sdaj7"]
+
+[ext_resource type="Script" uid="uid://dmnsp2wm3u85g" path="res://Scripts/buyableDoor.gd" id="1_htttf"]
 
 [sub_resource type="Image" id="Image_dqe6w"]
 data = {
@@ -264,12 +266,84 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_4umcc")
 
-[node name="BuyableDoor" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 0.75, 0, 0, 0, 0.85, 0, 0, 0)
+[sub_resource type="BoxShape3D" id="BoxShape3D_htttf"]
+size = Vector3(0.2, 2, 1.5)
+
+[sub_resource type="Animation" id="Animation_htttf"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Buyable Door:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.75)]
+}
+
+[sub_resource type="Animation" id="Animation_psehj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Buyable Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p1bxt"]
+_data = {
+&"RESET": SubResource("Animation_psehj"),
+&"open": SubResource("Animation_htttf")
+}
+
+[node name="BuyableDoor" type="StaticBody3D" groups=["BuyableObject"]]
+script = ExtResource("1_htttf")
 
 [node name="Buyable Door" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.75, 0, 0, 0, 0.85, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ekd58")
 skeleton = NodePath("")
 metadata/extras = {
 "flip_fluid": {}
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_htttf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p1bxt")
 }

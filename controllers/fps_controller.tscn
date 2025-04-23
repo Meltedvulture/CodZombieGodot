@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://c3ffql15mo0aj"]
+[gd_scene load_steps=34 format=3 uid="uid://c3ffql15mo0aj"]
 
 [ext_resource type="Script" uid="uid://dgpa2g1406d8w" path="res://controllers/scripts/fps_controller.gd" id="1_pgc1p"]
 [ext_resource type="Material" uid="uid://b4gwd5h7ixvct" path="res://materials/player.tres" id="2_gldw4"]
 [ext_resource type="PackedScene" uid="uid://csj7vcqrenjsi" path="res://Weapons/Weapon.tscn" id="3_5w0k0"]
 [ext_resource type="Script" uid="uid://da4bqfupciool" path="res://controllers/reticle.gd" id="3_xc2pf"]
+[ext_resource type="Script" uid="uid://chelsy2m60l2o" path="res://controllers/scripts/interaction_cast.gd" id="4_tg6sc"]
 [ext_resource type="Theme" uid="uid://de2nek577lf7m" path="res://Themes/UI/Debug.tres" id="4_y677r"]
 [ext_resource type="Script" uid="uid://dvspsmhr73myh" path="res://controllers/scripts/debug_panel.gd" id="5_co0pi"]
 [ext_resource type="Script" uid="uid://dkk1lhseynn15" path="res://controllers/scripts/State Machine/stateMachine.gd" id="6_co0pi"]
@@ -13,6 +14,7 @@
 [ext_resource type="LabelSettings" uid="uid://bmudpq33dnwwx" path="res://materials/RoundLabelSettings.tres" id="8_tg6sc"]
 [ext_resource type="Script" uid="uid://7oev0hm280x0" path="res://controllers/scripts/State Machine/spriting_player_state.gd" id="9_bneyr"]
 [ext_resource type="Script" uid="uid://c7o2fiahsh0tl" path="res://controllers/scripts/State Machine/crouching_player_state.gd" id="10_jdr2h"]
+[ext_resource type="LabelSettings" uid="uid://ymbpk3yphr8i" path="res://materials/InteractionLabelSettings.tres" id="10_yvtcv"]
 [ext_resource type="Script" uid="uid://cednwk8gblcux" path="res://controllers/scripts/State Machine/sliding_player_state.gd" id="11_rk4xh"]
 [ext_resource type="Script" uid="uid://bttldsvuv6dwb" path="res://controllers/scripts/State Machine/jumping_player_state.gd" id="12_uovkr"]
 [ext_resource type="Script" uid="uid://ts5ba16nqwfv" path="res://controllers/scripts/State Machine/falling_player_state.gd" id="13_l8yvu"]
@@ -709,6 +711,11 @@ libraries = {
 &"1911": SubResource("AnimationLibrary_h7h5r")
 }
 
+[node name="InteractionCast" type="RayCast3D" parent="CameraController/Camera3D"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -1)
+script = ExtResource("4_tg6sc")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_t6fw5")
@@ -848,6 +855,28 @@ layout_mode = 2
 text = "1"
 label_settings = ExtResource("8_tg6sc")
 
+[node name="InteractionHbox" type="HBoxContainer" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -227.0
+offset_top = -167.0
+offset_right = 227.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="InteractionLabel" type="Label" parent="UserInterface/InteractionHbox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+label_settings = ExtResource("10_yvtcv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState")]
 script = ExtResource("6_co0pi")
 currentState = NodePath("IdlePlayerState")
@@ -882,11 +911,6 @@ metadata/_custom_type_script = "uid://chrx5rfmff27h"
 [node name="FallingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("13_l8yvu")
 metadata/_custom_type_script = "uid://chrx5rfmff27h"
-
-[node name="InteractionCast" type="RayCast3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-target_position = Vector3(0, 0, -2)
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
 

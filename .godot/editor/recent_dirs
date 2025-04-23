@@ -1,6 +1,7 @@
-res://Prefabs
-res://Scripts
 res://materials
+res://Scripts
+res://controllers/scripts
+res://Prefabs
 res://Models/Blender/1911
 res://Scenes
 res://
@@ -10,5 +11,4 @@ D:/Program Directory/blender 4.1.1
 res://textures
 res://Models/Weapons
 res://controllers/scripts/State Machine
-res://controllers/scripts
 res://Themes/UI
