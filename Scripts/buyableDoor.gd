@@ -19,4 +19,5 @@ func _process(delta: float) -> void:
 func purchase():
 	if Global.points > cost:
 		Global.points -= cost
+		Global.updatePoints() 
 		animationPlayer.play("open", -1, 1)

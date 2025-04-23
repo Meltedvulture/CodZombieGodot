@@ -11,3 +11,6 @@ res://controllers/scripts/interaction_cast.gd
 res://Scripts/buyableDoor.gd
 res://materials/InteractionLabelSettings.tres
 res://levels/level_001.tscn
+res://Global.gd
+res://Weapons/WeaponManager.gd
+res://Prefabs/Barrier.tscn

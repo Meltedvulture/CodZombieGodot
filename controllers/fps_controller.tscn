@@ -684,6 +684,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_u6tj1")
 
 [node name="PlaceholderMesh" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.75, 0, 0, 0, 1, 0, 0, 0, 0.75, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_6tv51")
 
 [node name="CameraController" type="Node3D" parent="."]
@@ -698,11 +699,8 @@ enable_shadows = true
 
 [node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
 
-[node name="Weapon" parent="CameraController/Camera3D/WeaponRig" node_paths=PackedStringArray("reserveLabel", "clipLabel", "pointsLabel", "weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
+[node name="Weapon" parent="CameraController/Camera3D/WeaponRig" node_paths=PackedStringArray("weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
 transform = Transform3D(-0.500004, 0.391819, 0.772317, 0, 0.891797, -0.452435, -0.866023, -0.226219, -0.445902, 0.25, -0.4, -0.5)
-reserveLabel = NodePath("../../../../UserInterface/Ammo/Reserve")
-clipLabel = NodePath("../../../../UserInterface/Ammo/Clip")
-pointsLabel = NodePath("../../../../UserInterface/Points/Points")
 weaponAnimationPlayer = NodePath("../weaponAnimations")
 
 [node name="weaponAnimations" type="AnimationPlayer" parent="CameraController/Camera3D/WeaponRig"]
@@ -807,6 +805,7 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="Clip" type="Label" parent="UserInterface/Ammo"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "8"
@@ -818,6 +817,7 @@ text = "/"
 label_settings = ExtResource("8_fyafc")
 
 [node name="Reserve" type="Label" parent="UserInterface/Ammo"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "32"
 label_settings = ExtResource("8_fyafc")
@@ -834,6 +834,7 @@ offset_bottom = -171.0
 grow_vertical = 0
 
 [node name="Points" type="Label" parent="UserInterface/Points"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "500"
 label_settings = ExtResource("8_fyafc")

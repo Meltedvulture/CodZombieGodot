@@ -45,31 +45,38 @@ var weaponAccuracy
 var time_per_shot: float = 0.1  # Default time between shots (calculated dynamically)
 var cooldown_timer: float = 0.0  # Tracks the remaining cooldown time
 var bulletHole = preload("res://Scenes/Bullet Hole.tscn")
+var weaponInventory = []
+var currentWeaponIndex : int = 1
 
-@export var reserveLabel : Label
-@export var clipLabel : Label
-@export var pointsLabel : Label
+
 @export var weaponAnimationPlayer : AnimationPlayer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Initialize with a default weapon type if none is selected
+	Global.reserveLabel = %Reserve
+	Global.clipLabel = %Clip
+	Global.pointsLabel = %Points
+	
 	if weaponType == null:
 		weaponType = load("res://Weapons/1911.tres")
 	loadWeapon()
 
 func _input(event):
-	if event.is_action_pressed("weapon1"):
+	if event.is_action_pressed("weaponDown"):
 		weaponType = load("res://Weapons/1911.tres")
 		loadWeapon()
 
-	if event.is_action_pressed("weapon2"):
+	if event.is_action_pressed("weaponUp"):
 		weaponType = load("res://Weapons/Crowbar.tres")
 		loadWeapon()
 
 	if event is InputEventMouseMotion:
 		mouseMovement = event.relative
+
+func addWeapon(Weapon):
+	pass
+
 
 func loadWeapon() -> void:
 	if weaponType == null:
@@ -91,8 +98,8 @@ func loadWeapon() -> void:
 	clipAmmo = weaponType.clip
 	maxClipAmmo = weaponType.maxClip
 	reserveAmmo = weaponType.reserve
-	clipLabel.text = str(clipAmmo)
-	reserveLabel.text = str(reserveAmmo)
+	Global.clipLabel.text = str(clipAmmo)
+	Global.reserveLabel.text = str(reserveAmmo)
 	time_per_shot = 60.0 / weaponType.rpm  # Calculate time between shots
 	weaponAccuracy = weaponType.Accuracy
 
@@ -179,7 +186,7 @@ func shoot() -> void:
 			hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
 		
 		clipAmmo -= 1
-		updateLabels()
+		Global.updateLabels(clipAmmo, reserveAmmo) 
 		weaponAnimationPlayer.stop()
 		weaponAnimationPlayer.seek(0)
 		weaponAnimationPlayer.play(weaponName + "/" + "shoot", -1, 2, false)
@@ -196,10 +203,6 @@ func shoot() -> void:
 	elif reserveAmmo > 0:
 		reloadWeapon()
 
-func updateLabels():
-	clipLabel.text = str(clipAmmo)
-	reserveLabel.text = str(reserveAmmo)
-	pointsLabel.text = str(Global.points)
 
 func reloadWeapon():
 	canShoot = false
@@ -217,7 +220,7 @@ func reloadWeapon():
 	else:
 		clipAmmo += reserveAmmo
 		reserveAmmo = 0
-	updateLabels() 
+	Global.updateLabels(clipAmmo, reserveAmmo) 
 	canShoot = true
 	
 
