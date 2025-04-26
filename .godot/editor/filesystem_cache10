@@ -1,6 +1,6 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1745371464
-Global.gd::GDScript/GDScript::2763096555857727694::1745240582::0::1::::<>Node<><>0<>0<><>::
+::res://::1745629879
+Global.gd::GDScript/GDScript::2763096555857727694::1745393047::0::1::::<>Node<><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::8444505666706689092::1696380588::1744014256::1::::<><><>0<>0<>005d2de8f6e6e413e9fb0fd3958934ca<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 README.md::TextFile/TextFile::-1::1745221124::0::1::::<><><>0<>0<><>::
 ::res://addons/::1745225043
@@ -12,12 +12,13 @@ plugin.cfg::TextFile/TextFile::-1::1745225043::0::1::::<><><>0<>0<><>::
 plugin.gd::GDScript/GDScript::110216028710185424::1745225043::0::1::::<>EditorPlugin<><>0<>1<><>::
 preview.gd::GDScript/GDScript::699270287410620070::1745225043::0::1::::CameraPreview<>Control<><>0<>1<><>::
 preview.tscn::PackedScene/PackedScene::48940320948976937::1745225043::0::1::::<><><>0<>0<><>::res://addons/anthonyec.camera_preview/preview.gd<>uid://do6d60od41vmg::::res://addons/anthonyec.camera_preview/Pin.svg<>uid://btc01wc11tiid::::res://addons/anthonyec.camera_preview/GuiResizerTopLeft.svg<>uid://04l05jxuyt7k::::res://addons/anthonyec.camera_preview/GuiResizerTopRight.svg
-::res://controllers/::1745320352
-fps_controller.tscn::PackedScene::6748783654989162717::1745320352::0::1::::<><><>0<>0<><>::uid://dgpa2g1406d8w::::res://controllers/scripts/fps_controller.gd<>uid://b4gwd5h7ixvct::::res://materials/player.tres<>uid://csj7vcqrenjsi::::res://Weapons/Weapon.tscn<>uid://da4bqfupciool::::res://controllers/reticle.gd<>uid://de2nek577lf7m::::res://Themes/UI/Debug.tres<>uid://dvspsmhr73myh::::res://controllers/scripts/debug_panel.gd<>uid://dkk1lhseynn15::::res://controllers/scripts/State Machine/stateMachine.gd<>uid://dd8ov1iyaklk5::::res://controllers/scripts/State Machine/idle_player_state.gd<>uid://dskxen8j6183q::::res://materials/Ammo Counter Label Settings.tres<>uid://dv2uyfesuk4fh::::res://controllers/scripts/State Machine/walking_player_state.gd<>uid://bmudpq33dnwwx::::res://materials/RoundLabelSettings.tres<>uid://7oev0hm280x0::::res://controllers/scripts/State Machine/spriting_player_state.gd<>uid://c7o2fiahsh0tl::::res://controllers/scripts/State Machine/crouching_player_state.gd<>uid://cednwk8gblcux::::res://controllers/scripts/State Machine/sliding_player_state.gd<>uid://bttldsvuv6dwb::::res://controllers/scripts/State Machine/jumping_player_state.gd<>uid://ts5ba16nqwfv::::res://controllers/scripts/State Machine/falling_player_state.gd
+::res://controllers/::1745586156
+fps_controller.tscn::PackedScene::6748783654989162717::1745586156::0::1::::<><><>0<>0<><>::uid://dgpa2g1406d8w::::res://controllers/scripts/fps_controller.gd<>uid://b4gwd5h7ixvct::::res://materials/player.tres<>uid://csj7vcqrenjsi::::res://Weapons/Weapon.tscn<>uid://da4bqfupciool::::res://controllers/reticle.gd<>uid://chelsy2m60l2o::::res://controllers/scripts/interaction_cast.gd<>uid://de2nek577lf7m::::res://Themes/UI/Debug.tres<>uid://dvspsmhr73myh::::res://controllers/scripts/debug_panel.gd<>uid://dkk1lhseynn15::::res://controllers/scripts/State Machine/stateMachine.gd<>uid://dd8ov1iyaklk5::::res://controllers/scripts/State Machine/idle_player_state.gd<>uid://dskxen8j6183q::::res://materials/Ammo Counter Label Settings.tres<>uid://dv2uyfesuk4fh::::res://controllers/scripts/State Machine/walking_player_state.gd<>uid://bmudpq33dnwwx::::res://materials/RoundLabelSettings.tres<>uid://7oev0hm280x0::::res://controllers/scripts/State Machine/spriting_player_state.gd<>uid://c7o2fiahsh0tl::::res://controllers/scripts/State Machine/crouching_player_state.gd<>uid://ymbpk3yphr8i::::res://materials/InteractionLabelSettings.tres<>uid://cednwk8gblcux::::res://controllers/scripts/State Machine/sliding_player_state.gd<>uid://bttldsvuv6dwb::::res://controllers/scripts/State Machine/jumping_player_state.gd<>uid://ts5ba16nqwfv::::res://controllers/scripts/State Machine/falling_player_state.gd
 reticle.gd::GDScript/GDScript::7219218589839655647::1744721804::0::1::::<>CenterContainer<><>0<>0<><>::
-::res://controllers/scripts/::1745289028
+::res://controllers/scripts/::1745393762
 debug_panel.gd::GDScript/GDScript::8671330108142957095::1744725259::0::1::::<>PanelContainer<><>0<>0<><>::
 fps_controller.gd::GDScript/GDScript::7611409352311100716::1745289028::0::1::::Player<>CharacterBody3D<><>0<>0<><>::
+interaction_cast.gd::GDScript/GDScript::5273122117937157576::1745393762::0::1::::<>RayCast3D<><>0<>0<><>::
 ::res://controllers/scripts/State Machine/::1745221191
 crouching_player_state.gd::GDScript/GDScript::7049434360663502125::1745219889::0::1::::CrouchingPlayerState<>PlayerMovementState<><>0<>0<><>::
 falling_player_state.gd::GDScript/GDScript::1372570165864029895::1744951352::0::1::::FallingPlayerState<>PlayerMovementState<><>0<>0<><>::
@@ -29,18 +30,19 @@ spriting_player_state.gd::GDScript/GDScript::2275225979096959235::1745219867::0:
 state.gd::GDScript/GDScript::5300708660495330667::1744895761::0::1::::State<>Node<><>0<>0<><>::
 stateMachine.gd::GDScript/GDScript::7883392946229377838::1744895851::0::1::::StateMachine<>Node<><>0<>0<><>::
 walking_player_state.gd::GDScript/GDScript::8690223435387603445::1745219867::0::1::::WalkingPlayerState<>PlayerMovementState<><>0<>0<><>::
-::res://environment/::1745307824
-WE_test.tres::Environment::8424170553004968181::1745307824::0::1::::<><><>0<>0<><>::uid://b1jvh1ehiaebt::::res://textures/industrial_sunset_puresky_4k.hdr
-::res://levels/::1745320254
-level_001.tscn::PackedScene::4261551556484119783::1745320254::0::1::::<><><>0<>0<><>::uid://btv0a42cgxt8g::::res://levels/WE_test.tscn<>uid://cn1gsy15bkaff::::res://materials/grid.tres<>uid://ivvpsi314b34::::res://textures/grid.jpg<>uid://c3ffql15mo0aj::::res://controllers/fps_controller.tscn<>uid://cshij46ivwwxy::::res://Prefabs/ZombieRoundManager.tscn<>uid://c70ryqujysrye::::res://Prefabs/Zombie Spawnpoint.tscn<>uid://ciegvrj52uiac::::res://Prefabs/Barrier.tscn<>uid://boxc1r3sdaj7::::res://Prefabs/Buyable Door.tscn
+::res://environment/::1745630960
+WE_test.tres::Environment::8424170553004968181::1745630960::0::1::::<><><>0<>0<><>::uid://b1jvh1ehiaebt::::res://textures/industrial_sunset_puresky_4k.hdr
+::res://levels/::1745631931
+level_001.tscn::PackedScene::4261551556484119783::1745631931::0::1::::<><><>0<>0<><>::uid://btv0a42cgxt8g::::res://levels/WE_test.tscn<>uid://cn1gsy15bkaff::::res://materials/grid.tres<>uid://ivvpsi314b34::::res://textures/grid.jpg<>uid://c3ffql15mo0aj::::res://controllers/fps_controller.tscn<>uid://cshij46ivwwxy::::res://Prefabs/ZombieRoundManager.tscn<>uid://c70ryqujysrye::::res://Prefabs/Zombie Spawnpoint.tscn<>uid://ciegvrj52uiac::::res://Prefabs/Barrier.tscn<>uid://boxc1r3sdaj7::::res://Prefabs/Buyable Door.tscn<>uid://dfsevkcr22o2a::::res://Prefabs/Wall Weapon.tscn<>uid://c606mjyycwvn4::::res://Weapons/Crowbar.tres
 WE_test.tscn::PackedScene/PackedScene::3764880135456822604::1744014388::0::1::::<><><>0<>0<><>::uid://dsay4gdr8k6ur::::res://environment/WE_test.tres
-::res://materials/::1745307825
-Ammo Counter Label Settings.tres::LabelSettings::8444709382347235948::1745307824::0::1::::<><><>0<>0<><>::
-grid.tres::ShaderMaterial::5739367904623174735::1745307824::0::1::::<><><>0<>0<><>::uid://ivvpsi314b34::::res://textures/grid.jpg
+::res://materials/::1745630960
+Ammo Counter Label Settings.tres::LabelSettings::8444709382347235948::1745630960::0::1::::<><><>0<>0<><>::
+grid.tres::ShaderMaterial::5739367904623174735::1745630960::0::1::::<><><>0<>0<><>::uid://ivvpsi314b34::::res://textures/grid.jpg
+InteractionLabelSettings.tres::LabelSettings/LabelSettings::1709392853861650646::1745375583::0::1::::<><><>0<>0<><>::
 player.tres::StandardMaterial3D/StandardMaterial3D::4435626134922663587::1696380588::0::1::::<><><>0<>0<><>::
-RoundLabelSettings.tres::LabelSettings::3270184185222422003::1745307825::0::1::::<><><>0<>0<><>::
+RoundLabelSettings.tres::LabelSettings::3270184185222422003::1745630960::0::1::::<><><>0<>0<><>::
 ::res://Models/::1745221192
-::res://Models/Blender/::1745319788
+::res://Models/Blender/::1745634811
 ::res://Models/Blender/1911/::1745224497
 1911 Body.res::ArrayMesh/ArrayMesh::1269286833829795327::1745224497::0::1::::<><><>0<>0<><>::uid://o8b4xv05e645::::res://Models/Blender/1911/1911 Diffuse.png<>uid://dxji113s3pll2::::res://Models/Blender/1911/1911 Roughness.png<>uid://cfea8w70hpyx0::::res://Models/Blender/1911/1911 Normal.png
 1911 Diffuse.png::CompressedTexture2D/CompressedTexture2D::1050882023486550228::1745136880::1745137704::1::::<><><>0<>0<>845402778da2c010aad2f133804740fc<>res://.godot/imported/1911 Diffuse.png-f175049fdacb9b45b83040f64d4ab2fc.s3tc.ctex::
@@ -76,26 +78,38 @@ BuyableDoor.blend::PackedScene/PackedScene::1140361548082220535::1745319672::174
 Buyable Door Diffuse.png::CompressedTexture2D/CompressedTexture2D::7309565409738548836::1745319797::1745319883::1::::<><><>0<>0<>81334ff69efd7d97a2a5c9b5e7b34dc4<>res://.godot/imported/Buyable Door Diffuse.png-b2a04efd47317009bc48baccaa6d3dda.s3tc.ctex::
 wood-90_bump.jpg::CompressedTexture2D/CompressedTexture2D::5332068718058913418::1745319797::1745319875::1::::<><><>0<>0<>3733a17bc79c8507591397d7717f51d7<>res://.godot/imported/wood-90_bump.jpg-7235cd866f91877ce4a30e0673d35297.ctex::
 wood-90_height.jpg::CompressedTexture2D/CompressedTexture2D::1744564041026221204::1745319797::1745319875::1::::<><><>0<>0<>8f7c3acb06b91ffb9a65e7705a8b544f<>res://.godot/imported/wood-90_height.jpg-697cb48158f7908a097a781823e66bb0.ctex::
-::res://Models/Weapons/::1745226531
+::res://Models/Blender/M14/::1745636688
+M14.blend::PackedScene::2962363078594114208::1745634818::1745636688::1::::<><><>0<>0<>5376d974b0b02692695728e3d311dc89<>res://.godot/imported/M14.blend-b24cbe39b50a1315042c118e32c02916.scn::
+::res://Models/Blender/M14/textures/::1745636686
+Image_0.png::CompressedTexture2D::4647074907576411198::1745636686::1745636701::1::::<><><>0<>0<>6a0910fb6bc1bc861f28af606316f4b7<>res://.godot/imported/Image_0.png-d9ea615fb8fcd5788524c7af199402d9.ctex::
+Image_1.png::CompressedTexture2D::406596335137984538::1745636686::1745636701::1::::<><><>0<>0<>c3133f81beab946ed8b1b4aca2e9dcee<>res://.godot/imported/Image_1.png-a88256be651e8cdc689f3a499a88ba8b.ctex::
+Image_2.png::CompressedTexture2D::945908359581837544::1745636686::1745636701::1::::<><><>0<>0<>f64751b7f4c75bd513386486381121dd<>res://.godot/imported/Image_2.png-6ca3cea954403555318ecd89e7d31052.ctex::
+M14 Diffuse.png::CompressedTexture2D::2739009313342002415::1745636686::1745636701::1::::<><><>0<>0<>afff0da71b7b50c412bc8dac207dc703<>res://.godot/imported/M14 Diffuse.png-276d8c7e0f59f62f80f7b4a094d5b340.ctex::
+M14 Normal Map.png::CompressedTexture2D::7997052498714907217::1745636686::1745636701::1::::<><><>0<>0<>11535bf0f512599a258f724245767704<>res://.godot/imported/M14 Normal Map.png-ebf1887f9b4e12140ce3a0e3c0d74ad5.ctex::
+M14 Roughness.png::CompressedTexture2D::7291390860064633035::1745636686::1745636701::1::::<><><>0<>0<>e7ff0cac8f8e62623638a5d62909cec3<>res://.godot/imported/M14 Roughness.png-7281c1425fa3039617ee5aa71946d799.ctex::
+::res://Models/Weapons/::1745630961
 Crowbar cull.tres::ShaderMaterial/ShaderMaterial::2740733535469770833::1745215088::0::1::::<><><>0<>0<><>::uid://dn3aq8a2sn5d8::::res://Models/Weapons/crowbar_0.jpg<>uid://iw3lkuvl01ek::::res://Models/Weapons/crowbar_1.png<>uid://cxgvmaaaoybt8::::res://Models/Weapons/crowbar_2.png
 crowbar.glb::PackedScene/PackedScene::5545935932066567891::1745031722::1745034397::1::::<><><>0<>0<>509643638330f0fa0c0b2ba153571e90<>res://.godot/imported/crowbar.glb-142548f4ccd2ace895feb2d17543ff7c.scn::uid://bgacku3pgbu6g::::res://Models/Weapons/crowbarMesh.res
-crowbarMesh.res::ArrayMesh/ArrayMesh::2807694131857016636::1745226530::0::1::::<><><>0<>0<><>::uid://dn3aq8a2sn5d8::::res://Models/Weapons/crowbar_0.jpg<>uid://iw3lkuvl01ek::::res://Models/Weapons/crowbar_1.png<>uid://cxgvmaaaoybt8::::res://Models/Weapons/crowbar_2.png
+crowbarMesh.res::ArrayMesh::2807694131857016636::1745630961::0::1::::<><><>0<>0<><>::uid://dn3aq8a2sn5d8::::res://Models/Weapons/crowbar_0.jpg<>uid://iw3lkuvl01ek::::res://Models/Weapons/crowbar_1.png<>uid://cxgvmaaaoybt8::::res://Models/Weapons/crowbar_2.png
 crowbar_0.jpg::CompressedTexture2D/CompressedTexture2D::8129549902711787239::1745031722::1745031724::1::::<><><>0<>0<>5e00a0a6d9e3063e88029014c0ad6e76<>res://.godot/imported/crowbar_0.jpg-ac33ca9d606b2bdfe4124fe232df2385.s3tc.ctex::
 crowbar_1.png::CompressedTexture2D/CompressedTexture2D::608647336323435154::1745031722::1745031724::1::::<><><>0<>0<>587de0ca5e71e0df523eb40e6fe1fdc3<>res://.godot/imported/crowbar_1.png-4695e384ab281e25ab489d339bc40255.s3tc.ctex::
 crowbar_2.png::CompressedTexture2D/CompressedTexture2D::6400867523979913931::1745031723::1745031724::1::::<><><>0<>0<>1a850928ef564d712c315ba33e6b4230<>res://.godot/imported/crowbar_2.png-53645684ed11c8a139d96858b0a09d15.s3tc.ctex::
-::res://Prefabs/::1745320086
-Barrier.tscn::PackedScene::5343012339335433202::1745320009::0::1::::<><><>0<>0<><>::uid://blwx7yunkg0re::::res://Models/Blender/Barrier/textures/Sand Bags.png<>uid://dtw6lnlvl1qa3::::res://Scripts/barrier.gd<>uid://v6kv71wqa82v::::res://Models/Blender/Barrier/textures/woodcreator_1_basecolor.jpg<>uid://cyw8sc0cne762::::res://Models/Blender/Barrier/textures/woodcreator_1_roughness.jpg<>uid://d22ycl2e3wh5h::::res://Models/Blender/Barrier/textures/woodcreator_1_normal.jpg
-Buyable Door.tscn::PackedScene::100491587781450698::1745320086::0::1::::<><><>0<>0<><>::
-Zombie Spawnpoint.tscn::PackedScene::7071569727296889640::1745320009::0::1::::<><><>0<>0<><>::uid://c32i1l36loome::::res://Scripts/zombieSpawnPoint.gd
+::res://Prefabs/::1745586156
+Barrier.tscn::PackedScene::5343012339335433202::1745586156::0::1::::<><><>0<>0<><>::uid://blwx7yunkg0re::::res://Models/Blender/Barrier/textures/Sand Bags.png<>uid://dtw6lnlvl1qa3::::res://Scripts/barrier.gd<>uid://v6kv71wqa82v::::res://Models/Blender/Barrier/textures/woodcreator_1_basecolor.jpg<>uid://cyw8sc0cne762::::res://Models/Blender/Barrier/textures/woodcreator_1_roughness.jpg<>uid://d22ycl2e3wh5h::::res://Models/Blender/Barrier/textures/woodcreator_1_normal.jpg
+Buyable Door.tscn::PackedScene::100491587781450698::1745586156::0::1::::<><><>0<>0<><>::uid://dmnsp2wm3u85g::::res://Scripts/buyableDoor.gd
+Wall Weapon.tscn::PackedScene::7547645967618281590::1745586156::0::1::::<><><>0<>0<><>::uid://din4bshtvrbrb::::res://Scripts/wallWeapon.gd
+Zombie Spawnpoint.tscn::PackedScene/PackedScene::7071569727296889640::1745320009::0::1::::<><><>0<>0<><>::uid://c32i1l36loome::::res://Scripts/zombieSpawnPoint.gd
 ZombieRoundManager.tscn::PackedScene/PackedScene::6051194576695007678::1745285621::0::1::::<><><>0<>0<><>::uid://d0frvk5yhjni5::::res://Scripts/ZombieRoundManager.gd
-::res://Scenes/::1745320009
+::res://Scenes/::1745394774
 Bullet Hole.tscn::PackedScene/PackedScene::2286284350540549235::1745145542::0::1::::<><><>0<>0<><>::uid://cahtc4qhj5g21::::res://textures/bullet_hole_0.png
-zombie.gd::GDScript::7697022756783069424::1745313562::0::1::::<>CharacterBody3D<><>0<>0<><>::
-Zombie.tscn::PackedScene::6548205012836176074::1745320009::0::1::::<><><>0<>0<><>::uid://dhwq3tlnft4fk::::res://Scenes/zombie.gd
-::res://Scripts/::1745315973
-barrier.gd::GDScript::8540168962066232252::1745315973::0::1::::Barrier<>Node3D<><>0<>0<><>::
+zombie.gd::GDScript/GDScript::7697022756783069424::1745394774::0::1::::<>CharacterBody3D<><>0<>0<><>::
+Zombie.tscn::PackedScene/PackedScene::6548205012836176074::1745320009::0::1::::<><><>0<>0<><>::uid://dhwq3tlnft4fk::::res://Scenes/zombie.gd
+::res://Scripts/::1745585434
+barrier.gd::GDScript/GDScript::8540168962066232252::1745399524::0::1::::Barrier<>Node3D<><>0<>0<><>::
+buyableDoor.gd::GDScript/GDScript::8029486231016457446::1745400458::0::1::::<>StaticBody3D<><>0<>0<><>::
+wallWeapon.gd::GDScript::7749373246696411199::1745585434::0::1::::<>StaticBody3D<><>0<>0<><>::
 ZombieRoundManager.gd::GDScript/GDScript::8925375294027251866::1745286764::0::1::::ZombieRoundManager<>Node<><>0<>0<><>::
-zombieSpawnPoint.gd::GDScript::6794399977629521748::1745315226::0::1::::<>Node3D<><>0<>0<><>::
+zombieSpawnPoint.gd::GDScript/GDScript::6794399977629521748::1745400309::0::1::::ZombieSpawnPoint<>Node3D<><>0<>0<><>::
 ::res://shaders/::1745221186
 grid.gdshader::Shader/Shader::7109235500993866572::1696380588::0::1::::<><><>0<>0<><>::
 ::res://textures/::1745221186
@@ -104,12 +118,12 @@ grid.jpg::CompressedTexture2D/CompressedTexture2D::606165484783000033::169638058
 industrial_sunset_puresky_4k.hdr::CompressedTexture2D/CompressedTexture2D::4231198947588975781::1696380588::1744014257::1::::<><><>0<>0<>da78fc27a5e72e6e1e02a181a45d02af<>res://.godot/imported/industrial_sunset_puresky_4k.hdr-f720137328f9b57effb6dcc1298b5e3b.bptc.ctex::
 Weapon Noise.tres::NoiseTexture2D/NoiseTexture2D::8740860091541894666::1745058943::0::1::::<><><>0<>0<><>::
 ::res://Themes/::1745221186
-::res://Themes/UI/::1745307824
-Debug.tres::Theme::7496552662147399736::1745307824::0::1::::<><><>0<>0<><>::uid://bay56jufqvixq::::res://Themes/UI/debugStyleBoxFlat.tres
-debugStyleBoxFlat.tres::StyleBoxFlat::2437843123040214918::1745307824::0::1::::<><><>0<>0<><>::
-::res://Weapons/::1745320009
-1911.tres::Resource/Weapons::3637660601200984671::1745307824::0::1::::<><><>0<>0<><>::uid://gnroolwqpaaf::::res://Models/Blender/1911/1911 Slide.res<>uid://c0afljd65dkhp::::res://Weapons/Weapons.gd<>uid://2jml4vntecq4::::res://Models/Blender/1911/1911 Magazine.res<>uid://sc3763do7vdf::::res://Models/Blender/1911/1911 Body.res
-Crowbar.tres::Resource/Weapons::7002209131198789115::1745226531::0::1::::<><><>0<>0<><>::uid://bgacku3pgbu6g::::res://Models/Weapons/crowbarMesh.res<>uid://c0afljd65dkhp::::res://Weapons/Weapons.gd
-Weapon.tscn::PackedScene::6056800528639693144::1745320009::0::1::::<><><>0<>0<><>::uid://barqei8kroiys::::res://Weapons/WeaponManager.gd<>uid://br3d0d4h0w75d::::res://Weapons/1911.tres<>uid://sc3763do7vdf::::res://Models/Blender/1911/1911 Body.res<>uid://2jml4vntecq4::::res://Models/Blender/1911/1911 Magazine.res<>uid://gnroolwqpaaf::::res://Models/Blender/1911/1911 Slide.res
-WeaponManager.gd::GDScript/GDScript::2422494192214979426::1745233604::0::1::::WeaponController<>Node3D<><>0<>1<><>::
-Weapons.gd::GDScript/GDScript::6527886165827080381::1745227292::0::1::::Weapons<>Resource<><>0<>0<><>::
+::res://Themes/UI/::1745630960
+Debug.tres::Theme::7496552662147399736::1745630960::0::1::::<><><>0<>0<><>::uid://bay56jufqvixq::::res://Themes/UI/debugStyleBoxFlat.tres
+debugStyleBoxFlat.tres::StyleBoxFlat::2437843123040214918::1745630960::0::1::::<><><>0<>0<><>::
+::res://Weapons/::1745631931
+1911.tres::Resource/Weapons::3637660601200984671::1745630960::0::1::::<><><>0<>0<><>::uid://gnroolwqpaaf::::res://Models/Blender/1911/1911 Slide.res<>uid://c0afljd65dkhp::::res://Weapons/Weapons.gd<>uid://2jml4vntecq4::::res://Models/Blender/1911/1911 Magazine.res<>uid://sc3763do7vdf::::res://Models/Blender/1911/1911 Body.res
+Crowbar.tres::Resource/Weapons::7002209131198789115::1745630961::0::1::::<><><>0<>0<><>::uid://bgacku3pgbu6g::::res://Models/Weapons/crowbarMesh.res<>uid://c0afljd65dkhp::::res://Weapons/Weapons.gd
+Weapon.tscn::PackedScene::6056800528639693144::1745586156::0::1::::<><><>0<>0<><>::uid://barqei8kroiys::::res://Weapons/WeaponManager.gd<>uid://br3d0d4h0w75d::::res://Weapons/1911.tres<>uid://sc3763do7vdf::::res://Models/Blender/1911/1911 Body.res<>uid://2jml4vntecq4::::res://Models/Blender/1911/1911 Magazine.res<>uid://gnroolwqpaaf::::res://Models/Blender/1911/1911 Slide.res
+WeaponManager.gd::GDScript::2422494192214979426::1745631931::0::1::::WeaponController<>Node3D<><>0<>1<><>::
+Weapons.gd::GDScript::6527886165827080381::1745630961::0::1::::Weapons<>Resource<><>0<>0<><>::

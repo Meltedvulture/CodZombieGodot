@@ -672,6 +672,8 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_ca8e7"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER", "ANIMATIONPLAYER", "CROUCH_SHAPECAST", "weaponController")]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_pgc1p")
 MOUSE_SENSITIVITY = 0.15
 CAMERA_CONTROLLER = NodePath("CameraController/Camera3D")

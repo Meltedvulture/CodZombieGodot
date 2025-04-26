@@ -1,4 +1,4 @@
-res://Prefabs/Buyable Door.tscn
+res://levels/level_001.tscn
 res://environment/WE_test.tres
 res://materials/grid.tres
 res://Weapons/1911.tres
@@ -6,11 +6,7 @@ res://Themes/UI/debugStyleBoxFlat.tres
 res://Themes/UI/Debug.tres
 res://materials/Ammo Counter Label Settings.tres
 res://materials/RoundLabelSettings.tres
-res://controllers/fps_controller.tscn
-res://controllers/scripts/interaction_cast.gd
-res://Scripts/buyableDoor.gd
-res://materials/InteractionLabelSettings.tres
-res://levels/level_001.tscn
-res://Global.gd
+res://Models/Weapons/crowbarMesh.res
+res://Weapons/Crowbar.tres
+res://Weapons/Weapons.gd
 res://Weapons/WeaponManager.gd
-res://Prefabs/Barrier.tscn

@@ -1,15 +1,14 @@
+StaticBody3D
+Area3D
 NavigationObstacle3D
 AnimationPlayer
 AnimationTree
 Label
 HBoxContainer
 CollisionShape3D
-StaticBody3D
 RayCast3D
 MeshInstance3D
 Node3D
-Area3D
 NavigationRegion3D
 NavigationAgent3D
 CharacterBody3D
-Control

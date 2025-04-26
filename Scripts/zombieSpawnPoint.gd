@@ -1,5 +1,7 @@
 extends Node3D
 
+class_name ZombieSpawnPoint
+
 @export var barrier: Barrier
 @export var zombieRoundManager : ZombieRoundManager
 @export var spawnEnabled : bool = false

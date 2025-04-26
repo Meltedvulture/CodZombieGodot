@@ -24,7 +24,18 @@ class_name WeaponController
 		if Engine.is_editor_hint():
 			loadWeapon()
 
-
+#********Animation names Index:********
+		# "fullReload"
+		# "emptyReload"
+		# "startReload"
+		# "finishReload"
+		# "shellReload"
+		# "boltCycle"
+		# "shoot"
+		
+		# Documemtation stuff:
+		# Magazine reloads are for guns where all ammo is loaded at once
+		# Shell reloads are for guns where they load individual rounds
 
 # Internal variables
 var mouseMovement : Vector2
@@ -45,9 +56,12 @@ var weaponAccuracy
 var time_per_shot: float = 0.1  # Default time between shots (calculated dynamically)
 var cooldown_timer: float = 0.0  # Tracks the remaining cooldown time
 var bulletHole = preload("res://Scenes/Bullet Hole.tscn")
+var maxInventorySize = 2 #Arrays start at 0, we have 2 weapon slots
 var weaponInventory = []
-var currentWeaponIndex : int = 1
-
+var currentWeaponIndex : int = 0
+var shotgun
+var fireMode
+var reloadMode
 
 @export var weaponAnimationPlayer : AnimationPlayer
 
@@ -57,31 +71,48 @@ func _ready() -> void:
 	Global.reserveLabel = %Reserve
 	Global.clipLabel = %Clip
 	Global.pointsLabel = %Points
-	
-	if weaponType == null:
-		weaponType = load("res://Weapons/1911.tres")
+	Global.weaponManager = self
+	#weaponInventory.resize(1)
+	addWeapon("res://Weapons/1911.tres")
 	loadWeapon()
 
 func _input(event):
 	if event.is_action_pressed("weaponDown"):
-		weaponType = load("res://Weapons/1911.tres")
-		loadWeapon()
+		switchWeapon(1)
 
 	if event.is_action_pressed("weaponUp"):
-		weaponType = load("res://Weapons/Crowbar.tres")
-		loadWeapon()
+		switchWeapon(-1)
 
 	if event is InputEventMouseMotion:
 		mouseMovement = event.relative
 
 func addWeapon(Weapon):
-	pass
+	if weaponInventory.size() < maxInventorySize:
+		weaponInventory.append(Weapon)
+	else:
+		weaponInventory[currentWeaponIndex] = Weapon
+		loadWeapon()
+
+func switchWeapon(direction: int) -> void:
+	# Increment or decrement the current weapon index based on the direction
+	currentWeaponIndex += direction
+	# Use modulo (%) to loop the index within the bounds of the array
+	currentWeaponIndex = wrap_index(currentWeaponIndex, maxInventorySize)
+	# Equip the weapon at the new index
+	loadWeapon()
 
 
-func loadWeapon() -> void:
+func wrap_index(index: int, size: int) -> int:
+	# Ensure the index wraps around using modulo arithmetic
+	if size == 0:
+		return 0  # Avoid division by zero if the inventory is empty
+	return index % size
+
+
+func loadWeapon():
 	if weaponType == null:
 		return
-	
+	weaponType = load(weaponInventory[currentWeaponIndex])
 	weaponName = weaponType.name
 	weaponMesh.mesh = weaponType.mesh  # Set weapon mesh
 	weaponMagazine.mesh = weaponType.magazine  # Set weapon mesh
@@ -95,6 +126,11 @@ func loadWeapon() -> void:
 	idleSwayAdjustment = weaponType.idleSwayAdjustment
 	idleSwayRotationStrength = weaponType.idleSwayRotationStrength
 	randomSwayAmount = weaponType.randomSwayAmount
+	
+	shotgun = weaponType.shotgun
+	fireMode = weaponType.fireMode
+	reloadMode = weaponType.reloadMode
+	
 	clipAmmo = weaponType.clip
 	maxClipAmmo = weaponType.maxClip
 	reserveAmmo = weaponType.reserve
@@ -167,23 +203,61 @@ func shoot() -> void:
 		var screenCenter = get_viewport().size / 2
 		var origin = camera.project_ray_origin(screenCenter)
 		
-		var accuracyAdjustment = Vector3 (
-		rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
-		rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
-		rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy)
-		)
-		
-		
-		var endpoint = origin + camera.project_ray_normal(screenCenter) * 1000 + accuracyAdjustment * 10
-		var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
-		query.collide_with_bodies = true
-		var result = spaceState.intersect_ray(query)
-		
-		var hitPosition = result.get("position")
-		var hitNormal = result.get("normal")
-		var hitBody = result.get("collider")  # Get the object that was hit
-		if hitBody and hitBody.has_method("take_damage"):
-			hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
+		if shotgun:
+			for i in 8:
+				var accuracyAdjustment = Vector3 (
+				rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
+				rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
+				rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy)
+				)
+				
+
+				var endpoint = origin + camera.project_ray_normal(screenCenter) * 1000 + accuracyAdjustment * 10
+				var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
+				query.collide_with_bodies = true
+				var result = spaceState.intersect_ray(query)
+				
+				var hitPosition = result.get("position")
+				var hitNormal = result.get("normal")
+				var hitBody = result.get("collider")  # Get the object that was hit
+				if hitBody and hitBody.has_method("take_damage"):
+					hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
+				
+				#Apply decal
+				if result:
+					var instance = bulletHole.instantiate()
+					get_tree().root.add_child(instance)
+					instance.global_position = hitPosition
+					instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
+					instance.rotate_object_local(Vector3(1,0,0), 90)
+					removeHitMark(instance)
+		else:
+			var accuracyAdjustment = Vector3 (
+			rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
+			rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
+			rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy)
+			)
+				
+
+			var endpoint = origin + camera.project_ray_normal(screenCenter) * 1000 + accuracyAdjustment * 10
+			var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
+			query.collide_with_bodies = true
+			var result = spaceState.intersect_ray(query)
+				
+			var hitPosition = result.get("position")
+			var hitNormal = result.get("normal")
+			var hitBody = result.get("collider")  # Get the object that was hit
+			if hitBody and hitBody.has_method("take_damage"):
+				hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
+				
+			#Apply decal
+			if result:
+				var instance = bulletHole.instantiate()
+				get_tree().root.add_child(instance)
+				instance.global_position = hitPosition
+				instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
+				instance.rotate_object_local(Vector3(1,0,0), 90)
+				removeHitMark(instance)
 		
 		clipAmmo -= 1
 		Global.updateLabels(clipAmmo, reserveAmmo) 
@@ -191,35 +265,44 @@ func shoot() -> void:
 		weaponAnimationPlayer.seek(0)
 		weaponAnimationPlayer.play(weaponName + "/" + "shoot", -1, 2, false)
 		
-		#Apply decal
-		if result:
-			var instance = bulletHole.instantiate()
-			get_tree().root.add_child(instance)
-			instance.global_position = hitPosition
-			instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
-			instance.rotate_object_local(Vector3(1,0,0), 90)
-			await get_tree().create_timer(rng.randi_range(4, 12)).timeout
-			instance.queue_free()
-	elif reserveAmmo > 0:
+
+		if fireMode == "Bolt":
+			await weaponAnimationPlayer.animation_finished
+			weaponAnimationPlayer.play(weaponName + "/" + "boltCycle", -1, 1, false)
+			
+	elif reserveAmmo > 0 and clipAmmo == 0:
 		reloadWeapon()
+		return
 
 
 func reloadWeapon():
 	canShoot = false
-	if clipAmmo > 0:
-		weaponAnimationPlayer.play(weaponName + "/" + "fullReload", -1, 1, false)
+	
+	if reloadMode == "Shell":
+		var ammoNeeded = maxClipAmmo - clipAmmo
+		weaponAnimationPlayer.play(weaponName + "/" + "startReload", -1, 1, false)
 		await weaponAnimationPlayer.animation_finished
+		for n in ammoNeeded:
+			weaponAnimationPlayer.play(weaponName + "/" + "shellReload", -1, 1, false)
+			reserveAmmo -= 1
+			clipAmmo += 1
+			await weaponAnimationPlayer.animation_finished
+		weaponAnimationPlayer.play(weaponName + "/" + "finishReload", -1, 1, false)
 	else:
-		weaponAnimationPlayer.play(weaponName + "/" + "emptyReload", -1, 1, false)
-		await weaponAnimationPlayer.animation_finished
-		
-	var ammoNeeded = maxClipAmmo - clipAmmo
-	if reserveAmmo >= ammoNeeded:
-		reserveAmmo -= ammoNeeded
-		clipAmmo = maxClipAmmo
-	else:
-		clipAmmo += reserveAmmo
-		reserveAmmo = 0
+		if clipAmmo > 0:
+			weaponAnimationPlayer.play(weaponName + "/" + "fullReload", -1, 1, false)
+			await weaponAnimationPlayer.animation_finished
+		else:
+			weaponAnimationPlayer.play(weaponName + "/" + "emptyReload", -1, 1, false)
+			await weaponAnimationPlayer.animation_finished
+			
+		var ammoNeeded = maxClipAmmo - clipAmmo
+		if reserveAmmo >= ammoNeeded:
+			reserveAmmo -= ammoNeeded
+			clipAmmo = maxClipAmmo
+		else:
+			clipAmmo += reserveAmmo
+			reserveAmmo = 0
 	Global.updateLabels(clipAmmo, reserveAmmo) 
 	canShoot = true
 	
@@ -229,9 +312,17 @@ func _process(delta: float) -> void:
 		cooldown_timer -= delta  # Decrease the cooldown timer
 	else:
 		canShoot = true  # Allow shooting once the cooldown ends
+		if fireMode == "Auto" and Input.is_action_pressed("shoot"):
+			shoot()
+		
+		
 	if !Engine.is_editor_hint():
 		if Input.is_action_just_pressed("reload") and clipAmmo != maxClipAmmo:
 			reloadWeapon()
 
+
+func removeHitMark(Instance):
+	await get_tree().create_timer(rng.randi_range(4, 12)).timeout
+	Instance.queue_free()
 
 #func _physics_process(delta) -> void:

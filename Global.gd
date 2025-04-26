@@ -5,10 +5,17 @@ signal roundChange
 
 var debug
 var player
+var weaponManager
 var points = 500
 var reserveLabel : Label
 var clipLabel : Label
 var pointsLabel : Label
+
+#func _ready():
+	#await get_tree().create_timer(0).timeout
+	#print("added weapon")
+	#weaponManager.addWeapon(load("res://Weapons/Crowbar.tres"))
+
 
 func updateLabels(clipAmmo, reserveAmmo):
 	clipLabel.text = str(clipAmmo)

@@ -14,8 +14,7 @@ func _physics_process(delta: float) -> void:
 	collidedObject = get_collider()
 	if collidedObject:
 		if collidedObject.is_in_group("BuyableObject"):
-			if collidedObject.objectType == "Door":
-				purchaseLabel.text = "Hold F to buy " + collidedObject.objectName + " Cost: " + str(collidedObject.cost)
+			purchaseLabel.text = "Hold F to buy " + collidedObject.objectName + " Cost: " + str(collidedObject.cost)
 			if Input.is_action_just_pressed("interact"):
 				collidedObject.purchase()
 	else:

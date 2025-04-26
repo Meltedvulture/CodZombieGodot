@@ -15,9 +15,11 @@ extends Resource
 @export var melee : bool = false
 
 
-@export_category("Bolt Action Specifics")
+@export_category("Fire Modes")
 ##Toggles whether the weapon will be bolt action/pumped
-@export var boltAction : bool = false
+@export var shotgun : bool = false
+@export_enum("Magazine", "Shell") var reloadMode: String = "Magazine"
+@export_enum("Semi", "Auto", "Bolt") var fireMode: String = "Semi"
 
 
 

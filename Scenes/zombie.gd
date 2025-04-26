@@ -44,7 +44,6 @@ func take_damage(amount: int):
 
 func _on_area_3d_body_entered(body):
 	if body == barrier:
-		print("touched barrier i THInk")
 		damageBarrier()
 	
 

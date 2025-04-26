@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfsevkcr22o2a"]
+
+[ext_resource type="Script" uid="uid://din4bshtvrbrb" path="res://Scripts/wallWeapon.gd" id="1_j73rp"]
+
+[sub_resource type="TextMesh" id="TextMesh_j73rp"]
+text = "m14 ig idk"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_htttf"]
+size = Vector3(0.25, 0.75, 1.5)
+
+[node name="WallWeapon" type="StaticBody3D" groups=["BuyableObject"]]
+script = ExtResource("1_j73rp")
+
+[node name="WallWeaponMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("TextMesh_j73rp")
+skeleton = NodePath("")
+metadata/extras = {
+"flip_fluid": {}
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_htttf")

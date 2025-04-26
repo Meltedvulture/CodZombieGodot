@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://ciegvrj52uiac"]
+[gd_scene load_steps=35 format=4 uid="uid://ciegvrj52uiac"]
 
 [ext_resource type="Texture2D" uid="uid://blwx7yunkg0re" path="res://Models/Blender/Barrier/textures/Sand Bags.png" id="2_rk56m"]
 [ext_resource type="Script" uid="uid://dtw6lnlvl1qa3" path="res://Scripts/barrier.gd" id="2_v48vq"]
@@ -34,6 +34,33 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0.319977, 9.53344e-09, -5.05392e-09), Vector3(1.5708, 4.37114e-08, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_eagka"]
+resource_name = "Plank1_Repair"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Plank1:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.00833333, 0.25, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.2, 0, 1.51), Vector3(-0.2, 1.49898, 1.51095), Vector3(-0.2, 1.49898, 1.51095), Vector3(-0.2, 1.5, 0.11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Plank1:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.00833333, 0.25, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 4.37114e-08, 0), Vector3(0.00107074, -4.3805e-08, -8.74525e-08), Vector3(0.00107074, -4.3805e-08, -8.74525e-08), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_7pft6"]
 resource_name = "Plank2_Falloff"
 length = 0.75
@@ -60,6 +87,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.265326, 0.156475, -0.04659), Vector3(1.5708, 0.523599, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lqvr4"]
+resource_name = "Plank2_Repair"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Plank2:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.2, 0, 1.91), Vector3(0.2, 1.5, 1.91), Vector3(0.2, 1.5, 1.91), Vector3(0.2, 1.5, 0.11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Plank2:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 0.523599, 0), Vector3(3.09129e-06, -1.85372e-06, -0.523599), Vector3(3.09129e-06, -1.85372e-06, -0.523599), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_r0rvd"]
@@ -90,6 +144,33 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0.0872665, 1.83782e-08, 1.23625e-08), Vector3(1.5708, 4.37114e-08, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_58rv5"]
+resource_name = "Plank3_Repair"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Plank3:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.95), Vector3(0, 1.09377, 0.954261), Vector3(0, 1.09377, 0.954261), Vector3(0, 1.17, 0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Plank3:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 4.37114e-08, 0), Vector3(0.00837088, -4.44452e-08, -8.76587e-08), Vector3(0.00837088, -4.44452e-08, -8.76587e-08), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_nrvls"]
 resource_name = "Plank4_Falloff"
 length = 0.75
@@ -118,6 +199,33 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0.0147551, -0.226089, 0.129788), Vector3(1.5708, -0.785398, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_0yffr"]
+resource_name = "Plank4_Repair"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Plank4:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.19209e-07, 2.15), Vector3(0, 1.5, 2.15), Vector3(0, 1.5, 2.15), Vector3(0, 1.57, 0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Plank4:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5708, -0.785398, 0), Vector3(3.48065e-06, 9.09221e-07, 0.261799), Vector3(3.48065e-06, 9.09221e-07, 0.261799), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_sprp7"]
 resource_name = "Plank5_Falloff"
 length = 0.75
@@ -144,6 +252,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.145506, -0.0209959, 0.00591777), Vector3(1.5708, -0.0872664, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ujhrx"]
+resource_name = "Plank5_Repair"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Plank5:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.19209e-07, 1.65), Vector3(0, 1.9, 1.65), Vector3(0, 1.9, 1.65), Vector3(0, 1.87, 0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Plank5:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5708, -0.0872664, 0), Vector3(3.5625e-06, 2.71793e-07, 0.0872663), Vector3(3.5625e-06, 2.71793e-07, 0.0872663), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ihc4n"]
@@ -272,10 +407,15 @@ tracks/9/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7pft6"]
 _data = {
 &"Plank1_Falloff": SubResource("Animation_rk56m"),
+&"Plank1_Repair": SubResource("Animation_eagka"),
 &"Plank2_Falloff": SubResource("Animation_7pft6"),
+&"Plank2_Repair": SubResource("Animation_lqvr4"),
 &"Plank3_Falloff": SubResource("Animation_r0rvd"),
+&"Plank3_Repair": SubResource("Animation_58rv5"),
 &"Plank4_Falloff": SubResource("Animation_nrvls"),
+&"Plank4_Repair": SubResource("Animation_0yffr"),
 &"Plank5_Falloff": SubResource("Animation_sprp7"),
+&"Plank5_Repair": SubResource("Animation_ujhrx"),
 &"RESET": SubResource("Animation_ihc4n")
 }
 
@@ -724,6 +864,9 @@ shadow_mesh = SubResource("ArrayMesh_v0wdp")
 [sub_resource type="BoxShape3D" id="BoxShape3D_rk56m"]
 size = Vector3(1, 1, 0.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7pft6"]
+size = Vector3(1, 1, 0.49)
+
 [node name="Barrier" type="StaticBody3D"]
 collision_layer = 2
 script = ExtResource("2_v48vq")
@@ -735,7 +878,7 @@ libraries = {
 }
 
 [node name="Damage Collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.1)
 shape = SubResource("BoxShape3D_ihc4n")
 
 [node name="Plank1" type="MeshInstance3D" parent="."]
@@ -793,6 +936,23 @@ metadata/extras = {
 "flip_fluid": {}
 }
 
-[node name="Collision" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="ZombieCollision" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0227167, 0.031635, 0)
 shape = SubResource("BoxShape3D_rk56m")
+
+[node name="Player Area" type="Area3D" parent="."]
+
+[node name="Player Detection" type="CollisionShape3D" parent="Player Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.3)
+shape = SubResource("BoxShape3D_7pft6")
+
+[node name="Player Collider" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Player Collision" type="CollisionShape3D" parent="Player Collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_rk56m")
+
+[connection signal="body_entered" from="Player Area" to="." method="_on_player_area_body_entered"]
+[connection signal="body_exited" from="Player Area" to="." method="_on_player_area_body_exited"]
