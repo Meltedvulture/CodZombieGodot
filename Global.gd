@@ -10,6 +10,8 @@ var points = 500
 var reserveLabel : Label
 var clipLabel : Label
 var pointsLabel : Label
+var roundLabel
+var zombieRoundManager
 
 #func _ready():
 	#await get_tree().create_timer(0).timeout
@@ -24,6 +26,9 @@ func updateLabels(clipAmmo, reserveAmmo):
 
 func updatePoints():
 	pointsLabel.text = str(points)
+
+func updateRound():
+	roundLabel.text = str(Global.zombieRoundManager.round)
 
 
 #Debug property Line:

@@ -58,6 +58,7 @@ func _update_camera(delta):
 	_tilt_input = 0.0
 	
 func _ready():
+	Global.roundLabel = %RoundLabel
 	Global.player = self
 	Global.roundChange.connect(flashLabel)
 	# Get mouse input
@@ -101,9 +102,11 @@ func updateVelocity() -> void:
 
 func flashLabel():
 	var tween = create_tween()
-	tween.set_loops(6)
-
+	tween.set_loops(3)
 	tween.tween_property(%RoundLabel.label_settings, "font_color", white, 1.0)
 	tween.tween_property(%RoundLabel.label_settings, "font_color", red, 1.0)
+
+
+
 
 #WORK ON THIS PELASE AHHHHHHHHHHHHHHHHHH

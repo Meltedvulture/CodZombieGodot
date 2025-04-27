@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nqg8cgqslrfc"
-path="res://.godot/imported/Image_2.png-6ca3cea954403555318ecd89e7d31052.ctex"
+uid="uid://dy8y4b2nc7q4p"
+path="res://.godot/imported/handle wear.jpg-7ea08d93332e9fd7a38c4579be4b36ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Models/Blender/M14/textures/Image_2.png"
-dest_files=["res://.godot/imported/Image_2.png-6ca3cea954403555318ecd89e7d31052.ctex"]
+source_file="res://Models/Blender/Knife/textures/handle wear.jpg"
+dest_files=["res://.godot/imported/handle wear.jpg-7ea08d93332e9fd7a38c4579be4b36ea.ctex"]
 
 [params]
 

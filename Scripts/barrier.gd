@@ -14,7 +14,7 @@ func repairBarrier():
 	if health != 5:
 		health += 1
 		animationPlayer.play("Plank" + str(health) + "_Repair", -1, 1.5)
-		collision.disabled = true
+		collision.disabled = false
 		isDead = false
 		
 
@@ -29,12 +29,10 @@ func takeDamage():
 
 func _on_player_area_body_entered(body):
 	if body == Global.player:
-		print("Touching player!!!")
 		touchingPlayer = true
 
 func _on_player_area_body_exited(body):
 	if body == Global.player:
-		print("ITS GONE HEEEELP")
 		touchingPlayer = false
 
 func _input(event):
@@ -42,7 +40,7 @@ func _input(event):
 		repairTimer()
 
 func repairTimer():
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1.5).timeout
 	if Input.is_action_pressed("interact") and touchingPlayer == true:
 		repairBarrier()
 		repairTimer()

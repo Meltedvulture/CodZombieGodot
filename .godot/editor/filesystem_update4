@@ -1,12 +1,19 @@
-res://levels/level_001.tscn
+res://controllers/fps_controller.tscn
 res://environment/WE_test.tres
 res://materials/grid.tres
 res://Weapons/1911.tres
+res://Weapons/M14.tres
 res://Themes/UI/debugStyleBoxFlat.tres
 res://Themes/UI/Debug.tres
 res://materials/Ammo Counter Label Settings.tres
 res://materials/RoundLabelSettings.tres
-res://Models/Weapons/crowbarMesh.res
-res://Weapons/Crowbar.tres
-res://Weapons/Weapons.gd
 res://Weapons/WeaponManager.gd
+res://levels/level_001.tscn
+res://Prefabs/Buyable Door.tscn
+res://Prefabs/Barrier.tscn
+res://Weapons/Weapon.tscn
+res://Prefabs/Wall Weapon.tscn
+res://controllers/scripts/fps_controller.gd
+res://Scenes/zombie.gd
+res://Global.gd
+res://Scripts/ZombieRoundManager.gd

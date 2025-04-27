@@ -1,3 +1,5 @@
+MeshInstance3D
+Node3D
 StaticBody3D
 Area3D
 NavigationObstacle3D
@@ -7,8 +9,6 @@ Label
 HBoxContainer
 CollisionShape3D
 RayCast3D
-MeshInstance3D
-Node3D
 NavigationRegion3D
 NavigationAgent3D
 CharacterBody3D

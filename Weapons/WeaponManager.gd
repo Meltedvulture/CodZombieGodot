@@ -78,10 +78,15 @@ func _ready() -> void:
 
 func _input(event):
 	if event.is_action_pressed("weaponDown"):
-		switchWeapon(1)
+		if !weaponAnimationPlayer.is_playing():
+			switchWeapon(1)
 
 	if event.is_action_pressed("weaponUp"):
-		switchWeapon(-1)
+		if !weaponAnimationPlayer.is_playing():
+			switchWeapon(-1)
+	
+	if event.is_action_pressed("knife"):
+		knife()
 
 	if event is InputEventMouseMotion:
 		mouseMovement = event.relative
@@ -96,23 +101,27 @@ func addWeapon(Weapon):
 func switchWeapon(direction: int) -> void:
 	# Increment or decrement the current weapon index based on the direction
 	currentWeaponIndex += direction
+	
 	# Use modulo (%) to loop the index within the bounds of the array
-	currentWeaponIndex = wrap_index(currentWeaponIndex, maxInventorySize)
+	# Ensure it works correctly for negative indices by adding maxInventorySize before taking the modulus
+	currentWeaponIndex = wrap_index(currentWeaponIndex, weaponInventory.size())
+	
 	# Equip the weapon at the new index
 	loadWeapon()
 
 
 func wrap_index(index: int, size: int) -> int:
-	# Ensure the index wraps around using modulo arithmetic
+	# Wrap the index to stay within [0, size)
 	if size == 0:
 		return 0  # Avoid division by zero if the inventory is empty
-	return index % size
+	return (index % size + size) % size
 
 
 func loadWeapon():
 	if weaponType == null:
 		return
-	weaponType = load(weaponInventory[currentWeaponIndex])
+	if !Engine.is_editor_hint():
+		weaponType = load(weaponInventory[currentWeaponIndex])
 	weaponName = weaponType.name
 	weaponMesh.mesh = weaponType.mesh  # Set weapon mesh
 	weaponMagazine.mesh = weaponType.magazine  # Set weapon mesh
@@ -325,4 +334,24 @@ func removeHitMark(Instance):
 	await get_tree().create_timer(rng.randi_range(4, 12)).timeout
 	Instance.queue_free()
 
+func knife():
+	weaponAnimationPlayer.stop()
+	canShoot = false
+	weaponAnimationPlayer.play("Melee", -1, 1.5)
+	
+	var camera = Global.player.CAMERA_CONTROLLER
+	var spaceState = camera.get_world_3d().direct_space_state
+	var screenCenter = get_viewport().size / 2
+	var origin = camera.project_ray_origin(screenCenter)
+	var endpoint = origin + camera.project_ray_normal(screenCenter) * 2
+	var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
+	query.collide_with_bodies = true
+	var result = spaceState.intersect_ray(query)
+	
+	var hitBody = result.get("collider")  # Get the object that was hit
+	if hitBody and hitBody.has_method("take_damage"):
+		hitBody.take_damage(200)  # Deal damage to the enemy
+	
+	await weaponAnimationPlayer.animation_finished
+	canShoot = true
 #func _physics_process(delta) -> void:

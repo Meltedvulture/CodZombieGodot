@@ -11,6 +11,7 @@ var currentZombies = 0
 
 func _ready() -> void:
 	Global.zombieDied.connect(zombieDied)
+	Global.zombieRoundManager = self
 
 func _process(delta):
 	pass
@@ -26,4 +27,5 @@ func zombieDied():
 func newRound():
 	Global.emit_signal("roundChange")
 	round += 1
+	Global.updateRound()
 	zombiesToSpawn = baseZombies + int(2 * pow(round, 1.5))
