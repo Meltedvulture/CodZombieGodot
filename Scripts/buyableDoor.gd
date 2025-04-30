@@ -5,6 +5,9 @@ extends StaticBody3D
 @export var cost = 1000
 @export var spawnPoints: Array[ZombieSpawnPoint]
 
+func update():
+	pass
+
 func purchase():
 	if Global.points >= cost:
 		Global.points -= cost

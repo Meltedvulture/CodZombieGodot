@@ -25,6 +25,58 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6tv51"]
 material = ExtResource("2_gldw4")
 
+[sub_resource type="Animation" id="Animation_fdopr"]
+resource_name = "Melee"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Knife:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.4, -0.675, 0), Vector3(-1.2125, -0.5875, -0.275), Vector3(0.00879641, -0.414352, -1.08519), Vector3(0.925, -0.375, -0.225), Vector3(-0.4, -0.675, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Knife:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0334811, 0.266354, -1.09525), Vector3(-0.0790555, -1.09168, -1.53846), Vector3(-0.0872665, -2.38063, -1.19031), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-3.10588e-22, 4.37114e-08, 3.55271e-15), Vector3(-1.5708, 4.37114e-08, 0), Vector3(-1.5708, 4.37114e-08, 0), Vector3(-3.10588e-22, 4.37114e-08, 3.55271e-15)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../..:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0290396, 0.0582022, 0.00169184), Vector3(1.66336e-10, -0.0872665, 3.8097e-09), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_fyafc"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -190,58 +242,6 @@ tracks/13/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_fdopr"]
-resource_name = "Melee"
-length = 0.75
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Knife:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.25, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.4, -0.675, 0), Vector3(-1.2125, -0.5875, -0.275), Vector3(0.00879641, -0.414352, -1.08519), Vector3(0.925, -0.375, -0.225), Vector3(-0.4, -0.675, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Knife:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.25, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.0334811, 0.266354, -1.09525), Vector3(-0.0790555, -1.09168, -1.53846), Vector3(-0.0872665, -2.38063, -1.19031), Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-3.10588e-22, 4.37114e-08, 3.55271e-15), Vector3(-1.5708, 4.37114e-08, 0), Vector3(-1.5708, 4.37114e-08, 0), Vector3(-3.10588e-22, 4.37114e-08, 3.55271e-15)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../..:rotation")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.0290396, 0.0582022, 0.00169184), Vector3(1.66336e-10, -0.0872665, 3.8097e-09), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tg6sc"]
@@ -1024,7 +1024,6 @@ update_mode = 1
 enable_shadows = true
 
 [node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Weapon" parent="CameraController/Camera3D/WeaponRig" node_paths=PackedStringArray("weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
 transform = Transform3D(-0.500004, 0.391819, 0.772317, 0, 0.891797, -0.452435, -0.866023, -0.226219, -0.445902, 0.25, -0.4, -0.5)
@@ -1046,7 +1045,7 @@ target_position = Vector3(0, 0, -1)
 script = ExtResource("4_tg6sc")
 
 [node name="Knife" type="Node3D" parent="CameraController/Camera3D"]
-transform = Transform3D(0.449515, 0.853657, 0.263069, -0.888542, 0.45757, 0.0334748, -0.0917962, -0.248795, 0.964197, -1.2125, -0.5875, -0.275)
+transform = Transform3D(0.449513, 0.853658, 0.263068, -0.888543, 0.457567, 0.0334749, -0.0917953, -0.248795, 0.964197, -1.2125, -0.5875, -0.275)
 
 [node name="Knife Mesh" type="MeshInstance3D" parent="CameraController/Camera3D/Knife"]
 transform = Transform3D(1.74846e-07, 1.52855e-14, 4, 3.49691e-07, -4, 0, 4, 3.49691e-07, -1.74846e-07, 0, 0, 0)

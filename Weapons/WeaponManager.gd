@@ -47,9 +47,13 @@ var idleSwayAdjustment = 0
 var idleSwayRotationStrength
 var rng = RandomNumberGenerator.new()
 var weaponBobAmount : Vector2 = Vector2(0,0)
+
+
 var reserveAmmo
 var maxClipAmmo
 var clipAmmo
+
+
 var canShoot : bool = true
 var weaponName
 var weaponAccuracy
@@ -58,6 +62,7 @@ var cooldown_timer: float = 0.0  # Tracks the remaining cooldown time
 var bulletHole = preload("res://Scenes/Bullet Hole.tscn")
 var maxInventorySize = 2 #Arrays start at 0, we have 2 weapon slots
 var weaponInventory = []
+var weaponAmmoInventory = []
 var currentWeaponIndex : int = 0
 var shotgun
 var fireMode
@@ -91,12 +96,16 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		mouseMovement = event.relative
 
-func addWeapon(Weapon):
+func addWeapon(WeaponPath: String):
 	if weaponInventory.size() < maxInventorySize:
-		weaponInventory.append(Weapon)
+		weaponInventory.append(WeaponPath)
+		var weapon = load(WeaponPath)
+		weaponAmmoInventory.append([weapon.clip, weapon.reserve])
 	else:
-		weaponInventory[currentWeaponIndex] = Weapon
-		loadWeapon()
+		weaponInventory[currentWeaponIndex] = WeaponPath
+		var weapon = load(WeaponPath)
+		weaponAmmoInventory[currentWeaponIndex] = [weapon.clip, weapon.reserve]
+	loadWeapon()
 
 func switchWeapon(direction: int) -> void:
 	# Increment or decrement the current weapon index based on the direction
@@ -120,32 +129,42 @@ func wrap_index(index: int, size: int) -> int:
 func loadWeapon():
 	if weaponType == null:
 		return
+
 	if !Engine.is_editor_hint():
 		weaponType = load(weaponInventory[currentWeaponIndex])
+
 	weaponName = weaponType.name
-	weaponMesh.mesh = weaponType.mesh  # Set weapon mesh
-	weaponMagazine.mesh = weaponType.magazine  # Set weapon mesh
-	weaponBolt.mesh = weaponType.bolt  # Set weapon mesh
-	weaponShadow.mesh = weaponType.mesh  # Set weapon mesh
-	
-	position = weaponType.position      # Set weapon position
-	rotation_degrees = weaponType.rotation  # Set weapon rotation
-	scale = weaponType.scale # Set weapon rotation
-	weaponShadow.visible = weaponType.shadow  # Turn shadow on/off
+	weaponMesh.mesh = weaponType.mesh
+	weaponMagazine.mesh = weaponType.magazine
+	weaponBolt.mesh = weaponType.bolt
+	weaponShadow.mesh = weaponType.mesh
+
+	position = weaponType.position
+	rotation_degrees = weaponType.rotation
+	scale = weaponType.scale
+	weaponShadow.visible = weaponType.shadow
 	idleSwayAdjustment = weaponType.idleSwayAdjustment
 	idleSwayRotationStrength = weaponType.idleSwayRotationStrength
 	randomSwayAmount = weaponType.randomSwayAmount
-	
+
 	shotgun = weaponType.shotgun
 	fireMode = weaponType.fireMode
 	reloadMode = weaponType.reloadMode
-	
-	clipAmmo = weaponType.clip
+
+	# Load ammo from weaponAmmoInventory instead of resetting to default
+	if currentWeaponIndex < weaponAmmoInventory.size():
+		var ammo_data = weaponAmmoInventory[currentWeaponIndex]
+		clipAmmo = ammo_data[0]
+		reserveAmmo = ammo_data[1]
+	else:
+		clipAmmo = weaponType.clip
+		reserveAmmo = weaponType.reserve
+		weaponAmmoInventory.append([clipAmmo, reserveAmmo])
+
 	maxClipAmmo = weaponType.maxClip
-	reserveAmmo = weaponType.reserve
 	Global.clipLabel.text = str(clipAmmo)
 	Global.reserveLabel.text = str(reserveAmmo)
-	time_per_shot = 60.0 / weaponType.rpm  # Calculate time between shots
+	time_per_shot = 60.0 / weaponType.rpm
 	weaponAccuracy = weaponType.Accuracy
 
 func sway_weapon(delta, isIdle: bool) -> void:
@@ -269,6 +288,7 @@ func shoot() -> void:
 				removeHitMark(instance)
 		
 		clipAmmo -= 1
+		weaponAmmoInventory[currentWeaponIndex][0] = clipAmmo
 		Global.updateLabels(clipAmmo, reserveAmmo) 
 		weaponAnimationPlayer.stop()
 		weaponAnimationPlayer.seek(0)
@@ -286,7 +306,6 @@ func shoot() -> void:
 
 func reloadWeapon():
 	canShoot = false
-	
 	if reloadMode == "Shell":
 		var ammoNeeded = maxClipAmmo - clipAmmo
 		weaponAnimationPlayer.play(weaponName + "/" + "startReload", -1, 1, false)
@@ -304,7 +323,6 @@ func reloadWeapon():
 		else:
 			weaponAnimationPlayer.play(weaponName + "/" + "emptyReload", -1, 1, false)
 			await weaponAnimationPlayer.animation_finished
-			
 		var ammoNeeded = maxClipAmmo - clipAmmo
 		if reserveAmmo >= ammoNeeded:
 			reserveAmmo -= ammoNeeded
@@ -312,9 +330,10 @@ func reloadWeapon():
 		else:
 			clipAmmo += reserveAmmo
 			reserveAmmo = 0
-	Global.updateLabels(clipAmmo, reserveAmmo) 
+
+	Global.updateLabels(clipAmmo, reserveAmmo)
+	weaponAmmoInventory[currentWeaponIndex] = [clipAmmo, reserveAmmo]
 	canShoot = true
-	
 
 func _process(delta: float) -> void:
 	if cooldown_timer > 0:
@@ -335,23 +354,27 @@ func removeHitMark(Instance):
 	Instance.queue_free()
 
 func knife():
-	weaponAnimationPlayer.stop()
-	canShoot = false
-	weaponAnimationPlayer.play("Melee", -1, 1.5)
-	
-	var camera = Global.player.CAMERA_CONTROLLER
-	var spaceState = camera.get_world_3d().direct_space_state
-	var screenCenter = get_viewport().size / 2
-	var origin = camera.project_ray_origin(screenCenter)
-	var endpoint = origin + camera.project_ray_normal(screenCenter) * 2
-	var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
-	query.collide_with_bodies = true
-	var result = spaceState.intersect_ray(query)
-	
-	var hitBody = result.get("collider")  # Get the object that was hit
-	if hitBody and hitBody.has_method("take_damage"):
-		hitBody.take_damage(200)  # Deal damage to the enemy
-	
-	await weaponAnimationPlayer.animation_finished
-	canShoot = true
+	if canShoot == true:
+		weaponAnimationPlayer.stop()
+		canShoot = false
+		weaponAnimationPlayer.play("Melee", -1, 1.5)
+		
+		var camera = Global.player.CAMERA_CONTROLLER
+		var spaceState = camera.get_world_3d().direct_space_state
+		var screenCenter = get_viewport().size / 2
+		var origin = camera.project_ray_origin(screenCenter)
+		var endpoint = origin + camera.project_ray_normal(screenCenter) * 1.25
+		var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
+		query.collide_with_bodies = true
+		var result = spaceState.intersect_ray(query)
+		
+		var hitBody = result.get("collider")  # Get the object that was hit
+		if hitBody and hitBody.has_method("take_damage"):
+			hitBody.take_damage(200)  # Deal damage to the enemy
+		
+		await weaponAnimationPlayer.animation_finished
+		canShoot = true
 #func _physics_process(delta) -> void:
+
+
+#✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
