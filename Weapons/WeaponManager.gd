@@ -306,6 +306,7 @@ func shoot() -> void:
 
 func reloadWeapon():
 	canShoot = false
+	cooldown_timer = 100
 	if reloadMode == "Shell":
 		var ammoNeeded = maxClipAmmo - clipAmmo
 		weaponAnimationPlayer.play(weaponName + "/" + "startReload", -1, 1, false)
@@ -334,6 +335,7 @@ func reloadWeapon():
 	Global.updateLabels(clipAmmo, reserveAmmo)
 	weaponAmmoInventory[currentWeaponIndex] = [clipAmmo, reserveAmmo]
 	canShoot = true
+	cooldown_timer = 0
 
 func _process(delta: float) -> void:
 	if cooldown_timer > 0:
@@ -358,6 +360,7 @@ func knife():
 		weaponAnimationPlayer.stop()
 		canShoot = false
 		weaponAnimationPlayer.play("Melee", -1, 1.5)
+		cooldown_timer = weaponAnimationPlayer.current_animation_length
 		
 		var camera = Global.player.CAMERA_CONTROLLER
 		var spaceState = camera.get_world_3d().direct_space_state

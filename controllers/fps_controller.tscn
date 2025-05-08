@@ -1019,10 +1019,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
 fov = 90.0
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="CameraController/Camera3D"]
-update_mode = 1
-enable_shadows = true
-
 [node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
 
 [node name="Weapon" parent="CameraController/Camera3D/WeaponRig" node_paths=PackedStringArray("weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
