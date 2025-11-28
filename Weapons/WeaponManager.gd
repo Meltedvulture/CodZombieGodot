@@ -9,6 +9,8 @@ class_name WeaponController
 @onready var weaponMagazine : MeshInstance3D = %WeaponMagazine
 @onready var weaponBolt : MeshInstance3D = %WeaponBolt
 @onready var weaponShadow : MeshInstance3D = %WeaponShadow
+@onready var shootTimer = $"../../../../Shoot Timer"
+@onready var reticle = $"../../../../UserInterface/Reticle"
 
 # Exported variables
 @export var weaponType : Weapons:
@@ -38,6 +40,7 @@ class_name WeaponController
 		# Shell reloads are for guns where they load individual rounds
 
 # Internal variables
+@export var weaponRig : Node3D
 var mouseMovement : Vector2
 var randomSwayX
 var randomSwayY
@@ -47,12 +50,18 @@ var idleSwayAdjustment = 0
 var idleSwayRotationStrength
 var rng = RandomNumberGenerator.new()
 var weaponBobAmount : Vector2 = Vector2(0,0)
+var canSwayPosition = true
+var isSighting = false
+var canSight = true
 
 
 var reserveAmmo
 var maxClipAmmo
 var clipAmmo
 
+var sightMode
+var sightPosition
+var sightSpeed
 
 var canShoot : bool = true
 var weaponName
@@ -67,6 +76,8 @@ var currentWeaponIndex : int = 0
 var shotgun
 var fireMode
 var reloadMode
+var verticalRecoil
+var horizontalRecoil
 
 @export var weaponAnimationPlayer : AnimationPlayer
 
@@ -92,6 +103,7 @@ func _input(event):
 	
 	if event.is_action_pressed("knife"):
 		knife()
+		
 
 	if event is InputEventMouseMotion:
 		mouseMovement = event.relative
@@ -101,22 +113,25 @@ func addWeapon(WeaponPath: String):
 		weaponInventory.append(WeaponPath)
 		var weapon = load(WeaponPath)
 		weaponAmmoInventory.append([weapon.clip, weapon.reserve])
+		currentWeaponIndex = weaponAmmoInventory.find(weapon)
 	else:
 		weaponInventory[currentWeaponIndex] = WeaponPath
 		var weapon = load(WeaponPath)
 		weaponAmmoInventory[currentWeaponIndex] = [weapon.clip, weapon.reserve]
+	weaponAnimationPlayer.stop()
 	loadWeapon()
 
 func switchWeapon(direction: int) -> void:
-	# Increment or decrement the current weapon index based on the direction
-	currentWeaponIndex += direction
-	
-	# Use modulo (%) to loop the index within the bounds of the array
-	# Ensure it works correctly for negative indices by adding maxInventorySize before taking the modulus
-	currentWeaponIndex = wrap_index(currentWeaponIndex, weaponInventory.size())
-	
-	# Equip the weapon at the new index
-	loadWeapon()
+	if isSighting == false:
+		# Increment or decrement the current weapon index based on the direction
+		currentWeaponIndex += direction
+		
+		# Use modulo (%) to loop the index within the bounds of the array
+		# Ensure it works correctly for negative indices by adding maxInventorySize before taking the modulus
+		currentWeaponIndex = wrap_index(currentWeaponIndex, weaponInventory.size())
+		
+		# Equip the weapon at the new index
+		loadWeapon()
 
 
 func wrap_index(index: int, size: int) -> int:
@@ -150,6 +165,13 @@ func loadWeapon():
 	shotgun = weaponType.shotgun
 	fireMode = weaponType.fireMode
 	reloadMode = weaponType.reloadMode
+	
+	sightMode = weaponType.sightMode
+	sightPosition = weaponType.sightPosition
+	sightSpeed = weaponType.sightSpeed
+	
+	verticalRecoil = weaponType.verticalRecoil
+	horizontalRecoil = weaponType.horizontalRecoil
 
 	# Load ammo from weaponAmmoInventory instead of resetting to default
 	if currentWeaponIndex < weaponAmmoInventory.size():
@@ -192,21 +214,22 @@ func sway_weapon(delta, isIdle: bool) -> void:
 		if randomSwayAmount != 0:
 			randomSwayX /= randomSwayAmount
 			randomSwayY /= randomSwayAmount
-
-		position.x = lerp(position.x, weaponType.position.x - (mouseMovement.x * weaponType.swayAmountPosition + randomSwayX) * delta, weaponType.swaySpeedPosition)
-		position.y = lerp(position.y, weaponType.position.y + (mouseMovement.y * weaponType.swayAmountPosition + randomSwayY) * delta, weaponType.swaySpeedPosition)
+		if canSwayPosition and isSighting == false:
+			position.x = lerp(position.x, weaponType.position.x + (mouseMovement.x * weaponType.swayAmountPosition + randomSwayX) * delta, weaponType.swaySpeedPosition)
+			position.y = lerp(position.y, weaponType.position.y - (mouseMovement.y * weaponType.swayAmountPosition + randomSwayY) * delta, weaponType.swaySpeedPosition)
 
 		# Lerp weapon rotation
-		rotation_degrees.y = lerp(rotation_degrees.y, weaponType.rotation.y + (mouseMovement.x * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
-		rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x - (mouseMovement.y * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
+			rotation_degrees.y = lerp(rotation_degrees.y, weaponType.rotation.y - (mouseMovement.x * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
+			rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x + (mouseMovement.y * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
 	
 	#Movement bob (Not idle)
 	else:
-		position.x = lerp(position.x, weaponType.position.x - (mouseMovement.x * weaponType.swayAmountPosition + weaponBobAmount.x) * delta, weaponType.swaySpeedPosition)
-		position.y = lerp(position.y, weaponType.position.y + (mouseMovement.y * weaponType.swayAmountPosition + weaponBobAmount.y) * delta, weaponType.swaySpeedPosition)
+		if canSwayPosition and isSighting == false:
+			position.x = lerp(position.x, weaponType.position.x + (mouseMovement.x * weaponType.swayAmountPosition + weaponBobAmount.x) * delta, weaponType.swaySpeedPosition)
+			position.y = lerp(position.y, weaponType.position.y - (mouseMovement.y * weaponType.swayAmountPosition + weaponBobAmount.y) * delta, weaponType.swaySpeedPosition)
 		# Lerp weapon rotation
-		rotation_degrees.y = lerp(rotation_degrees.y, weaponType.rotation.y + (mouseMovement.x * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
-		rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x - (mouseMovement.y * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
+			rotation_degrees.y = lerp(rotation_degrees.y, weaponType.rotation.y - (mouseMovement.x * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
+			rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x + (mouseMovement.y * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
 
 func weaponBob(delta, bobSpeed: float, hbobAmount: float, vbobAmount) -> void:
 	time += delta
@@ -220,9 +243,9 @@ func getSwayNoise() -> float:
 
 func shoot() -> void:
 	if clipAmmo != 0 and canShoot == true:
-		# Trigger the shot
 		canShoot = false  # Prevent further shooting
 		cooldown_timer = time_per_shot  # Reset the cooldown timer
+		shootCooldown()
 		
 		
 		#Run Raycast function
@@ -234,14 +257,14 @@ func shoot() -> void:
 		if shotgun:
 			for i in 8:
 				var accuracyAdjustment = Vector3 (
-				rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
-				rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
-				rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy)
+				rng.randf_range(-weaponAccuracy, weaponAccuracy),
+				rng.randf_range(-weaponAccuracy, weaponAccuracy),
+				rng.randf_range(-weaponAccuracy, weaponAccuracy)
 				)
 				
 
 				var endpoint = origin + camera.project_ray_normal(screenCenter) * 1000 + accuracyAdjustment * 10
-				var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
+				var query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
 				query.collide_with_bodies = true
 				var result = spaceState.intersect_ray(query)
 				
@@ -252,23 +275,23 @@ func shoot() -> void:
 					hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
 				
 				#Apply decal
-				if result:
-					var instance = bulletHole.instantiate()
-					get_tree().root.add_child(instance)
-					instance.global_position = hitPosition
-					instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
-					instance.rotate_object_local(Vector3(1,0,0), 90)
-					removeHitMark(instance)
+				#if result:
+					#var instance = bulletHole.instantiate()
+					#get_tree().root.add_child(instance)
+					#instance.global_position = hitPosition
+					#instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
+					#instance.rotate_object_local(Vector3(1,0,0), 90)
+					#removeHitMark(instance)
 		else:
 			var accuracyAdjustment = Vector3 (
-			rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
-			rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
-			rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy)
+				rng.randf_range(-weaponAccuracy, weaponAccuracy),
+				rng.randf_range(-weaponAccuracy, weaponAccuracy),
+				rng.randf_range(-weaponAccuracy, weaponAccuracy)
 			)
 				
 
 			var endpoint = origin + camera.project_ray_normal(screenCenter) * 1000 + accuracyAdjustment * 10
-			var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
+			var query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
 			query.collide_with_bodies = true
 			var result = spaceState.intersect_ray(query)
 				
@@ -279,33 +302,34 @@ func shoot() -> void:
 				hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
 				
 			#Apply decal
-			if result:
-				var instance = bulletHole.instantiate()
-				get_tree().root.add_child(instance)
-				instance.global_position = hitPosition
-				instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
-				instance.rotate_object_local(Vector3(1,0,0), 90)
-				removeHitMark(instance)
+			#if result:
+				#var instance = bulletHole.instantiate()
+				#get_tree().root.add_child(instance)
+				#instance.global_position = hitPosition
+				#instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
+				#instance.rotate_object_local(Vector3(1,0,0), 90)
+				#removeHitMark(instance)
 		
 		clipAmmo -= 1
 		weaponAmmoInventory[currentWeaponIndex][0] = clipAmmo
 		Global.updateLabels(clipAmmo, reserveAmmo) 
 		weaponAnimationPlayer.stop()
 		weaponAnimationPlayer.seek(0)
-		weaponAnimationPlayer.play(weaponName + "/" + "shoot", -1, 2, false)
-		
+		weaponAnimationPlayer.play(weaponName + "/" + "shoot", -1, 1, false)
+		Global.player.cameraOffset += Vector3(verticalRecoil, horizontalRecoil, 0)
 
 		if fireMode == "Bolt":
 			await weaponAnimationPlayer.animation_finished
 			weaponAnimationPlayer.play(weaponName + "/" + "boltCycle", -1, 1, false)
 			
-	elif reserveAmmo > 0 and clipAmmo == 0:
+	if reserveAmmo > 0 and clipAmmo == 0:
 		reloadWeapon()
 		return
 
 
 func reloadWeapon():
 	canShoot = false
+	canSight =  false
 	if reloadMode == "Shell":
 		var ammoNeeded = maxClipAmmo - clipAmmo
 		weaponAnimationPlayer.play(weaponName + "/" + "startReload", -1, 1, false)
@@ -333,47 +357,90 @@ func reloadWeapon():
 
 	Global.updateLabels(clipAmmo, reserveAmmo)
 	weaponAmmoInventory[currentWeaponIndex] = [clipAmmo, reserveAmmo]
+	canSight =  true
 	canShoot = true
 
-func _process(delta: float) -> void:
-	if cooldown_timer > 0:
-		cooldown_timer -= delta  # Decrease the cooldown timer
-	else:
-		canShoot = true  # Allow shooting once the cooldown ends
-		if fireMode == "Auto" and Input.is_action_pressed("shoot"):
+
+func shootCooldown():
+	shootTimer.start(time_per_shot)
+	await shootTimer.timeout
+	canShoot = true
+	if fireMode == "Auto" and Input.is_action_pressed("shoot"):
 			shoot()
-		
+
+
+func _process(delta: float) -> void:
 		
 	if !Engine.is_editor_hint():
 		if Input.is_action_just_pressed("reload") and clipAmmo != maxClipAmmo:
 			reloadWeapon()
+			
+		#GUN SIGHT CODE AND FUNCTIONS
+		if Input.is_action_pressed("sightDown") and canSight:
+			isSighting = true
+			reticle.visible = false
+			weaponAccuracy = weaponType.Accuracy / 4
+			position = weaponType.position
+			rotation_degrees = weaponType.rotation
+			weaponRig.position = (lerp(weaponRig.position, sightPosition, sightSpeed))
+		else:
+			isSighting = false
+			reticle.visible = true
+			weaponAccuracy = weaponType.Accuracy
+			weaponRig.position = (lerp(weaponRig.position, Vector3.ZERO, sightSpeed))
 
-
-func removeHitMark(Instance):
-	await get_tree().create_timer(rng.randi_range(4, 12)).timeout
-	Instance.queue_free()
+#func removeHitMark(Instance):
+	#await get_tree().create_timer(rng.randi_range(4, 12)).timeout
+	#Instance.queue_free()
 
 func knife():
 	if canShoot == true:
-		weaponAnimationPlayer.stop()
 		canShoot = false
-		weaponAnimationPlayer.play("Melee", -1, 1.5)
+		canSight = false
+		
 		
 		var camera = Global.player.CAMERA_CONTROLLER
 		var spaceState = camera.get_world_3d().direct_space_state
 		var screenCenter = get_viewport().size / 2
 		var origin = camera.project_ray_origin(screenCenter)
 		var endpoint = origin + camera.project_ray_normal(screenCenter) * 1.25
-		var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
+		var query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
 		query.collide_with_bodies = true
 		var result = spaceState.intersect_ray(query)
 		
 		var hitBody = result.get("collider")  # Get the object that was hit
 		if hitBody and hitBody.has_method("take_damage"):
-			hitBody.take_damage(200)  # Deal damage to the enemy
-		
+			weaponAnimationPlayer.play("Melee", -1, 1.5)
+			
+		else:
+			endpoint = origin + camera.project_ray_normal(screenCenter) * 2
+			query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
+			result = spaceState.intersect_ray(query)
+			hitBody = result.get("collider")
+			if hitBody and hitBody.has_method("take_damage"):
+				weaponAnimationPlayer.play("Melee Lunge", -1, 1.5)
+				Global.player.meleeLunge()
+			else:
+				weaponAnimationPlayer.play("Melee", -1, 1.5)
 		await weaponAnimationPlayer.animation_finished
 		canShoot = true
+		canSight = true
+
+func knifeDamage():
+	var camera = Global.player.CAMERA_CONTROLLER
+	var spaceState = camera.get_world_3d().direct_space_state
+	var screenCenter = get_viewport().size / 2
+	var origin = camera.project_ray_origin(screenCenter)
+	var endpoint = origin + camera.project_ray_normal(screenCenter) * 1.25
+	var query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
+	query.collide_with_bodies = true
+	var result = spaceState.intersect_ray(query)
+		
+	var hitBody = result.get("collider")  # Get the object that was hit
+	if hitBody and hitBody.has_method("take_damage"):
+		hitBody.take_damage(150)
+
+
 #func _physics_process(delta) -> void:
 
 

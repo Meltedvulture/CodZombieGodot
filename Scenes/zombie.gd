@@ -1,7 +1,9 @@
 extends CharacterBody3D
 
+
+@onready var navAgent = $NavigationAgent3D
 # Exported variables
-@export var max_health: int = 150
+@export var max_health: int = 100
 @export var move_speed: float = 1.0
 @export var gravity: float = 9.8  # Gravity strength (adjust as needed)
 var target: Node3D  # Reference to the player
@@ -14,21 +16,21 @@ var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_health = max_health + (Global.zombieRoundManager.round * 50)
+	print(current_health)
 	move_speed = clamp(rng.randf_range(0.5, 0.5 + (Global.zombieRoundManager.round * 0.5)), 0.5, 4)
 
 # Called every frame.
 func _physics_process(delta):
 	if not is_on_floor():  # Apply gravity if not on the floor
 		velocity.y -= gravity * delta
-
+	
 	if target:
-		# Move towards the player
-		var direction = (target.global_transform.origin - global_transform.origin).normalized()
-		direction.y = 0  # Ignore vertical movement to avoid climbing slopes unnaturally
-		velocity.x = direction.x * move_speed
-		velocity.z = direction.z * move_speed
-		 
-
+		navAgent.set_target_position(target.global_position)
+	
+	var nextLocation = navAgent.get_next_path_position()
+	velocity = (nextLocation-global_position).normalized() * move_speed
+	
+	
 	# Use move_and_slide to handle movement and gravity
 	move_and_slide()
 

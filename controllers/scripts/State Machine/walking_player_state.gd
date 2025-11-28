@@ -11,7 +11,7 @@ extends PlayerMovementState
 @export var weaponBobV : float = 1
 
 func enter(previousState) -> void:
-	animation.play("Walking", -1.0,1.0)
+	animation.play("Walking", -1, 1.0)
 	
 func exit() -> void:
 	animation.speed_scale = 1.0
@@ -26,10 +26,11 @@ func update(delta):
 	weapon.weaponBob(delta, weaponBobSpeed, weaponBobH, weaponBobV)
 	
 	
+	
 	if PLAYER.velocity.length() == 0.0:
 		transition.emit("IdlePlayerState")
 
-	if Input.is_action_pressed("sprint") and PLAYER.is_on_floor():
+	if Input.is_action_pressed("sprint") and PLAYER.is_on_floor() and Global.player.stamina > 25:
 		transition.emit("SprintingPlayerState")
 
 	if Input.is_action_just_pressed("crouch") and PLAYER.is_on_floor():

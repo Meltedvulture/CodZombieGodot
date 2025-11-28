@@ -1,23 +1,22 @@
-res://Models/Blender/Knife/Knife.res
-res://levels/level_001.tscn
+res://Models/Blender/Mystery Box/Mystery Box.res
+res://Models/Blender/Mystery Box/Mystery Box Lid.res
+res://Models/Blender/Mystery Box/Mystery Box Platform.res
+res://controllers/fps_controller.tscn
 res://environment/WE_test.tres
 res://materials/grid.tres
-res://Weapons/1911.tres
+res://Models/Blender/1911/1911 Magazine.res
+res://Models/Blender/M14/M14.res
+res://Weapons/M14.tres
 res://Themes/UI/debugStyleBoxFlat.tres
 res://Themes/UI/Debug.tres
 res://materials/Ammo Counter Label Settings.tres
 res://materials/RoundLabelSettings.tres
-res://Weapons/M14.tres
-res://controllers/fps_controller.tscn
+res://Models/Weapons/crowbarMesh.res
+res://Weapons/Crowbar.tres
+res://shaders/grid.gdshader
+res://levels/level_001.tscn
 res://Prefabs/Buyable Door.tscn
 res://Prefabs/Barrier.tscn
 res://Weapons/Weapon.tscn
 res://Prefabs/Wall Weapon.tscn
-res://Weapons/WeaponManager.gd
-res://Scripts/wallWeapon.gd
-res://controllers/scripts/interaction_cast.gd
-res://Scripts/buyableDoor.gd
-res://Models/Weapons/crowbarMesh.res
-res://Weapons/Crowbar.tres
-res://Scripts/barrier.gd
-res://Global.gd
+res://Scenes/Zombie.tscn

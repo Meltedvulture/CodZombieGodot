@@ -1,16 +1,17 @@
 extends PanelContainer
 
-var framesPerSecond : String
+var framesPerSecond
 var property
 @onready var property_container = %VBoxContainer
 
 func _ready():
 	visible = false
 	Global.debug = self
-	addProperty("FPS", framesPerSecond, 1)
+	
 
 func _process(delta):
 	if visible:
+		addProperty("FPS", framesPerSecond, 1)
 		framesPerSecond = "%.2f" % (1.0/delta)
 
 func _input(event):

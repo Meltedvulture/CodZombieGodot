@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dvmnqwxbvpykc"
+path="res://.godot/imported/Used Metal_metallic.jpg-dded26a953149049198667cf1ba5d5e9.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Models/Blender/Mystery Box/assets/materials/old-metal_88dde8ea-8385-4711-ba34-04e949fcc793/textures/Used Metal_metallic.jpg"
+dest_files=["res://.godot/imported/Used Metal_metallic.jpg-dded26a953149049198667cf1ba5d5e9.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

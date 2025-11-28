@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://ciegvrj52uiac"]
+[gd_scene load_steps=36 format=4 uid="uid://ciegvrj52uiac"]
 
 [ext_resource type="Texture2D" uid="uid://blwx7yunkg0re" path="res://Models/Blender/Barrier/textures/Sand Bags.png" id="2_rk56m"]
 [ext_resource type="Script" uid="uid://dtw6lnlvl1qa3" path="res://Scripts/barrier.gd" id="2_v48vq"]
@@ -420,7 +420,6 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ihc4n"]
-size = Vector3(1, 1, 0.7)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnm62"]
 resource_name = "Wood"
@@ -861,11 +860,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_v0wdp")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_rk56m"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_r0rvd"]
 size = Vector3(1, 1, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7pft6"]
 size = Vector3(1, 1, 0.49)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rk56m"]
+size = Vector3(1, 2, 0.5)
 
 [node name="Barrier" type="StaticBody3D"]
 collision_layer = 2
@@ -878,12 +880,12 @@ libraries = {
 }
 
 [node name="Damage Collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.3)
 shape = SubResource("BoxShape3D_ihc4n")
 
 [node name="Plank1" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1.5, 0.11)
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1, -0.2, 1.5, 0.11)
 mesh = SubResource("ArrayMesh_6vdgl")
 skeleton = NodePath("")
 metadata/extras = {
@@ -892,7 +894,7 @@ metadata/extras = {
 
 [node name="Plank2" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.5, 0.11)
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1, 0.2, 1.5, 0.11)
 mesh = SubResource("ArrayMesh_atybq")
 skeleton = NodePath("")
 metadata/extras = {
@@ -901,7 +903,7 @@ metadata/extras = {
 
 [node name="Plank3" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17, 0.15)
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 1.17, 0.15)
 mesh = SubResource("ArrayMesh_2lnr7")
 skeleton = NodePath("")
 metadata/extras = {
@@ -910,7 +912,7 @@ metadata/extras = {
 
 [node name="Plank4" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57, 0.15)
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 1.57, 0.15)
 mesh = SubResource("ArrayMesh_wg3jv")
 skeleton = NodePath("")
 metadata/extras = {
@@ -919,7 +921,7 @@ metadata/extras = {
 
 [node name="Plank5" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.87, 0.15)
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 1.87, 0.15)
 mesh = SubResource("ArrayMesh_f4kf0")
 skeleton = NodePath("")
 metadata/extras = {
@@ -927,9 +929,10 @@ metadata/extras = {
 }
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0227167, 0.468365, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 
 [node name="Sandbags" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_loxkr")
 skeleton = NodePath("")
 metadata/extras = {
@@ -937,8 +940,7 @@ metadata/extras = {
 }
 
 [node name="ZombieCollision" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0227167, 0.031635, 0)
-shape = SubResource("BoxShape3D_rk56m")
+shape = SubResource("BoxShape3D_r0rvd")
 
 [node name="Player Area" type="Area3D" parent="."]
 
@@ -951,7 +953,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="Player Collision" type="CollisionShape3D" parent="Player Collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 shape = SubResource("BoxShape3D_rk56m")
 
 [connection signal="body_entered" from="Player Area" to="." method="_on_player_area_body_entered"]

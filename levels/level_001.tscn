@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b1yleqbb8tc7x"]
+[gd_scene load_steps=23 format=3 uid="uid://b1yleqbb8tc7x"]
 
 [ext_resource type="PackedScene" uid="uid://btv0a42cgxt8g" path="res://levels/WE_test.tscn" id="1_db21n"]
 [ext_resource type="Material" uid="uid://cn1gsy15bkaff" path="res://materials/grid.tres" id="2_x5xie"]
@@ -131,6 +131,10 @@ size = Vector3(2, 2, 2)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vp4dy"]
 data = PackedVector3Array(-1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_ckv7w"]
+material = SubResource("ShaderMaterial_0racc")
+size = Vector3(1.75, 2, 2)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_db21n")]
@@ -171,7 +175,7 @@ skeleton = NodePath("../Wall")
 shape = SubResource("ConcavePolygonShape3D_j6kcl")
 
 [node name="Wall" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(2.75, 0, 0, 0, 1.54, 0, 0, 0, 0.25, -4.775, 1.5, -5)
+transform = Transform3D(2.75, 0, 0, 0, 1.54, 0, 0, 0, 0.25, -4.875, 1.5, -5)
 mesh = SubResource("BoxMesh_xc4gq")
 skeleton = NodePath("../..")
 
@@ -241,7 +245,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_vp4dy")
 
 [node name="Wall7" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(1.75, 0, 0, 0, 1.54, 0, 0, 0, 0.25, -12.25, 1.5, -5.5)
+transform = Transform3D(1.75, 0, 0, 0, 1.54, 0, 0, 0, 0.25, -12.125, 1.5, -5.5)
 mesh = SubResource("BoxMesh_xc4gq")
 skeleton = NodePath("../..")
 
@@ -251,7 +255,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_vp4dy")
 
 [node name="Wall8" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1.54, 0, 0, 0, 0.25, -16.5, 1.5, -5.5)
+transform = Transform3D(1, 0, 0, 0, 1.54, 0, 0, 0, 0.25, -16.6, 1.5, -5.5)
 mesh = SubResource("BoxMesh_xc4gq")
 skeleton = NodePath("../..")
 
@@ -291,8 +295,8 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_vp4dy")
 
 [node name="Wall2" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1.54, 0, 0, 0, 0.25, 0.325, 1.5, -5)
-mesh = SubResource("BoxMesh_xc4gq")
+transform = Transform3D(1, 0, 0, 0, 1.54, 0, 0, 0, 0.25, 0.375, 1.5, -5)
+mesh = SubResource("BoxMesh_ckv7w")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Wall2"]
@@ -301,7 +305,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_vp4dy")
 
 [node name="Wall3" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(-8.74228e-08, -6.73156e-08, -0.25, 8.74228e-08, 1.54, -1.09278e-08, 2, -6.73156e-08, -1.09278e-08, 1, 1.5, -2.75)
+transform = Transform3D(-8.74228e-08, -6.73156e-08, -0.25, 8.74228e-08, 1.54, -1.09278e-08, 2, -6.73156e-08, -1.09278e-08, 1, 1.5, -2.85)
 mesh = SubResource("BoxMesh_xc4gq")
 skeleton = NodePath("../..")
 
@@ -311,7 +315,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_vp4dy")
 
 [node name="Wall11" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(-7.86805e-08, -6.73156e-08, -0.25, 7.86805e-08, 1.54, -1.09278e-08, 1.8, -6.73156e-08, -1.09278e-08, 1, 1.5, 2.6)
+transform = Transform3D(-7.86805e-08, -6.73156e-08, -0.25, 7.86805e-08, 1.54, -1.09278e-08, 1.8, -6.73156e-08, -1.09278e-08, 1, 1.5, 2.675)
 mesh = SubResource("BoxMesh_xc4gq")
 skeleton = NodePath("../..")
 
@@ -347,8 +351,7 @@ transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -1.35,
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14.75, 0, -5.5)
 
 [node name="BuyableDoor" parent="." instance=ExtResource("8_jrmpr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
-cost = 500
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.25, 0)
 
 [node name="Barrier3" parent="." instance=ExtResource("7_wtxts")]
 transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 1.25, 0, 5.175)

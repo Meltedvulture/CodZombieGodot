@@ -1,14 +1,18 @@
-[gd_scene load_steps=40 format=3 uid="uid://c3ffql15mo0aj"]
+[gd_scene load_steps=45 format=3 uid="uid://c3ffql15mo0aj"]
 
 [ext_resource type="Script" uid="uid://dgpa2g1406d8w" path="res://controllers/scripts/fps_controller.gd" id="1_pgc1p"]
 [ext_resource type="Material" uid="uid://b4gwd5h7ixvct" path="res://materials/player.tres" id="2_gldw4"]
 [ext_resource type="PackedScene" uid="uid://csj7vcqrenjsi" path="res://Weapons/Weapon.tscn" id="3_5w0k0"]
 [ext_resource type="Script" uid="uid://da4bqfupciool" path="res://controllers/reticle.gd" id="3_xc2pf"]
+[ext_resource type="Resource" uid="uid://5gnc6q6yd4rc" path="res://Weapons/M14.tres" id="4_bygp4"]
 [ext_resource type="Script" uid="uid://chelsy2m60l2o" path="res://controllers/scripts/interaction_cast.gd" id="4_tg6sc"]
 [ext_resource type="Theme" uid="uid://de2nek577lf7m" path="res://Themes/UI/Debug.tres" id="4_y677r"]
 [ext_resource type="Script" uid="uid://dvspsmhr73myh" path="res://controllers/scripts/debug_panel.gd" id="5_co0pi"]
 [ext_resource type="ArrayMesh" uid="uid://bo7iq3wjmi3yv" path="res://Models/Blender/Knife/Knife.res" id="5_h7h5r"]
+[ext_resource type="ArrayMesh" uid="uid://b2y1omvurvvrg" path="res://Models/Blender/M14/M14.res" id="5_rcx31"]
+[ext_resource type="ArrayMesh" uid="uid://br8ovbrcgtnua" path="res://Models/Blender/M14/M14 Magazine.res" id="6_57us7"]
 [ext_resource type="Script" uid="uid://dkk1lhseynn15" path="res://controllers/scripts/State Machine/stateMachine.gd" id="6_co0pi"]
+[ext_resource type="ArrayMesh" uid="uid://bysuauilrvaka" path="res://Models/Blender/M14/M14Bolt.res" id="7_5hww7"]
 [ext_resource type="Script" uid="uid://dd8ov1iyaklk5" path="res://controllers/scripts/State Machine/idle_player_state.gd" id="7_gshig"]
 [ext_resource type="LabelSettings" uid="uid://dskxen8j6183q" path="res://materials/Ammo Counter Label Settings.tres" id="8_fyafc"]
 [ext_resource type="Script" uid="uid://dv2uyfesuk4fh" path="res://controllers/scripts/State Machine/walking_player_state.gd" id="8_jmoha"]
@@ -27,7 +31,6 @@ material = ExtResource("2_gldw4")
 
 [sub_resource type="Animation" id="Animation_fdopr"]
 resource_name = "Melee"
-length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -35,10 +38,10 @@ tracks/0/path = NodePath("../Knife:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.25, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.4, -0.675, 0), Vector3(-1.2125, -0.5875, -0.275), Vector3(0.00879641, -0.414352, -1.08519), Vector3(0.925, -0.375, -0.225), Vector3(-0.4, -0.675, 0)]
+"values": [Vector3(-0.4, -0.675, 0), Vector3(-1.2125, -0.5875, -0.275), Vector3(0.00879641, -0.414352, -1.08519), Vector3(1.09236, -0.292373, -0.346683), Vector3(0.925, -0.375, -0.225), Vector3(-0.4, -0.675, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -47,22 +50,22 @@ tracks/1/path = NodePath("../Knife:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.25, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.0334811, 0.266354, -1.09525), Vector3(-0.0790555, -1.09168, -1.53846), Vector3(-0.0872665, -2.38063, -1.19031), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.0334811, 0.266354, -1.09525), Vector3(-0.0790555, -1.09168, -1.53846), Vector3(0.0128916, -1.71452, -1.71597), Vector3(-0.0872665, -2.38063, -1.19031), Vector3(0, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath(".:rotation")
-tracks/2/interp = 1
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-3.10588e-22, 4.37114e-08, 3.55271e-15), Vector3(-1.5708, 4.37114e-08, 0), Vector3(-1.5708, 4.37114e-08, 0), Vector3(-3.10588e-22, 4.37114e-08, 3.55271e-15)]
+"values": [Vector3(-3.10588e-22, 4.37114e-08, 3.55271e-15), Vector3(-1.5708, 4.37114e-08, 0), Vector3(-3.10588e-22, 4.37114e-08, 3.55271e-15)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -71,10 +74,132 @@ tracks/3/path = NodePath("../..:rotation")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0666667, 0.25, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.0290396, 0.0582022, 0.00169184), Vector3(1.66336e-10, -0.0872665, 3.8097e-09), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.0159127, 0.290137, 0.0892393), Vector3(0.00412823, -0.0180857, 0.0370314), Vector3(-0.00169112, -0.174508, -0.0872173), Vector3(-0.00174533, -0.118682, -0.0872665), Vector3(0, 0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Weapon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"knifeDamage"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_57us7"]
+resource_name = "Melee Lunge"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-3.10588e-22, 4.37114e-08, 3.55271e-15), Vector3(-1.5708, 4.37114e-08, 0), Vector3(-3.10588e-22, 4.37114e-08, 3.55271e-15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.333333, 0.733333, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0572937, -0.0299716, -0.0308063), Vector3(-0.0298979, 0.0307814, 0.0282313), Vector3(0.0608043, -0.0828172, -0.0266195), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.733333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"knifeDamage"
+}]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Knife:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 0, 2, 2, 0, 0),
+"points": PackedFloat32Array(4.09541e-09, 0, 0, 0.0486111, 0.0518618, 0.311171, -0.0486111, -0.0256178, 0.0347222, 0.0182984, 0.263498, -0.0347222, 0.00405387, 0.0333333, -0.00389171, 0.263498, -0.0333333, -0.00818536, 0.0222222, 0.00545691, 0.343353, -0.0444444, 0, 0.0222222, 0, 0.280841, -0.0166667, 0.0114857, 0.0277778, -0.0191428, 0.159582, -0.0444445, 0.0305203, 0.0388889, -0.0267052, 4.09541e-09, -0.102778, 0.0575585, 0, 0, 1.6633e-10, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.166667, 0.275, 0.6, 0.7, 0.8, 0.966667, 1.2, 1.6)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Knife:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 0, 2, 2, 0, 0),
+"points": PackedFloat32Array(-0.436332, 0, 0, 0.0486111, -0.168673, -1.44837, -0.0486111, 0.0779692, 0.0347222, -0.0556923, -1.32557, -0.0347222, -0.0178629, 0.0333333, 0.0171484, -1.41283, -0.0333333, 0.0390913, 0.0222222, -0.0260608, -1.7219, -0.0444444, 0, 0.0222222, 0, -1.4851, -0.0166667, -0.0434419, 0.0277778, 0.0724032, -1.02683, -0.0444445, -0.114273, 0.0388889, 0.0999886, -0.436332, -0.102778, -0.198814, 0, 0, 0.0872665, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.166667, 0.275, 0.6, 0.7, 0.8, 0.966667, 1.2, 1.6)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Knife:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 0, 2, 2, 0, 0),
+"points": PackedFloat32Array(1.84732e-08, 0, 0, 0.0486111, -0.238716, -1.4323, -0.0486111, 0.126562, 0.0347222, -0.0904014, -1.30178, -0.0347222, -0.0110984, 0.0333333, 0.0106544, -1.30178, -0.0333333, 0.0101706, 0.0222222, -0.00678037, -1.60933, -0.0444444, 0, 0.0222222, 0, -1.65949, -0.0166667, -0.054775, 0.0277778, 0.0912917, -0.73293, -0.0444445, -0.143052, 0.0388889, 0.12517, 1.84732e-08, -0.102778, -0.233914, 0, 0, -3.8097e-09, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.166667, 0.275, 0.6, 0.7, 0.8, 0.966667, 1.2, 1.6)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Knife:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 0, 0, 2, 2, 0, 0),
+"points": PackedFloat32Array(-0.35, 0, 0, 0.0333333, 0.0572386, -0.00656823, -0.0333333, -0.0457143, 0.0152778, 0.0209524, 0.05, -0.0152778, 0.000938656, 0.0347222, -0.00213331, -0.025, -0.0347222, 0.00637755, 0.0333333, -0.00612245, -0.025, -0.0333333, -0.02, 0.0222222, 0.0133333, 0.153309, -0.0444444, 0, 0.0222222, 0, 0.178681, -0.0166667, 0.00826054, 0.0277778, -0.0137676, 0.0211404, -0.0277778, 0.036714, 0.0388889, -0.0513995, -0.35, -0.102778, 0.0875, 0, 0, -0.425, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.0749997, 0.166667, 0.275, 0.6, 0.7, 0.8, 0.966667, 1.2, 1.6)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Knife:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 0, 0, 2, 2, 0, 0),
+"points": PackedFloat32Array(-0.675, 0, 0, 0.0333333, 0.0927037, -0.118778, -0.0333333, -0.0714286, 0.0152778, 0.0327381, -0.05, -0.0152778, 0.000316854, 0.0347222, -0.000720123, -0.125, -0.0347222, 0.00637755, 0.0333333, -0.00612244, -0.125, -0.0333333, 0, 0.0222222, 0, -0.0231431, -0.0444444, 0, 0.0222222, 0, -0.171397, -0.0166667, 0.0184979, 0.0277778, -0.0308298, -0.319109, -0.0277778, 0.0349724, 0.0388889, -0.0489614, -0.675, -0.102778, 0.0916667, 0, 0, -0.675, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.0749997, 0.166667, 0.275, 0.6, 0.7, 0.8, 0.966667, 1.2, 1.6)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Knife:position:z")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 0, 0, 2, 2, 0, 0),
+"points": PackedFloat32Array(-0.125, 0, 0, 0.0333333, -0.102229, -0.738375, -0.0333333, 0.114286, 0.0152778, -0.052381, -1.125, -0.0152778, 0.0235087, 0.0347222, -0.0534288, -1.2, -0.0347222, 0.00637756, 0.0333333, -0.00612245, -1.2, -0.0333333, -0.02, 0.0222222, 0.0133333, -0.746713, -0.0444444, 0, 0.0222222, 0, -0.715533, -0.0166667, -0.0120956, 0.0277778, 0.0201594, -0.553183, -0.0277778, -0.0410092, 0.0388889, 0.0574129, -0.125, -0.102778, -0.145833, 0, 0, 0.15, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.0749997, 0.166667, 0.275, 0.6, 0.7, 0.8, 0.966667, 1.2, 1.6)
 }
 
 [sub_resource type="Animation" id="Animation_fyafc"]
@@ -217,7 +342,7 @@ tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.0334811, 0.266354, -1.09525)]
+"values": [Vector3(-0.0334811, 0.266354, 0.0392141)]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
@@ -229,7 +354,7 @@ tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.2125, -0.5875, -0.275)]
+"values": [Vector3(-0.265199, -0.812394, 0.448148)]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -243,10 +368,77 @@ tracks/13/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../Knife:rotation:x")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../Knife:rotation:y")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/16/type = "bezier"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../Knife:rotation:z")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/17/type = "bezier"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../Knife:position:x")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.4, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/18/type = "bezier"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../Knife:position:y")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.675, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/19/type = "bezier"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("../Knife:position:z")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tg6sc"]
 _data = {
 &"Melee": SubResource("Animation_fdopr"),
+&"Melee Lunge": SubResource("Animation_57us7"),
 &"RESET": SubResource("Animation_fyafc")
 }
 
@@ -343,7 +535,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_yvtcv"]
-length = 0.5
+length = 0.25
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -353,7 +545,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(-0.4, -0.25, 0, 0.25, 0, -0.4, -0.25, 0, 0.25, 0, -0.4, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 0.5)
+"times": PackedFloat32Array(0, 0.05, 0.25)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -364,7 +556,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(-0.5, -0.25, 0, 0.0459601, 0.0726442, -0.4, -0.108532, -0.00131434, 0.177329, -0.0275298, -0.5, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 0.5)
+"times": PackedFloat32Array(0, 0.05, 0.25)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -375,7 +567,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.0664254, 0.159454, 0.174533, -0.075, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 0.5)
+"times": PackedFloat32Array(0, 0.05, 0.25)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -384,9 +576,9 @@ tracks/3/path = NodePath("Weapon/WeaponBolt:position:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2),
+"handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(0, 0, 0, 0, -0.101683, -0.1, -0.0333333, 0, 0.05, 0, 0, -0.05, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.1, 0.25)
+"times": PackedFloat32Array(0, 0.05, 0.125)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h7h5r"]
@@ -549,7 +741,7 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_5s75f"]
-length = 0.5
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -557,7 +749,7 @@ tracks/0/path = NodePath("Weapon:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.25, -0.25, -0.5), Vector3(0.25, -0.25, -0.4), Vector3(0.25, -0.25, -0.373438), Vector3(0.25, -0.25, -0.5)]
@@ -569,7 +761,7 @@ tracks/1/path = NodePath("Weapon:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.0872665, -1.66971e-10, -3.82425e-09), Vector3(0.0231802, 2.54659e-10, -1.02934e-09), Vector3(0, 0, 0)]
@@ -581,7 +773,7 @@ tracks/2/path = NodePath("Weapon/WeaponBolt:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.15),
+"times": PackedFloat32Array(0, 0.05, 0.075),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(1.39699e-10, 0, 0.075), Vector3(0, 0, 0)]
@@ -656,7 +848,7 @@ tracks/4/keys = {
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CameraController/Camera3D:position:x")
+tracks/5/path = NodePath("ShapeCast3D:position:x")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -667,18 +859,18 @@ tracks/5/keys = {
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("CameraController/Camera3D:position:y")
+tracks/6/path = NodePath("CameraController/Camera3D:fov")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(90, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("CameraController/Camera3D:position:z")
+tracks/7/path = NodePath("CameraController:rotation:z")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -689,79 +881,58 @@ tracks/7/keys = {
 tracks/8/type = "bezier"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("ShapeCast3D:position:x")
+tracks/8/path = NodePath("PlayerStateMachine/SlidingPlayerState:speed")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(6, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/9/type = "bezier"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("CameraController/Camera3D:fov")
+tracks/9/path = NodePath("CollisionShape3D:shape:height")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(90, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(2, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/10/type = "bezier"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("CameraController:rotation:z")
+tracks/10/path = NodePath("CollisionShape3D:position:y")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/11/type = "bezier"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("PlayerStateMachine/SlidingPlayerState:speed")
+tracks/11/path = NodePath("CollisionShape3D:shape:radius")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(6, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/12/type = "bezier"
+tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("CollisionShape3D:shape:height")
+tracks/12/path = NodePath("CameraController/Camera3D:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(2, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/13/type = "bezier"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("CollisionShape3D:position:y")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/14/type = "bezier"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("CollisionShape3D:shape:radius")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_rk4xh"]
@@ -775,7 +946,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1.5, 0, 0, 0.166667, 0, 0.5, -0.166667, 0, 0, 0),
+"points": PackedFloat32Array(1.5, 0, 0, 0.166667, 0, 0.8, -0.166667, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.5)
 }
 tracks/1/type = "bezier"
@@ -807,9 +978,9 @@ tracks/3/path = NodePath("PlayerStateMachine/SlidingPlayerState:speed")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(9, 0, 0, 1, 0, 0, -3.32991e-05, 0, 0, 0),
-"times": PackedFloat32Array(0, 3)
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(12, 0, 0, 1, 0),
+"times": PackedFloat32Array(0)
 }
 tracks/4/type = "method"
 tracks/4/imported = false
@@ -861,40 +1032,19 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_bneyr"]
 resource_name = "Sprinting"
-length = 2.0
+length = 0.6
 loop_mode = 1
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CameraController/Camera3D:position:x")
-tracks/0/interp = 1
+tracks/0/path = NodePath("CameraController/Camera3D:position")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(3, 3, 3, 3, 3, 3, 3, 3, 3),
-"points": PackedFloat32Array(0, -0.0625, 0.025, 0.0625, -0.025, -0.1, -0.0625, 0.05, 0.0625, -0.05, -0.2, -0.0625, 0, 0.0625, 0, -0.1, -0.0625, -0.05, 0.0625, 0.05, 0, -0.0625, -0.05, 0.0625, 0.05, 0.1, -0.0625, -0.05, 0.0625, 0.05, 0.2, -0.0625, 0, 0.0625, 0, 0.1, -0.0625, 0.05, 0.0625, -0.05, 0, -0.0625, 0.025, 0.0625, -0.025),
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CameraController/Camera3D:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(3, 3, 3, 3, 3, 3, 3, 3, 3),
-"points": PackedFloat32Array(0, -0.0625, -0.025, 0.0625, 0.025, 0.1, -0.0625, 0, 0.0625, 0, 0, -0.0625, 0.05, 0.0625, -0.05, -0.1, -0.0625, 0, 0.0625, 0, 0, -0.0625, -0.05, 0.0625, 0.05, 0.1, -0.0625, 0, 0.0625, 0, 0, -0.0625, 0.05, 0.0625, -0.05, -0.1, -0.0625, 0, 0.0625, 0, 0, -0.0625, -0.025, 0.0625, 0.025),
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CameraController/Camera3D:position:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(3, 3, 3, 3, 3, 3, 3, 3, 3),
-"points": PackedFloat32Array(0, -0.0625, 0, 0.0625, 0, 0, -0.0625, 0, 0.0625, 0, 0, -0.0625, 0, 0.0625, 0, 0, -0.0625, 0, 0.0625, 0, 0, -0.0625, 0, 0.0625, 0, 0, -0.0625, 0, 0.0625, 0, 0, -0.0625, 0, 0.0625, 0, 0, -0.0625, 0, 0.0625, 0, 0, -0.0625, 0, 0.0625, 0),
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2)
+"times": PackedFloat32Array(0, 0.1, 0.133334, 0.2, 0.4, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.1, 0.15, 0), Vector3(-0.154, 0.14, 0), Vector3(-0.2, 0, 0), Vector3(0.1, 0.15, 0), Vector3(0.166, 0.14, 0), Vector3(0.2, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_jmoha"]
@@ -1019,18 +1169,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
 fov = 90.0
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="CameraController/Camera3D"]
-update_mode = 1
-enable_shadows = true
-
 [node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
 
-[node name="Weapon" parent="CameraController/Camera3D/WeaponRig" node_paths=PackedStringArray("weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
-transform = Transform3D(-0.500004, 0.391819, 0.772317, 0, 0.891797, -0.452435, -0.866023, -0.226219, -0.445902, 0.25, -0.4, -0.5)
+[node name="Weapon" parent="CameraController/Camera3D/WeaponRig" node_paths=PackedStringArray("weaponRig", "weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
+transform = Transform3D(-1.00001, 0.783637, 1.54463, 0, 1.78359, -0.904869, -1.73205, -0.452438, -0.891803, 0.25, -0.4, -0.5)
+weaponType = ExtResource("4_bygp4")
+weaponRig = NodePath("..")
 weaponAnimationPlayer = NodePath("../weaponAnimations")
+
+[node name="WeaponMesh" parent="CameraController/Camera3D/WeaponRig/Weapon" index="0"]
+mesh = ExtResource("5_rcx31")
+
+[node name="WeaponMagazine" parent="CameraController/Camera3D/WeaponRig/Weapon" index="1"]
+mesh = ExtResource("6_57us7")
 
 [node name="WeaponBolt" parent="CameraController/Camera3D/WeaponRig/Weapon" index="2"]
 transform = Transform3D(1, 0, 1.86265e-09, 0, 1, 0, -1.86265e-09, 0, 1, 0, 0, 0)
+mesh = ExtResource("7_5hww7")
+
+[node name="WeaponShadow" parent="CameraController/Camera3D/WeaponRig/Weapon" index="3"]
+mesh = ExtResource("5_rcx31")
 
 [node name="weaponAnimations" type="AnimationPlayer" parent="CameraController/Camera3D/WeaponRig"]
 libraries = {
@@ -1045,7 +1203,7 @@ target_position = Vector3(0, 0, -1)
 script = ExtResource("4_tg6sc")
 
 [node name="Knife" type="Node3D" parent="CameraController/Camera3D"]
-transform = Transform3D(0.449513, 0.853658, 0.263068, -0.888543, 0.457567, 0.0334749, -0.0917953, -0.248795, 0.964197, -1.2125, -0.5875, -0.275)
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 1, -0.4, -0.675, 0)
 
 [node name="Knife Mesh" type="MeshInstance3D" parent="CameraController/Camera3D/Knife"]
 transform = Transform3D(1.74846e-07, 1.52855e-14, 4, 3.49691e-07, -4, 0, 4, 3.49691e-07, -1.74846e-07, 0, 0, 0)
@@ -1224,11 +1382,13 @@ script = ExtResource("7_gshig")
 
 [node name="WalkingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_jmoha")
+weaponBobH = 4.0
+weaponBobV = 3.0
 
 [node name="SprintingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_bneyr")
-weaponBobH = 3.0
-weaponBobV = 2.0
+weaponBobH = 16.0
+weaponBobV = 8.0
 metadata/_custom_type_script = "uid://chrx5rfmff27h"
 
 [node name="CrouchingPlayerState" type="Node" parent="PlayerStateMachine"]
@@ -1249,6 +1409,11 @@ metadata/_custom_type_script = "uid://chrx5rfmff27h"
 [node name="FallingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("13_l8yvu")
 metadata/_custom_type_script = "uid://chrx5rfmff27h"
+
+[node name="Shoot Timer" type="Timer" parent="."]
+
+[node name="Sprint Timer" type="Timer" parent="."]
+wait_time = 0.1
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
 

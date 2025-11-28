@@ -10,6 +10,8 @@ extends CharacterBody3D
 @export var CROUCH_SHAPECAST : Node3D
 @export var weaponController : WeaponController
 
+var cameraOffset : Vector3
+
 var _mouse_input : bool = false
 var _rotation_input : float
 var _tilt_input : float
@@ -18,7 +20,16 @@ var _player_rotation : Vector3
 var _camera_rotation : Vector3
 var isCrouching : bool = false
 
+var health : float = 100
+
+var stamina : float = 100
+var sprintRecovery : float = 16.0
+var sprintUse : float = 24.0
+var sprinting : bool = false
+
+
 var currentRotation : float
+
 
 var red = Color(0.75,0.0,0.0,1.0)
 var white = Color(1.0,1.0,1.0,1.0)
@@ -67,14 +78,15 @@ func _ready():
 	CROUCH_SHAPECAST.add_exception($".")
 
 func _physics_process(delta):
-	# Update camera movement based on mouse movement
 	_update_camera(delta)
+	# Update camera movement based on mouse movement
+	CAMERA_CONTROLLER.rotation = lerp(CAMERA_CONTROLLER.rotation, CAMERA_CONTROLLER.rotation + cameraOffset, 0.1)
+	cameraOffset = lerp(cameraOffset, Vector3(0,0,0), 0.05)
 	
 
-	
-	## Add the gravity.
-	#if not is_on_floor():
-		#velocity.y -= gravity * delta
+	if stamina < 100 and sprinting == false:
+		stamina += sprintRecovery * delta
+
 
 func updateGravity(delta) -> void:
 	velocity.y -= gravity * delta
@@ -106,7 +118,5 @@ func flashLabel():
 	tween.tween_property(%RoundLabel.label_settings, "font_color", white, 1.0)
 	tween.tween_property(%RoundLabel.label_settings, "font_color", red, 1.0)
 
-
-
-
-#WORK ON THIS PELASE AHHHHHHHHHHHHHHHHHH
+func meleeLunge():
+	velocity += -global_transform.basis.z * 14

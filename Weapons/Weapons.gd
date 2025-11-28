@@ -13,6 +13,9 @@ extends Resource
 ##Accuracy of 0 means perfect accuracy, higher is more inaccurate
 @export var Accuracy : float = 0
 @export var melee : bool = false
+@export_enum("None","IronSight", "Scope") var sightMode = "IronSight"
+@export var sightPosition : Vector3
+@export var sightSpeed : float = 0.01
 
 
 @export_category("Fire Modes")
@@ -38,6 +41,9 @@ extends Resource
 @export var idleSwayAdjustment : float = 1.0
 @export var idleSwayRotationStrength : float = 300.0
 @export_range(0.1,10.0,0.1) var randomSwayAmount : float = 5.0
+@export_category("Recoil Config")
+@export var verticalRecoil : float = 3.0
+@export var horizontalRecoil : float = 0.0
 @export_category("Visual Settings")
 @export var mesh : Mesh
 @export var magazine : Mesh
