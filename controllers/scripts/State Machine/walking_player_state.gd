@@ -44,7 +44,10 @@ func update(delta):
 
 	if Input.is_action_just_pressed("shoot"):
 		weapon.shoot()
-
+		
+	if Input.is_action_pressed("knife"):
+		weapon.knife()
+		
 func setAnimationSpeed(spd):
 	var alpha = remap(spd, 0.0, speed, 0.0, 1.0)
 	animation.speed_scale = lerp(0.0, topAnimSpeed, alpha)

@@ -31,3 +31,6 @@ func update(delta):
 	
 	if Input.is_action_just_pressed("shoot"):
 		weapon.shoot()
+
+	if Input.is_action_pressed("knife"):
+		weapon.knife()

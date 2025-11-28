@@ -6,8 +6,11 @@ class_name ZombieRoundManager
 
 @export var round = 1
 @export var baseZombies = 4
+@export var mysteryBoxPool = preload("res://Weapons/weaponPools/DefaultWeaponPool.tres")
+@export var boxLocations : Array[mysteryBoxLocation]
 var zombiesToSpawn = 6
 var currentZombies = 0
+var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	Global.zombieDied.connect(zombieDied)
@@ -29,3 +32,13 @@ func newRound():
 	round += 1
 	Global.updateRound()
 	zombiesToSpawn = baseZombies + int(2 * pow(round, 1.5))
+
+func changeBoxLocation(currentBoxLocation):
+	var boxDestination = rng.randi_range(0, boxLocations.size() - 1)
+	
+	while boxLocations[boxDestination] == currentBoxLocation:
+		boxDestination = rng.randi_range(0, boxLocations.size() - 1)
+		
+	boxLocations[boxDestination].hasBox = true
+	boxLocations[boxDestination].startBox()
+	

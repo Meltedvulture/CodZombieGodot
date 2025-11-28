@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WeaponPool" load_steps=6 format=3 uid="uid://c7rguvm8xiyxx"]
+
+[ext_resource type="Script" uid="uid://do2suyictwkg3" path="res://Weapons/weaponPool.gd" id="1_1tr7n"]
+[ext_resource type="Script" uid="uid://c0afljd65dkhp" path="res://Weapons/Weapons.gd" id="2_317iu"]
+[ext_resource type="Resource" uid="uid://br3d0d4h0w75d" path="res://Weapons/1911.tres" id="3_dm60i"]
+[ext_resource type="Resource" uid="uid://c606mjyycwvn4" path="res://Weapons/Crowbar.tres" id="4_b50vq"]
+[ext_resource type="Resource" uid="uid://5gnc6q6yd4rc" path="res://Weapons/M14.tres" id="5_ms875"]
+
+[resource]
+script = ExtResource("1_1tr7n")
+weaponPool = Array[ExtResource("2_317iu")]([ExtResource("3_dm60i"), ExtResource("4_b50vq"), ExtResource("5_ms875")])
+metadata/_custom_type_script = "uid://do2suyictwkg3"

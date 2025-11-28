@@ -10,6 +10,9 @@ func update():
 	if !Global.weaponManager.weaponInventory.has(str(weapon.resource_path)):
 		cost = weaponCost
 
+func hoverText():
+	return "Hold F to buy " + objectName + " Cost: " + str(cost)
+
 func purchase():
 	if Global.points >= cost:
 		Global.points -= cost

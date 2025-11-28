@@ -40,7 +40,7 @@
 					"show_analemmas":0,
 					"show_north":0,
 					"latitude":0.0,
-					"day_of_year":330,
+					"day_of_year":332,
 					"sun_object":{},
 					"object_collection":{}
 				},
@@ -293,7 +293,8 @@
 						"webpGeneratedTimestamp":1698542776,
 						"resolution":"resolution_2K"
 					}
-				}
+				},
+				"scatter_properties":{}
 			},
 			"name":"Scene",
 			"nodes":[
@@ -347,14 +348,11 @@
 			},
 			"name":"Knife Leather",
 			"pbrMetallicRoughness":{
-				"baseColorFactor":[
-					0.22042715549468994,
-					0.06683697551488876,
-					0.0014793692389503121,
-					1
-				],
+				"baseColorTexture":{
+					"index":1
+				},
 				"metallicFactor":0,
-				"roughnessFactor":0.5772727131843567
+				"roughnessFactor":0.7770000100135803
 			}
 		},
 		{
@@ -371,7 +369,7 @@
 			"name":"Handle Metal",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":1
+					"index":2
 				},
 				"metallicFactor":0.30000001192092896,
 				"roughnessFactor":0.30000001192092896
@@ -423,13 +421,17 @@
 		{
 			"sampler":0,
 			"source":0
+		},
+		{
+			"sampler":0,
+			"source":0
 		}
 	],
 	"images":[
 		{
-			"mimeType":"image/jpeg",
-			"name":"Wear",
-			"uri":"../../Models/Blender/Knife/textures/Wear.jpg"
+			"mimeType":"image/png",
+			"name":"Knife Diffuse",
+			"uri":"../../Models/Blender/Knife/textures/Knife%20Diffuse.png"
 		}
 	],
 	"accessors":[
@@ -476,35 +478,35 @@
 		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":10089,
+			"count":11016,
 			"max":[
-				0.013683346100151539,
+				0.013683347031474113,
 				-0.02237844094634056,
 				0.011971019208431244
 			],
 			"min":[
 				-0.014916833490133286,
-				-0.1158507689833641,
-				-0.01197101455181837
+				-0.11585075408220291,
+				-0.011971015483140945
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":10089,
+			"count":11016,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":7,
 			"componentType":5126,
-			"count":10089,
+			"count":11016,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":8,
 			"componentType":5126,
-			"count":10089,
+			"count":11016,
 			"type":"VEC4"
 		},
 		{
@@ -516,35 +518,35 @@
 		{
 			"bufferView":10,
 			"componentType":5126,
-			"count":9748,
+			"count":10016,
 			"max":[
 				0.0265481099486351,
 				-0.021330993622541428,
-				0.01388018112629652
+				0.013880180194973946
 			],
 			"min":[
-				-0.02655242383480072,
+				-0.026552416384220123,
 				-0.1250379979610443,
-				-0.01388018112629652
+				-0.013880180194973946
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":11,
 			"componentType":5126,
-			"count":9748,
+			"count":10016,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":12,
 			"componentType":5126,
-			"count":9748,
+			"count":10016,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":13,
 			"componentType":5126,
-			"count":9748,
+			"count":10016,
 			"type":"VEC4"
 		},
 		{
@@ -587,62 +589,62 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":121068,
+			"byteLength":132192,
 			"byteOffset":1642752,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":121068,
-			"byteOffset":1763820,
+			"byteLength":132192,
+			"byteOffset":1774944,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":80712,
-			"byteOffset":1884888,
+			"byteLength":88128,
+			"byteOffset":1907136,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":161424,
-			"byteOffset":1965600,
+			"byteLength":176256,
+			"byteOffset":1995264,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":101856,
-			"byteOffset":2127024,
+			"byteOffset":2171520,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":116976,
-			"byteOffset":2228880,
+			"byteLength":120192,
+			"byteOffset":2273376,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":116976,
-			"byteOffset":2345856,
+			"byteLength":120192,
+			"byteOffset":2393568,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":77984,
-			"byteOffset":2462832,
+			"byteLength":80128,
+			"byteOffset":2513760,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":155968,
-			"byteOffset":2540816,
+			"byteLength":160256,
+			"byteOffset":2593888,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":97632,
-			"byteOffset":2696784,
+			"byteOffset":2754144,
 			"target":34963
 		}
 	],
@@ -654,7 +656,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":2794416,
+			"byteLength":2851776,
 			"uri":"Knife-ea551b06e13efd4e591dfacd9fcb7495.bin"
 		}
 	]

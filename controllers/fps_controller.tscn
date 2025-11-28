@@ -1,18 +1,14 @@
-[gd_scene load_steps=45 format=3 uid="uid://c3ffql15mo0aj"]
+[gd_scene load_steps=41 format=3 uid="uid://c3ffql15mo0aj"]
 
 [ext_resource type="Script" uid="uid://dgpa2g1406d8w" path="res://controllers/scripts/fps_controller.gd" id="1_pgc1p"]
 [ext_resource type="Material" uid="uid://b4gwd5h7ixvct" path="res://materials/player.tres" id="2_gldw4"]
 [ext_resource type="PackedScene" uid="uid://csj7vcqrenjsi" path="res://Weapons/Weapon.tscn" id="3_5w0k0"]
 [ext_resource type="Script" uid="uid://da4bqfupciool" path="res://controllers/reticle.gd" id="3_xc2pf"]
-[ext_resource type="Resource" uid="uid://5gnc6q6yd4rc" path="res://Weapons/M14.tres" id="4_bygp4"]
 [ext_resource type="Script" uid="uid://chelsy2m60l2o" path="res://controllers/scripts/interaction_cast.gd" id="4_tg6sc"]
 [ext_resource type="Theme" uid="uid://de2nek577lf7m" path="res://Themes/UI/Debug.tres" id="4_y677r"]
 [ext_resource type="Script" uid="uid://dvspsmhr73myh" path="res://controllers/scripts/debug_panel.gd" id="5_co0pi"]
 [ext_resource type="ArrayMesh" uid="uid://bo7iq3wjmi3yv" path="res://Models/Blender/Knife/Knife.res" id="5_h7h5r"]
-[ext_resource type="ArrayMesh" uid="uid://b2y1omvurvvrg" path="res://Models/Blender/M14/M14.res" id="5_rcx31"]
-[ext_resource type="ArrayMesh" uid="uid://br8ovbrcgtnua" path="res://Models/Blender/M14/M14 Magazine.res" id="6_57us7"]
 [ext_resource type="Script" uid="uid://dkk1lhseynn15" path="res://controllers/scripts/State Machine/stateMachine.gd" id="6_co0pi"]
-[ext_resource type="ArrayMesh" uid="uid://bysuauilrvaka" path="res://Models/Blender/M14/M14Bolt.res" id="7_5hww7"]
 [ext_resource type="Script" uid="uid://dd8ov1iyaklk5" path="res://controllers/scripts/State Machine/idle_player_state.gd" id="7_gshig"]
 [ext_resource type="LabelSettings" uid="uid://dskxen8j6183q" path="res://materials/Ammo Counter Label Settings.tres" id="8_fyafc"]
 [ext_resource type="Script" uid="uid://dv2uyfesuk4fh" path="res://controllers/scripts/State Machine/walking_player_state.gd" id="8_jmoha"]
@@ -1172,23 +1168,12 @@ fov = 90.0
 [node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
 
 [node name="Weapon" parent="CameraController/Camera3D/WeaponRig" node_paths=PackedStringArray("weaponRig", "weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
-transform = Transform3D(-1.00001, 0.783637, 1.54463, 0, 1.78359, -0.904869, -1.73205, -0.452438, -0.891803, 0.25, -0.4, -0.5)
-weaponType = ExtResource("4_bygp4")
+transform = Transform3D(-0.500004, 0.391819, 0.772317, 0, 0.891797, -0.452435, -0.866023, -0.226219, -0.445902, 0.25, -0.4, -0.5)
 weaponRig = NodePath("..")
 weaponAnimationPlayer = NodePath("../weaponAnimations")
 
-[node name="WeaponMesh" parent="CameraController/Camera3D/WeaponRig/Weapon" index="0"]
-mesh = ExtResource("5_rcx31")
-
-[node name="WeaponMagazine" parent="CameraController/Camera3D/WeaponRig/Weapon" index="1"]
-mesh = ExtResource("6_57us7")
-
 [node name="WeaponBolt" parent="CameraController/Camera3D/WeaponRig/Weapon" index="2"]
 transform = Transform3D(1, 0, 1.86265e-09, 0, 1, 0, -1.86265e-09, 0, 1, 0, 0, 0)
-mesh = ExtResource("7_5hww7")
-
-[node name="WeaponShadow" parent="CameraController/Camera3D/WeaponRig/Weapon" index="3"]
-mesh = ExtResource("5_rcx31")
 
 [node name="weaponAnimations" type="AnimationPlayer" parent="CameraController/Camera3D/WeaponRig"]
 libraries = {
@@ -1199,7 +1184,7 @@ libraries = {
 
 [node name="InteractionCast" type="RayCast3D" parent="CameraController/Camera3D"]
 unique_name_in_owner = true
-target_position = Vector3(0, 0, -1)
+target_position = Vector3(0, 0, -1.5)
 script = ExtResource("4_tg6sc")
 
 [node name="Knife" type="Node3D" parent="CameraController/Camera3D"]
@@ -1368,7 +1353,7 @@ grow_vertical = 0
 [node name="InteractionLabel" type="Label" parent="UserInterface/InteractionHbox"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 label_settings = ExtResource("10_yvtcv")
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -11,6 +11,7 @@ class_name WeaponController
 @onready var weaponShadow : MeshInstance3D = %WeaponShadow
 @onready var shootTimer = $"../../../../Shoot Timer"
 @onready var reticle = $"../../../../UserInterface/Reticle"
+@onready var knifeNode = $"../../Knife"
 
 # Exported variables
 @export var weaponType : Weapons:
@@ -90,7 +91,7 @@ func _ready() -> void:
 	Global.weaponManager = self
 	#weaponInventory.resize(1)
 	addWeapon("res://Weapons/1911.tres")
-	loadWeapon()
+	apply_clip_and_fov_shader_to_view_model(knifeNode, -1.0)
 
 func _input(event):
 	if event.is_action_pressed("weaponDown"):
@@ -101,8 +102,6 @@ func _input(event):
 		if !weaponAnimationPlayer.is_playing():
 			switchWeapon(-1)
 	
-	if event.is_action_pressed("knife"):
-		knife()
 		
 
 	if event is InputEventMouseMotion:
@@ -188,7 +187,10 @@ func loadWeapon():
 	Global.reserveLabel.text = str(reserveAmmo)
 	time_per_shot = 60.0 / weaponType.rpm
 	weaponAccuracy = weaponType.Accuracy
-
+	
+	
+	apply_clip_and_fov_shader_to_view_model(self, -1.0)
+		
 func sway_weapon(delta, isIdle: bool) -> void:
 	if weaponType == null:
 		return
@@ -219,8 +221,8 @@ func sway_weapon(delta, isIdle: bool) -> void:
 			position.y = lerp(position.y, weaponType.position.y - (mouseMovement.y * weaponType.swayAmountPosition + randomSwayY) * delta, weaponType.swaySpeedPosition)
 
 		# Lerp weapon rotation
-			rotation_degrees.y = lerp(rotation_degrees.y, weaponType.rotation.y - (mouseMovement.x * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
-			rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x + (mouseMovement.y * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
+		rotation_degrees.y = lerp(rotation_degrees.y, weaponType.rotation.y - (mouseMovement.x * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
+		rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x + (mouseMovement.y * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
 	
 	#Movement bob (Not idle)
 	else:
@@ -228,8 +230,8 @@ func sway_weapon(delta, isIdle: bool) -> void:
 			position.x = lerp(position.x, weaponType.position.x + (mouseMovement.x * weaponType.swayAmountPosition + weaponBobAmount.x) * delta, weaponType.swaySpeedPosition)
 			position.y = lerp(position.y, weaponType.position.y - (mouseMovement.y * weaponType.swayAmountPosition + weaponBobAmount.y) * delta, weaponType.swaySpeedPosition)
 		# Lerp weapon rotation
-			rotation_degrees.y = lerp(rotation_degrees.y, weaponType.rotation.y - (mouseMovement.x * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
-			rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x + (mouseMovement.y * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
+		rotation_degrees.y = lerp(rotation_degrees.y, weaponType.rotation.y - (mouseMovement.x * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
+		rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x + (mouseMovement.y * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
 
 func weaponBob(delta, bobSpeed: float, hbobAmount: float, vbobAmount) -> void:
 	time += delta
@@ -440,6 +442,39 @@ func knifeDamage():
 	if hitBody and hitBody.has_method("take_damage"):
 		hitBody.take_damage(150)
 
+
+
+
+#Applys shader to prevent weapon clipping
+func apply_clip_and_fov_shader_to_view_model(node3d : Node3D, fov_or_negative_for_unchanged = -1.0):
+	var all_mesh_instances = node3d.find_children("*", "MeshInstance3D")
+	if node3d is MeshInstance3D:
+		all_mesh_instances.push_back(node3d)
+	for mesh_instance in all_mesh_instances:
+		var mesh = mesh_instance.mesh
+		# Important to turn shadow casting off for view model or will cause issues with both
+		# view model, casting shadows on itself once unclipped, & also will look weird casting on world.
+		mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		if mesh != null:
+			for surface_idx in mesh.get_surface_count():
+				var base_mat = mesh.surface_get_material(surface_idx)
+				if not base_mat is BaseMaterial3D: continue
+				var weapon_shader_material := ShaderMaterial.new()
+				weapon_shader_material.shader = load("res://shaders/weaponClip.gdshader")
+				weapon_shader_material.set_shader_parameter("texture_albedo", base_mat.albedo_texture)
+				weapon_shader_material.set_shader_parameter("texture_metallic", base_mat.metallic_texture)
+				weapon_shader_material.set_shader_parameter("texture_roughness", base_mat.roughness_texture)
+				weapon_shader_material.set_shader_parameter("texture_normal", base_mat.normal_texture)
+				weapon_shader_material.set_shader_parameter("albedo", base_mat.albedo_color)
+				weapon_shader_material.set_shader_parameter("metallic", base_mat.metallic)
+				weapon_shader_material.set_shader_parameter("specular", base_mat.metallic_specular)
+				weapon_shader_material.set_shader_parameter("roughness", base_mat.roughness)
+				weapon_shader_material.set_shader_parameter("viewmodel_fov", fov_or_negative_for_unchanged)
+				var tex_channels = { 0: Vector4(1., 0., 0., 0.), 1: Vector4(0., 1., 0., 0.), 2: Vector4(0., 0., 1., 0.), 3: Vector4(1., 0., 0., 1.), 4: Vector4() }
+				weapon_shader_material.set_shader_parameter("metallic_texture_channel", tex_channels[base_mat.metallic_texture_channel])
+				mesh_instance.set_surface_override_material(surface_idx, weapon_shader_material)
+			
+			
 
 #func _physics_process(delta) -> void:
 

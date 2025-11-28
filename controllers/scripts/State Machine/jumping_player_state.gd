@@ -24,3 +24,6 @@ func update(delta):
 	
 	if PLAYER.is_on_floor():
 		transition.emit("IdlePlayerState")
+
+	if Input.is_action_pressed("knife"):
+		weapon.knife()

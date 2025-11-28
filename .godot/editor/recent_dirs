@@ -1,10 +1,11 @@
+res://Weapons
+res://Scripts
 res://Models/Blender/Mystery Box
 res://Models/Blender/Buyable Doors
 D:/Program Directory/blender 4.1.1
 D:/Program Directory/blender-5.0.0
 res://Models/Blender/Knife
 res://Models/Blender/M14
-res://Scripts
 res://materials
 res://controllers/scripts
 res://Prefabs
@@ -12,7 +13,6 @@ res://Models/Blender/1911
 res://Scenes
 res://
 res://Models/Blender
-res://Weapons
 res://textures
 res://Models/Weapons
 res://controllers/scripts/State Machine

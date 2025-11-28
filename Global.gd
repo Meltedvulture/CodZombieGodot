@@ -6,17 +6,15 @@ signal roundChange
 var debug
 var player
 var weaponManager
-var points = 500
+var points = 5000
 var reserveLabel : Label
 var clipLabel : Label
 var pointsLabel : Label
 var roundLabel
 var zombieRoundManager
 
-#func _ready():
-	#await get_tree().create_timer(0).timeout
-	#print("added weapon")
-	#weaponManager.addWeapon(load("res://Weapons/Crowbar.tres"))
+func _ready():
+	call_deferred("updatePoints")
 
 
 func updateLabels(clipAmmo, reserveAmmo):
