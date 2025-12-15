@@ -40,7 +40,7 @@
 					"show_analemmas":0,
 					"show_north":0,
 					"latitude":0.0,
-					"day_of_year":332,
+					"day_of_year":348,
 					"sun_object":{},
 					"object_collection":{}
 				},
@@ -218,29 +218,29 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":1203,
+			"count":1205,
 			"max":[
-				0.5329999923706055,
+				0.02938838116824627,
 				0.17809991538524628,
-				0.02938838116824627
+				0.11554648727178574
 			],
 			"min":[
-				-0.11554648727178574,
+				-0.02938838116824627,
 				-0.20226417481899261,
-				-0.02938838116824627
+				-0.5329999923706055
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":1203,
+			"count":1205,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":1203,
+			"count":1205,
 			"type":"VEC2"
 		},
 		{
@@ -254,14 +254,14 @@
 			"componentType":5126,
 			"count":1836,
 			"max":[
-				0.0958000123500824,
+				0.03509600833058357,
 				0.0910000205039978,
-				0.035096000880002975
+				0.07993999123573303
 			],
 			"min":[
-				-0.07993999123573303,
+				-0.03558792546391487,
 				-0.1868000030517578,
-				-0.035587918013334274
+				-0.0958000123500824
 			],
 			"type":"VEC3"
 		},
@@ -288,14 +288,14 @@
 			"componentType":5126,
 			"count":124,
 			"max":[
-				0.10699786990880966,
+				0.023585012182593346,
 				0.11969169229269028,
-				0.023585006594657898
+				0.096485935151577
 			],
 			"min":[
-				-0.096485935151577,
+				-0.023585012182593346,
 				-0.2147507667541504,
-				-0.023585006594657898
+				-0.10699786990880966
 			],
 			"type":"VEC3"
 		},
@@ -322,14 +322,14 @@
 			"componentType":5126,
 			"count":1627,
 			"max":[
-				0.5188515782356262,
+				0.026909543201327324,
 				0.2018599808216095,
-				0.02690950408577919
+				0.04419999569654465
 			],
 			"min":[
-				-0.04419999197125435,
+				-0.02690981701016426,
 				0.08058007806539536,
-				-0.026909813284873962
+				-0.5188515782356262
 			],
 			"type":"VEC3"
 		},
@@ -355,98 +355,98 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":14436,
+			"byteLength":14460,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":14436,
-			"byteOffset":14436,
+			"byteLength":14460,
+			"byteOffset":14460,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":9624,
-			"byteOffset":28872,
+			"byteLength":9640,
+			"byteOffset":28920,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":6816,
-			"byteOffset":38496,
+			"byteOffset":38560,
 			"target":34963
 		},
 		{
 			"buffer":0,
 			"byteLength":22032,
-			"byteOffset":45312,
+			"byteOffset":45376,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":22032,
-			"byteOffset":67344,
+			"byteOffset":67408,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":14688,
-			"byteOffset":89376,
+			"byteOffset":89440,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":18432,
-			"byteOffset":104064,
+			"byteOffset":104128,
 			"target":34963
 		},
 		{
 			"buffer":0,
 			"byteLength":1488,
-			"byteOffset":122496,
+			"byteOffset":122560,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":1488,
-			"byteOffset":123984,
+			"byteOffset":124048,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":992,
-			"byteOffset":125472,
+			"byteOffset":125536,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":480,
-			"byteOffset":126464,
+			"byteOffset":126528,
 			"target":34963
 		},
 		{
 			"buffer":0,
 			"byteLength":19524,
-			"byteOffset":126944,
+			"byteOffset":127008,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":19524,
-			"byteOffset":146468,
+			"byteOffset":146532,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":13016,
-			"byteOffset":165992,
+			"byteOffset":166056,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":12960,
-			"byteOffset":179008,
+			"byteOffset":179072,
 			"target":34963
 		}
 	],
@@ -458,7 +458,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":191968,
+			"byteLength":192032,
 			"uri":"1911-d87b7259068126ffccf6a4dab5558434.bin"
 		}
 	]

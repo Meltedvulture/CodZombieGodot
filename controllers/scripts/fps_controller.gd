@@ -10,6 +10,8 @@ extends CharacterBody3D
 @export var CROUCH_SHAPECAST : Node3D
 @export var weaponController : WeaponController
 
+@onready var healthTimer = $"Health Regen Timer"
+
 var cameraOffset : Vector3
 
 var _mouse_input : bool = false
@@ -21,8 +23,11 @@ var _camera_rotation : Vector3
 var isCrouching : bool = false
 
 var health : float = 100
+var maxHealth : float = 100
+var healthRecovery : float = 12.0
 
 var stamina : float = 100
+var maxStamina : float = 100
 var sprintRecovery : float = 16.0
 var sprintUse : float = 24.0
 var sprinting : bool = false
@@ -72,7 +77,8 @@ func _ready():
 	Global.roundLabel = %RoundLabel
 	Global.player = self
 	Global.roundChange.connect(flashLabel)
-	# Get mouse input
+	health = 100
+	maxHealth = 100
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	#Prevents player from activating crouch cast
 	CROUCH_SHAPECAST.add_exception($".")
@@ -80,12 +86,15 @@ func _ready():
 func _physics_process(delta):
 	_update_camera(delta)
 	# Update camera movement based on mouse movement
-	CAMERA_CONTROLLER.rotation = lerp(CAMERA_CONTROLLER.rotation, CAMERA_CONTROLLER.rotation + cameraOffset, 0.1)
-	cameraOffset = lerp(cameraOffset, Vector3(0,0,0), 0.05)
+	CAMERA_CONTROLLER.rotation = lerp(CAMERA_CONTROLLER.rotation, CAMERA_CONTROLLER.rotation + cameraOffset, 0.05)
+	cameraOffset = lerp(cameraOffset, Vector3(0,0,0), 0.025)
 	
 
-	if stamina < 100 and sprinting == false:
+	if stamina < maxStamina and sprinting == false:
 		stamina += sprintRecovery * delta
+		
+	if health < maxHealth and healthTimer.get_time_left() == 0:
+		health += healthRecovery * delta
 
 
 func updateGravity(delta) -> void:
@@ -120,3 +129,8 @@ func flashLabel():
 
 func meleeLunge():
 	velocity += -global_transform.basis.z * 14
+
+func takePlayerDamage(damage):
+	health -= damage
+	healthTimer.start(3)
+	

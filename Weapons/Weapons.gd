@@ -23,6 +23,8 @@ extends Resource
 @export var shotgun : bool = false
 @export_enum("Magazine", "Shell") var reloadMode: String = "Magazine"
 @export_enum("Semi", "Auto", "Bolt") var fireMode: String = "Semi"
+@export_enum("Projectile", "Hitscan") var bulletPhysics: String = "Projectile"
+@export_file("*.tscn") var bulletScene 
 
 
 
@@ -49,3 +51,7 @@ extends Resource
 @export var magazine : Mesh
 @export var bolt : Mesh
 @export var shadow : bool
+
+@export_category("Animation Settings")
+@export var pullOutAnimation : String = "pistolPullout"
+@export var storeAnimation : String = "pistolStore"

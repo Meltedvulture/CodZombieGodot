@@ -11,7 +11,8 @@ extends PlayerMovementState
 @export var weaponBobV : float = 1
 
 func enter(previousState) -> void:
-	animation.play("Walking", -1, 1.0)
+	#animation.play("Walking", -1, 1.0)
+	animation.stop()
 	
 func exit() -> void:
 	animation.speed_scale = 1.0

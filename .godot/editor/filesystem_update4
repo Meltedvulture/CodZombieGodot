@@ -1,10 +1,9 @@
-res://levels/level_001.tscn
+res://controllers/fps_controller.tscn
 res://environment/WE_test.tres
 res://materials/grid.tres
 res://Models/Blender/1911/1911 Slide.res
 res://Models/Blender/1911/1911 Magazine.res
 res://Models/Blender/1911/1911 Body.res
-res://Weapons/1911.tres
 res://Themes/UI/debugStyleBoxFlat.tres
 res://Themes/UI/Debug.tres
 res://Models/Blender/Knife/Knife.res
@@ -15,12 +14,9 @@ res://Weapons/Crowbar.tres
 res://Models/Blender/M14/M14.res
 res://Weapons/M14.tres
 res://Weapons/weaponPools/DefaultWeaponPool.tres
-res://controllers/fps_controller.tscn
-res://Prefabs/Buyable Door.tscn
-res://Prefabs/Barrier.tscn
-res://Weapons/Weapon.tscn
+res://levels/level_001.tscn
 res://Prefabs/Wall Weapon.tscn
 res://Prefabs/Mystery Box Location.tscn
-res://Scenes/Zombie.tscn
-res://Scripts/Mystery Box.gd
-res://Scripts/ZombieRoundManager.gd
+res://Prefabs/Juggernog Machine.tscn
+res://Weapons/WeaponManager.gd
+res://Weapons/Weapon.tscn

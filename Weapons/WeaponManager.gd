@@ -12,6 +12,7 @@ class_name WeaponController
 @onready var shootTimer = $"../../../../Shoot Timer"
 @onready var reticle = $"../../../../UserInterface/Reticle"
 @onready var knifeNode = $"../../Knife"
+@onready var bulletSpawnPoint = $"../../Bullet Spawn"
 
 # Exported variables
 @export var weaponType : Weapons:
@@ -54,7 +55,11 @@ var weaponBobAmount : Vector2 = Vector2(0,0)
 var canSwayPosition = true
 var isSighting = false
 var canSight = true
-
+var actionable = true
+#actionable is a master condition that controls when player can input
+#anything related to weapons, this is for when player is locked in certain
+#animations or states
+#Everything else is for certain conditions
 
 var reserveAmmo
 var maxClipAmmo
@@ -79,6 +84,10 @@ var fireMode
 var reloadMode
 var verticalRecoil
 var horizontalRecoil
+var weaponBulletPhysics
+var weaponBulletScene
+var pulloutAnimation
+var storeAnimation
 
 @export var weaponAnimationPlayer : AnimationPlayer
 
@@ -118,10 +127,19 @@ func addWeapon(WeaponPath: String):
 		var weapon = load(WeaponPath)
 		weaponAmmoInventory[currentWeaponIndex] = [weapon.clip, weapon.reserve]
 	weaponAnimationPlayer.stop()
-	loadWeapon()
+	if storeAnimation and pulloutAnimation:
+		actionable = false
+		weaponAnimationPlayer.play(storeAnimation)
+		await weaponAnimationPlayer.animation_finished
+		loadWeapon()
+		weaponAnimationPlayer.play(pulloutAnimation)
+		await weaponAnimationPlayer.animation_finished
+		actionable = true
+	else:
+		loadWeapon()
 
 func switchWeapon(direction: int) -> void:
-	if isSighting == false:
+	if isSighting == false and actionable == true:
 		# Increment or decrement the current weapon index based on the direction
 		currentWeaponIndex += direction
 		
@@ -130,7 +148,13 @@ func switchWeapon(direction: int) -> void:
 		currentWeaponIndex = wrap_index(currentWeaponIndex, weaponInventory.size())
 		
 		# Equip the weapon at the new index
+		actionable = false
+		weaponAnimationPlayer.play(storeAnimation)
+		await weaponAnimationPlayer.animation_finished
 		loadWeapon()
+		weaponAnimationPlayer.play(pulloutAnimation)
+		await weaponAnimationPlayer.animation_finished
+		actionable = true
 
 
 func wrap_index(index: int, size: int) -> int:
@@ -161,6 +185,13 @@ func loadWeapon():
 	idleSwayRotationStrength = weaponType.idleSwayRotationStrength
 	randomSwayAmount = weaponType.randomSwayAmount
 
+	weaponBulletPhysics = weaponType.bulletPhysics
+	
+	if !Engine.is_editor_hint():
+		if weaponType.bulletScene != null:
+			weaponBulletScene = load(weaponType.bulletScene)
+
+
 	shotgun = weaponType.shotgun
 	fireMode = weaponType.fireMode
 	reloadMode = weaponType.reloadMode
@@ -171,6 +202,9 @@ func loadWeapon():
 	
 	verticalRecoil = weaponType.verticalRecoil
 	horizontalRecoil = weaponType.horizontalRecoil
+	
+	pulloutAnimation = weaponType.pullOutAnimation
+	storeAnimation = weaponType.storeAnimation
 
 	# Load ammo from weaponAmmoInventory instead of resetting to default
 	if currentWeaponIndex < weaponAmmoInventory.size():
@@ -190,7 +224,7 @@ func loadWeapon():
 	
 	
 	apply_clip_and_fov_shader_to_view_model(self, -1.0)
-		
+	
 func sway_weapon(delta, isIdle: bool) -> void:
 	if weaponType == null:
 		return
@@ -244,38 +278,65 @@ func getSwayNoise() -> float:
 	return noiseLocation
 
 func shoot() -> void:
-	if clipAmmo != 0 and canShoot == true:
+	if clipAmmo != 0 and canShoot == true and actionable == true:
 		canShoot = false  # Prevent further shooting
 		cooldown_timer = time_per_shot  # Reset the cooldown timer
 		shootCooldown()
 		
-		
-		#Run Raycast function
-		var camera = Global.player.CAMERA_CONTROLLER
-		var spaceState = camera.get_world_3d().direct_space_state
-		var screenCenter = get_viewport().size / 2
-		var origin = camera.project_ray_origin(screenCenter)
-		
-		if shotgun:
-			for i in 8:
+		if weaponBulletPhysics == "Hitscan":
+			#Run Raycast function
+			var camera = Global.player.CAMERA_CONTROLLER
+			var spaceState = camera.get_world_3d().direct_space_state
+			var screenCenter = get_viewport().size / 2
+			var origin = camera.project_ray_origin(screenCenter)
+			
+			if shotgun:
+				for i in 8:
+					var accuracyAdjustment = Vector3 (
+					rng.randf_range(-weaponAccuracy, weaponAccuracy),
+					rng.randf_range(-weaponAccuracy, weaponAccuracy),
+					rng.randf_range(-weaponAccuracy, weaponAccuracy)
+					)
+					
+
+					var endpoint = origin + camera.project_ray_normal(screenCenter) * 1000 + accuracyAdjustment * 10
+					var query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
+					query.collide_with_bodies = true
+					var result = spaceState.intersect_ray(query)
+					
+					var hitPosition = result.get("position")
+					var hitNormal = result.get("normal")
+					var hitBody = result.get("collider")  # Get the object that was hit
+					if hitBody and hitBody.has_method("take_damage"):
+						hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
+					
+					#Apply decal
+					#if result:
+						#var instance = bulletHole.instantiate()
+						#get_tree().root.add_child(instance)
+						#instance.global_position = hitPosition
+						#instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
+						#instance.rotate_object_local(Vector3(1,0,0), 90)
+						#removeHitMark(instance)
+			else:
 				var accuracyAdjustment = Vector3 (
-				rng.randf_range(-weaponAccuracy, weaponAccuracy),
-				rng.randf_range(-weaponAccuracy, weaponAccuracy),
-				rng.randf_range(-weaponAccuracy, weaponAccuracy)
+					rng.randf_range(-weaponAccuracy, weaponAccuracy),
+					rng.randf_range(-weaponAccuracy, weaponAccuracy),
+					rng.randf_range(-weaponAccuracy, weaponAccuracy)
 				)
-				
+					
 
 				var endpoint = origin + camera.project_ray_normal(screenCenter) * 1000 + accuracyAdjustment * 10
 				var query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
 				query.collide_with_bodies = true
 				var result = spaceState.intersect_ray(query)
-				
+					
 				var hitPosition = result.get("position")
 				var hitNormal = result.get("normal")
 				var hitBody = result.get("collider")  # Get the object that was hit
 				if hitBody and hitBody.has_method("take_damage"):
 					hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
-				
+					
 				#Apply decal
 				#if result:
 					#var instance = bulletHole.instantiate()
@@ -284,37 +345,23 @@ func shoot() -> void:
 					#instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
 					#instance.rotate_object_local(Vector3(1,0,0), 90)
 					#removeHitMark(instance)
-		else:
+		elif weaponBulletPhysics == "Projectile":
+			var bulletInstance = weaponBulletScene.instantiate()
 			var accuracyAdjustment = Vector3 (
-				rng.randf_range(-weaponAccuracy, weaponAccuracy),
-				rng.randf_range(-weaponAccuracy, weaponAccuracy),
-				rng.randf_range(-weaponAccuracy, weaponAccuracy)
+				rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
+				rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy),
+				rng.randf_range(-weaponType.Accuracy, weaponType.Accuracy)
 			)
-				
-
-			var endpoint = origin + camera.project_ray_normal(screenCenter) * 1000 + accuracyAdjustment * 10
-			var query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
-			query.collide_with_bodies = true
-			var result = spaceState.intersect_ray(query)
-				
-			var hitPosition = result.get("position")
-			var hitNormal = result.get("normal")
-			var hitBody = result.get("collider")  # Get the object that was hit
-			if hitBody and hitBody.has_method("take_damage"):
-				hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
-				
-			#Apply decal
-			#if result:
-				#var instance = bulletHole.instantiate()
-				#get_tree().root.add_child(instance)
-				#instance.global_position = hitPosition
-				#instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
-				#instance.rotate_object_local(Vector3(1,0,0), 90)
-				#removeHitMark(instance)
+			bulletInstance.global_transform = bulletSpawnPoint.global_transform
+			bulletInstance.rotation += accuracyAdjustment / 100
+			bulletInstance.scale = Vector3(0.25, 0.25, 0.25)
+			get_tree().get_root().add_child(bulletInstance)
+		
+		
 		
 		clipAmmo -= 1
 		weaponAmmoInventory[currentWeaponIndex][0] = clipAmmo
-		Global.updateLabels(clipAmmo, reserveAmmo) 
+		Global.updateLabels() 
 		weaponAnimationPlayer.stop()
 		weaponAnimationPlayer.seek(0)
 		weaponAnimationPlayer.play(weaponName + "/" + "shoot", -1, 1, false)
@@ -323,50 +370,53 @@ func shoot() -> void:
 		if fireMode == "Bolt":
 			await weaponAnimationPlayer.animation_finished
 			weaponAnimationPlayer.play(weaponName + "/" + "boltCycle", -1, 1, false)
+			await weaponAnimationPlayer.animation_finished
 			
-	if reserveAmmo > 0 and clipAmmo == 0:
-		reloadWeapon()
-		return
+
 
 
 func reloadWeapon():
-	canShoot = false
-	canSight =  false
-	if reloadMode == "Shell":
-		var ammoNeeded = maxClipAmmo - clipAmmo
-		weaponAnimationPlayer.play(weaponName + "/" + "startReload", -1, 1, false)
-		await weaponAnimationPlayer.animation_finished
-		for n in ammoNeeded:
-			weaponAnimationPlayer.play(weaponName + "/" + "shellReload", -1, 1, false)
-			reserveAmmo -= 1
-			clipAmmo += 1
+	if actionable == true:
+		actionable = false
+		canShoot = false
+		if reloadMode == "Shell":
+			var ammoNeeded = maxClipAmmo - clipAmmo
+			weaponAnimationPlayer.play(weaponName + "/" + "startReload", -1, 1, false)
 			await weaponAnimationPlayer.animation_finished
-		weaponAnimationPlayer.play(weaponName + "/" + "finishReload", -1, 1, false)
-	else:
-		if clipAmmo > 0:
-			weaponAnimationPlayer.play(weaponName + "/" + "fullReload", -1, 1, false)
-			await weaponAnimationPlayer.animation_finished
+			for n in ammoNeeded:
+				weaponAnimationPlayer.play(weaponName + "/" + "shellReload", -1, 1, false)
+				reserveAmmo -= 1
+				clipAmmo += 1
+				await weaponAnimationPlayer.animation_finished
+			weaponAnimationPlayer.play(weaponName + "/" + "finishReload", -1, 1, false)
 		else:
-			weaponAnimationPlayer.play(weaponName + "/" + "emptyReload", -1, 1, false)
-			await weaponAnimationPlayer.animation_finished
-		var ammoNeeded = maxClipAmmo - clipAmmo
-		if reserveAmmo >= ammoNeeded:
-			reserveAmmo -= ammoNeeded
-			clipAmmo = maxClipAmmo
-		else:
-			clipAmmo += reserveAmmo
-			reserveAmmo = 0
+			if clipAmmo > 0:
+				weaponAnimationPlayer.play(weaponName + "/" + "fullReload", -1, 1, false)
+				await weaponAnimationPlayer.animation_finished
+			else:
+				weaponAnimationPlayer.play(weaponName + "/" + "emptyReload", -1, 1, false)
+				await weaponAnimationPlayer.animation_finished
+			var ammoNeeded = maxClipAmmo - clipAmmo
+			if reserveAmmo >= ammoNeeded:
+				reserveAmmo -= ammoNeeded
+				clipAmmo = maxClipAmmo
+			else:
+				clipAmmo += reserveAmmo
+				reserveAmmo = 0
 
-	Global.updateLabels(clipAmmo, reserveAmmo)
-	weaponAmmoInventory[currentWeaponIndex] = [clipAmmo, reserveAmmo]
-	canSight =  true
-	canShoot = true
+		Global.updateLabels()
+		weaponAmmoInventory[currentWeaponIndex] = [clipAmmo, reserveAmmo]
+		actionable = true
+		canShoot = true
 
 
 func shootCooldown():
 	shootTimer.start(time_per_shot)
 	await shootTimer.timeout
 	canShoot = true
+	if reserveAmmo > 0 and clipAmmo == 0:
+		reloadWeapon()
+		return
 	if fireMode == "Auto" and Input.is_action_pressed("shoot"):
 			shoot()
 
@@ -396,11 +446,10 @@ func _process(delta: float) -> void:
 	#Instance.queue_free()
 
 func knife():
-	if canShoot == true:
+	if canShoot == true and actionable == true:
 		canShoot = false
 		canSight = false
-		
-		
+		actionable = false
 		var camera = Global.player.CAMERA_CONTROLLER
 		var spaceState = camera.get_world_3d().direct_space_state
 		var screenCenter = get_viewport().size / 2
@@ -425,8 +474,11 @@ func knife():
 			else:
 				weaponAnimationPlayer.play("Melee", -1, 1.5)
 		await weaponAnimationPlayer.animation_finished
+		weaponAnimationPlayer.play(pulloutAnimation)
+		await weaponAnimationPlayer.animation_finished
 		canShoot = true
 		canSight = true
+		actionable = true
 
 func knifeDamage():
 	var camera = Global.player.CAMERA_CONTROLLER
@@ -473,10 +525,25 @@ func apply_clip_and_fov_shader_to_view_model(node3d : Node3D, fov_or_negative_fo
 				var tex_channels = { 0: Vector4(1., 0., 0., 0.), 1: Vector4(0., 1., 0., 0.), 2: Vector4(0., 0., 1., 0.), 3: Vector4(1., 0., 0., 1.), 4: Vector4() }
 				weapon_shader_material.set_shader_parameter("metallic_texture_channel", tex_channels[base_mat.metallic_texture_channel])
 				mesh_instance.set_surface_override_material(surface_idx, weapon_shader_material)
-			
-			
 
-#func _physics_process(delta) -> void:
+func givePerk(perk, bottleMesh, capMesh, cost):
+	if actionable == true:
+		Global.points -= cost
+		Global.updateLabels()
+		match perk:
+			"juggernog":
+				await playDrinkAnimation()
+				Global.player.maxHealth = 250
+			"speedCola":
+				pass
 
-
+func playDrinkAnimation():
+	actionable = false
+	weaponAnimationPlayer.play(storeAnimation)
+	await weaponAnimationPlayer.animation_finished
+	weaponAnimationPlayer.play("Drink Perk")
+	await weaponAnimationPlayer.animation_finished
+	weaponAnimationPlayer.play(pulloutAnimation)
+	actionable = true
+	return
 #✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅

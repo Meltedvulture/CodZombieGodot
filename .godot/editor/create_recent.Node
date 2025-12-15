@@ -1,11 +1,12 @@
+BoneAttachment3D
+MeshInstance3D
+Node3D
 Timer
+CollisionShape3D
 StaticBody3D
 AnimationPlayer
-Node3D
-CollisionShape3D
 Window
 AnimationTree
-MeshInstance3D
 Area3D
 NavigationObstacle3D
 Label

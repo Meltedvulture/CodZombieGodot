@@ -9,7 +9,6 @@ extends PlayerMovementState
 @export var weaponBobH : float = 1.5
 @export var weaponBobV : float = 1
 
-@onready var sprintTimer = $"../../Sprint Timer"
 
 func enter(previousState) -> void:
 	animation.play("Sprinting", -1, 1)
