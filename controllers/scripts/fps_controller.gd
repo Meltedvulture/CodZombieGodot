@@ -86,8 +86,8 @@ func _ready():
 func _physics_process(delta):
 	_update_camera(delta)
 	# Update camera movement based on mouse movement
-	CAMERA_CONTROLLER.rotation = lerp(CAMERA_CONTROLLER.rotation, CAMERA_CONTROLLER.rotation + cameraOffset, 0.05)
-	cameraOffset = lerp(cameraOffset, Vector3(0,0,0), 0.025)
+	CAMERA_CONTROLLER.rotation = lerp(CAMERA_CONTROLLER.rotation, CAMERA_CONTROLLER.rotation + cameraOffset, 0.025)
+	cameraOffset = lerp(cameraOffset, Vector3(0,0,0), 0.05)
 	
 
 	if stamina < maxStamina and sprinting == false:

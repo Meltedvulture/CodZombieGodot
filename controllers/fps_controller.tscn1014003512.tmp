@@ -2705,7 +2705,6 @@ mesh = SubResource("CapsuleMesh_6tv51")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
-fov = 80.0
 
 [node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
 

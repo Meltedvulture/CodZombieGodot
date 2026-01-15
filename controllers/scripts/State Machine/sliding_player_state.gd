@@ -28,6 +28,8 @@ func update(delta):
 		##print(str(i) + ": " + str(animation.get_animation("Sliding").track_get_path(i)))
 	#animation.get_animation("Sliding").bezier_track_set_key_value(3,1,tilt.z)
 	#animation.get_animation("Sliding").bezier_track_set_key_value(3,1,tilt.z)
+	if Input.is_action_just_pressed("shoot"):
+		weapon.shoot()
 
 func finish():
 	transition.emit("CrouchingPlayerState")

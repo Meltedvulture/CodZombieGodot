@@ -86,8 +86,6 @@ var verticalRecoil
 var horizontalRecoil
 var weaponBulletPhysics
 var weaponBulletScene
-var pulloutAnimation
-var storeAnimation
 
 @export var weaponAnimationPlayer : AnimationPlayer
 
@@ -127,16 +125,20 @@ func addWeapon(WeaponPath: String):
 		var weapon = load(WeaponPath)
 		weaponAmmoInventory[currentWeaponIndex] = [weapon.clip, weapon.reserve]
 	weaponAnimationPlayer.stop()
-	if storeAnimation and pulloutAnimation:
+	if weaponName:
 		actionable = false
-		weaponAnimationPlayer.play(storeAnimation)
+		weaponAnimationPlayer.play(weaponName + "/" + "store")
 		await weaponAnimationPlayer.animation_finished
 		loadWeapon()
-		weaponAnimationPlayer.play(pulloutAnimation)
+		weaponAnimationPlayer.play(weaponName + "/" + "pullout")
 		await weaponAnimationPlayer.animation_finished
 		actionable = true
 	else:
+		actionable = false
 		loadWeapon()
+		weaponAnimationPlayer.play(weaponName + "/" + "pullout")
+		await weaponAnimationPlayer.animation_finished
+		actionable = true
 
 func switchWeapon(direction: int) -> void:
 	if isSighting == false and actionable == true:
@@ -149,10 +151,10 @@ func switchWeapon(direction: int) -> void:
 		
 		# Equip the weapon at the new index
 		actionable = false
-		weaponAnimationPlayer.play(storeAnimation)
+		weaponAnimationPlayer.play(weaponName + "/" + "store")
 		await weaponAnimationPlayer.animation_finished
 		loadWeapon()
-		weaponAnimationPlayer.play(pulloutAnimation)
+		weaponAnimationPlayer.play(weaponName + "/" + "pullout")
 		await weaponAnimationPlayer.animation_finished
 		actionable = true
 
@@ -203,8 +205,6 @@ func loadWeapon():
 	verticalRecoil = weaponType.verticalRecoil
 	horizontalRecoil = weaponType.horizontalRecoil
 	
-	pulloutAnimation = weaponType.pullOutAnimation
-	storeAnimation = weaponType.storeAnimation
 
 	# Load ammo from weaponAmmoInventory instead of resetting to default
 	if currentWeaponIndex < weaponAmmoInventory.size():
@@ -256,7 +256,7 @@ func sway_weapon(delta, isIdle: bool) -> void:
 
 		# Lerp weapon rotation
 		rotation_degrees.y = lerp(rotation_degrees.y, weaponType.rotation.y - (mouseMovement.x * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
-		rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x + (mouseMovement.y * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
+		rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x - (mouseMovement.y * weaponType.swayAmountRotation) * delta, weaponType.swaySpeedRotation)
 	
 	#Movement bob (Not idle)
 	else:
@@ -415,8 +415,13 @@ func shootCooldown():
 	await shootTimer.timeout
 	canShoot = true
 	if reserveAmmo > 0 and clipAmmo == 0:
-		reloadWeapon()
-		return
+		if weaponAnimationPlayer.is_playing():
+			await weaponAnimationPlayer.animation_finished
+			reloadWeapon()
+			return
+		else:
+			reloadWeapon()
+			return
 	if fireMode == "Auto" and Input.is_action_pressed("shoot"):
 			shoot()
 
@@ -428,7 +433,7 @@ func _process(delta: float) -> void:
 			reloadWeapon()
 			
 		#GUN SIGHT CODE AND FUNCTIONS
-		if Input.is_action_pressed("sightDown") and canSight:
+		if Input.is_action_pressed("sightDown") and canSight and actionable:
 			isSighting = true
 			reticle.visible = false
 			weaponAccuracy = weaponType.Accuracy / 4
@@ -440,6 +445,13 @@ func _process(delta: float) -> void:
 			reticle.visible = true
 			weaponAccuracy = weaponType.Accuracy
 			weaponRig.position = (lerp(weaponRig.position, Vector3.ZERO, sightSpeed))
+
+		if Global.player.sprinting == true:
+			weaponRig.rotation_degrees = (lerp(weaponRig.rotation_degrees, Vector3(-10,40,0), 0.125))
+		else:
+			weaponRig.rotation = (lerp(weaponRig.rotation, Vector3.ZERO, 0.125))
+
+
 
 #func removeHitMark(Instance):
 	#await get_tree().create_timer(rng.randi_range(4, 12)).timeout
@@ -468,13 +480,13 @@ func knife():
 			query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
 			result = spaceState.intersect_ray(query)
 			hitBody = result.get("collider")
-			if hitBody and hitBody.has_method("take_damage"):
+			if hitBody and hitBody.has_method("take_damage") and !Input.is_action_pressed("move_backward"):
 				weaponAnimationPlayer.play("Melee Lunge", -1, 1.5)
 				Global.player.meleeLunge()
 			else:
 				weaponAnimationPlayer.play("Melee", -1, 1.5)
 		await weaponAnimationPlayer.animation_finished
-		weaponAnimationPlayer.play(pulloutAnimation)
+		weaponAnimationPlayer.play(weaponName + "/" + "pullout")
 		await weaponAnimationPlayer.animation_finished
 		canShoot = true
 		canSight = true
@@ -539,11 +551,16 @@ func givePerk(perk, bottleMesh, capMesh, cost):
 
 func playDrinkAnimation():
 	actionable = false
-	weaponAnimationPlayer.play(storeAnimation)
+	weaponAnimationPlayer.play(weaponName + "/" + "pullout")
 	await weaponAnimationPlayer.animation_finished
 	weaponAnimationPlayer.play("Drink Perk")
 	await weaponAnimationPlayer.animation_finished
-	weaponAnimationPlayer.play(pulloutAnimation)
+	weaponAnimationPlayer.play(weaponName + "/" + "pullout")
 	actionable = true
 	return
+
+
+
+
+	
 #✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅

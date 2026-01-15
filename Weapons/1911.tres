@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Weapons" load_steps=5 format=3 uid="uid://br3d0d4h0w75d"]
 
-[ext_resource type="ArrayMesh" uid="uid://gnroolwqpaaf" path="res://Models/Blender/1911/1911 Slide.res" id="1_die73"]
+[ext_resource type="ArrayMesh" uid="uid://d3fq3hoy6pkj4" path="res://Models/Blender/1911/1911 Slide.res" id="1_die73"]
 [ext_resource type="Script" uid="uid://c0afljd65dkhp" path="res://Weapons/Weapons.gd" id="1_f3ian"]
-[ext_resource type="ArrayMesh" uid="uid://2jml4vntecq4" path="res://Models/Blender/1911/1911 Magazine.res" id="2_jrtvd"]
-[ext_resource type="ArrayMesh" uid="uid://sc3763do7vdf" path="res://Models/Blender/1911/1911 Body.res" id="3_0kgy6"]
+[ext_resource type="ArrayMesh" uid="uid://bdj60y1k4akba" path="res://Models/Blender/1911/1911 Magazine.res" id="2_jrtvd"]
+[ext_resource type="ArrayMesh" uid="uid://crind40400uiw" path="res://Models/Blender/1911/1911 Body.res" id="3_0kgy6"]
 
 [resource]
 script = ExtResource("1_f3ian")
@@ -30,7 +30,7 @@ scale = Vector3(1, 1, 1)
 sway_min = Vector2(-30, -20)
 sway_max = Vector2(30, 20)
 swaySpeedPosition = 0.06
-swaySpeedRotation = 0.1
+swaySpeedRotation = 0.05
 swayAmountPosition = 0.2
 swayAmountRotation = 30.0
 idleSwayAdjustment = 1.0

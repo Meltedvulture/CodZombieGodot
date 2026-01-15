@@ -34,7 +34,7 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"1911_1911 Body": {
+"1911_t6_wpn_pistol_m1911_view_LOD_0": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
@@ -42,21 +42,21 @@ _subresources={
 "save_to_file/enabled": true,
 "save_to_file/path": "res://Models/Blender/1911/1911 Body.res"
 },
-"1911_1911 Magazine": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Models/Blender/1911/1911 Magazine.res"
-},
-"1911_1911 Slide": {
+"1911_t6_wpn_pistol_m1911_view_LOD_0_001": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
 "save_to_file/path": "res://Models/Blender/1911/1911 Slide.res"
+},
+"1911_t6_wpn_pistol_m1911_view_LOD_0_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Models/Blender/1911/1911 Magazine.res"
 }
 }
 }

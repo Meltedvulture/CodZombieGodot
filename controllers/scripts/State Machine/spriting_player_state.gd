@@ -3,7 +3,7 @@ class_name SprintingPlayerState
 extends PlayerMovementState
 
 @export var speed: float = 6.0
-@export var acceleration : float = 0.1
+@export var acceleration : float = 0.05
 @export var deceleration : float = 0.25
 @export var weaponBobSpeed : float = 10.0
 @export var weaponBobH : float = 1.5
@@ -13,6 +13,7 @@ extends PlayerMovementState
 func enter(previousState) -> void:
 	animation.play("Sprinting", -1, 1)
 	Global.player.sprinting = true
+	Global.weaponManager.canSight = false
 
 func update(delta):
 	PLAYER.updateGravity(delta)
@@ -34,7 +35,7 @@ func update(delta):
 	if Input.is_action_just_released("sprint"):
 		transition.emit("WalkingPlayerState")
 		
-	if Input.is_action_pressed("crouch") and PLAYER.velocity.length() > 5.0:
+	if Input.is_action_pressed("crouch") and PLAYER.velocity.length() > 5.5:
 		transition.emit("SlidingPlayerState")
 		
 	if Input.is_action_just_pressed("jump") and PLAYER.is_on_floor():
@@ -45,3 +46,4 @@ func update(delta):
 
 func exit():
 	Global.player.sprinting = false
+	Global.weaponManager.canSight = true
