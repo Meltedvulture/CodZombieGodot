@@ -1,6 +1,3 @@
-res://Models/Blender/1911/1911 Body.res
-res://Models/Blender/1911/1911 Slide.res
-res://Models/Blender/1911/1911 Magazine.res
 res://levels/level_001.tscn
 res://environment/WE_test.tres
 res://materials/grid.tres
@@ -19,5 +16,3 @@ res://Prefabs/Wall Weapon.tscn
 res://Prefabs/Mystery Box Location.tscn
 res://Prefabs/Juggernog Machine.tscn
 res://Weapons/Weapon.tscn
-res://controllers/scripts/fps_controller.gd
-res://Weapons/WeaponManager.gd

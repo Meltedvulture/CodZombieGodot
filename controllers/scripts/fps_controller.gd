@@ -41,7 +41,7 @@ var white = Color(1.0,1.0,1.0,1.0)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var gravity = 12
+var gravity = 14
 
 func _unhandled_input(event: InputEvent) -> void:
 	

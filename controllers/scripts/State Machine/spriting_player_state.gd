@@ -14,11 +14,13 @@ func enter(previousState) -> void:
 	animation.play("Sprinting", -1, 1)
 	Global.player.sprinting = true
 	Global.weaponManager.canSight = false
+	setAnimationSpeed(PLAYER.velocity.length())
 
 func update(delta):
 	PLAYER.updateGravity(delta)
 	PLAYER.updateInput(speed, acceleration, deceleration)
 	PLAYER.updateVelocity()
+	setAnimationSpeed(PLAYER.velocity.length())
 	
 	Global.player.stamina -= Global.player.sprintUse * delta
 	
@@ -47,3 +49,7 @@ func update(delta):
 func exit():
 	Global.player.sprinting = false
 	Global.weaponManager.canSight = true
+
+func setAnimationSpeed(spd):
+	var alpha = remap(spd, 0.0, speed, 0.0, 1.0)
+	animation.speed_scale = lerp(0.0, 1.0, alpha)
