@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://boxc1r3sdaj7"]
+[gd_scene format=3 uid="uid://boxc1r3sdaj7"]
 
 [ext_resource type="Script" uid="uid://dmnsp2wm3u85g" path="res://Scripts/buyableDoor.gd" id="1_htttf"]
 [ext_resource type="ArrayMesh" uid="uid://hl85rb0vp1a5" path="res://Models/Blender/Buyable Doors/BuyableDoor.res" id="2_psehj"]
@@ -66,20 +66,17 @@ _data = {
 &"open": SubResource("Animation_htttf")
 }
 
-[node name="BuyableDoor" type="StaticBody3D" groups=["BuyableObject"]]
+[node name="BuyableDoor" type="StaticBody3D" unique_id=1442370364 groups=["BuyableObject"]]
 script = ExtResource("1_htttf")
 
-[node name="Buyable Door" type="MeshInstance3D" parent="."]
+[node name="Buyable Door" type="MeshInstance3D" parent="." unique_id=1534118784]
 mesh = ExtResource("2_psehj")
-skeleton = NodePath("")
 metadata/extras = {
 "flip_fluid": {}
 }
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=689984841]
 shape = SubResource("BoxShape3D_htttf")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_p1bxt")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1813640386]
+libraries/ = SubResource("AnimationLibrary_p1bxt")

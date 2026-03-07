@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://csj7vcqrenjsi"]
+[gd_scene format=4 uid="uid://csj7vcqrenjsi"]
 
 [ext_resource type="Script" uid="uid://barqei8kroiys" path="res://Weapons/WeaponManager.gd" id="1_tj3qj"]
 [ext_resource type="Resource" uid="uid://br3d0d4h0w75d" path="res://Weapons/1911.tres" id="2_vgibi"]
@@ -196,24 +196,24 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_k6cn1")
 
-[node name="Weapon" type="Node3D"]
+[node name="Weapon" type="Node3D" unique_id=1919298987]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.25, -0.4, -0.5)
 script = ExtResource("1_tj3qj")
 weaponType = ExtResource("2_vgibi")
 swaySpeed = 1.0
 
-[node name="WeaponMesh" type="MeshInstance3D" parent="."]
+[node name="WeaponMesh" type="MeshInstance3D" parent="." unique_id=704944856]
 unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_vxpx6")
 
-[node name="WeaponMagazine" type="MeshInstance3D" parent="."]
+[node name="WeaponMagazine" type="MeshInstance3D" parent="." unique_id=333909495]
 unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_r6g0f")
 
-[node name="WeaponBolt" type="MeshInstance3D" parent="."]
+[node name="WeaponBolt" type="MeshInstance3D" parent="." unique_id=1494700676]
 unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_ll5q2")
 
-[node name="WeaponShadow" type="MeshInstance3D" parent="."]
+[node name="WeaponShadow" type="MeshInstance3D" parent="." unique_id=897984139]
 unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_vxpx6")

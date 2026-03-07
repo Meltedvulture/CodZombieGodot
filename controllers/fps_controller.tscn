@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://c3ffql15mo0aj"]
+[gd_scene format=4 uid="uid://c3ffql15mo0aj"]
 
 [ext_resource type="Script" uid="uid://dgpa2g1406d8w" path="res://controllers/scripts/fps_controller.gd" id="1_pgc1p"]
 [ext_resource type="Material" uid="uid://b4gwd5h7ixvct" path="res://materials/player.tres" id="2_gldw4"]
@@ -221,7 +221,7 @@ I love creating models in Blender. Blender is my hobby, not full time job.",
 "url": "https://www.blenderkit.com/api/v1/assets/29a3b94e-4c27-4a88-b3f6-5d63e9e9918d/",
 "verificationStatus": "validated",
 "versionNumber": 1.0,
-"webpGeneratedTimestamp": 1.74584e+09
+"webpGeneratedTimestamp": 1745840000.0
 },
 "blenderkit": {
 "adaptive_subdivision": 1.0,
@@ -434,7 +434,7 @@ metadata/extras = {
 "url": "https://www.blenderkit.com/api/v1/assets/22296dc9-b63a-4f1d-8ad8-4137897972b7/",
 "verificationStatus": "validated",
 "versionNumber": 1.0,
-"webpGeneratedTimestamp": 1.73946e+09
+"webpGeneratedTimestamp": 1739460000.0
 },
 "blenderkit": {
 "asset_base_id": "399dc409-5625-4760-a256-7a7732492bd3",
@@ -2582,7 +2582,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.175, 0.3, 0.416667, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.3, 0.2, 0), Vector3(0, 0, 0), Vector3(0.3, 0.2, 0), Vector3(0.0243055, 0.0194444, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.2, 0.15, 0), Vector3(0, 0, 0), Vector3(0.2, 0.15, 0), Vector3(0.0243055, 0.0194444, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_jmoha"]
@@ -2683,7 +2683,7 @@ _data = {
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ca8e7"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER", "ANIMATIONPLAYER", "CROUCH_SHAPECAST", "weaponController")]
+[node name="Player" type="CharacterBody3D" unique_id=345572080 node_paths=PackedStringArray("CAMERA_CONTROLLER", "ANIMATIONPLAYER", "CROUCH_SHAPECAST", "weaponController")]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_pgc1p")
@@ -2693,47 +2693,46 @@ ANIMATIONPLAYER = NodePath("AnimationPlayer")
 CROUCH_SHAPECAST = NodePath("ShapeCast3D")
 weaponController = NodePath("CameraController/Camera3D/WeaponRig/Weapon")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=208275777]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_u6tj1")
 
-[node name="PlaceholderMesh" type="MeshInstance3D" parent="CollisionShape3D"]
+[node name="PlaceholderMesh" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1536754994]
 transform = Transform3D(0.75, 0, 0, 0, 1, 0, 0, 0, 0.75, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_6tv51")
 
-[node name="CameraController" type="Node3D" parent="."]
+[node name="CameraController" type="Node3D" parent="." unique_id=1321399511]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CameraController"]
+[node name="Camera3D" type="Camera3D" parent="CameraController" unique_id=1375689504]
 fov = 80.0
 
-[node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
+[node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D" unique_id=1206810531]
 
-[node name="Weapon" parent="CameraController/Camera3D/WeaponRig" node_paths=PackedStringArray("weaponRig", "weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
+[node name="Weapon" parent="CameraController/Camera3D/WeaponRig" unique_id=1001647002 node_paths=PackedStringArray("weaponRig", "weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.4, -0.5)
 weaponRig = NodePath("..")
 weaponAnimationPlayer = NodePath("../weaponAnimations")
 
-[node name="WeaponMesh" parent="CameraController/Camera3D/WeaponRig/Weapon" index="0"]
+[node name="WeaponMesh" parent="CameraController/Camera3D/WeaponRig/Weapon" index="0" unique_id=704944856]
 mesh = ExtResource("4_1mod5")
 
-[node name="WeaponMagazine" parent="CameraController/Camera3D/WeaponRig/Weapon" index="1"]
+[node name="WeaponMagazine" parent="CameraController/Camera3D/WeaponRig/Weapon" index="1" unique_id=333909495]
 mesh = ExtResource("5_0dq5s")
 
-[node name="WeaponBolt" parent="CameraController/Camera3D/WeaponRig/Weapon" index="2"]
+[node name="WeaponBolt" parent="CameraController/Camera3D/WeaponRig/Weapon" index="2" unique_id=1494700676]
 transform = Transform3D(1, 0, 1.86265e-09, 0, 1, 0, -1.86265e-09, 0, 1, 0, 0, 0)
 mesh = ExtResource("6_k3l3k")
 
-[node name="WeaponShadow" parent="CameraController/Camera3D/WeaponRig/Weapon" index="3"]
+[node name="WeaponShadow" parent="CameraController/Camera3D/WeaponRig/Weapon" index="3" unique_id=897984139]
 mesh = ExtResource("4_1mod5")
 
-[node name="Hands" type="Node3D" parent="CameraController/Camera3D/WeaponRig/Weapon"]
+[node name="Hands" type="Node3D" parent="CameraController/Camera3D/WeaponRig/Weapon" unique_id=1054873702]
 transform = Transform3D(1, 6.78812e-30, 0, 6.78812e-30, 1, 0, 0, 0, 1, -0.25, -0.1, 0.25)
 
-[node name="Left Hand" type="MeshInstance3D" parent="CameraController/Camera3D/WeaponRig/Weapon/Hands"]
+[node name="Left Hand" type="MeshInstance3D" parent="CameraController/Camera3D/WeaponRig/Weapon/Hands" unique_id=159313870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.4, 0, 0.00102349)
 mesh = SubResource("ArrayMesh_cnri8")
-skeleton = NodePath("")
 metadata/extras = {
 "MeasureGenerator": [{
 "measureit_num": 1.0,
@@ -2758,10 +2757,9 @@ metadata/extras = {
 "flip_fluid": {}
 }
 
-[node name="Right Hand" type="MeshInstance3D" parent="CameraController/Camera3D/WeaponRig/Weapon/Hands"]
+[node name="Right Hand" type="MeshInstance3D" parent="CameraController/Camera3D/WeaponRig/Weapon/Hands" unique_id=1005644560]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0.0010235)
 mesh = SubResource("ArrayMesh_q8qji")
-skeleton = NodePath("")
 metadata/extras = {
 "MeasureGenerator": [{
 "measureit_num": 1.0,
@@ -2786,30 +2784,27 @@ metadata/extras = {
 "flip_fluid": {}
 }
 
-[node name="weaponAnimations" type="AnimationPlayer" parent="CameraController/Camera3D/WeaponRig"]
-libraries = {
-&"": SubResource("AnimationLibrary_tg6sc"),
-&"1911": SubResource("AnimationLibrary_h7h5r"),
-&"M14": SubResource("AnimationLibrary_bygp4")
-}
+[node name="weaponAnimations" type="AnimationPlayer" parent="CameraController/Camera3D/WeaponRig" unique_id=1929522310]
+libraries/ = SubResource("AnimationLibrary_tg6sc")
+libraries/1911 = SubResource("AnimationLibrary_h7h5r")
+libraries/M14 = SubResource("AnimationLibrary_bygp4")
 
-[node name="InteractionCast" type="RayCast3D" parent="CameraController/Camera3D"]
+[node name="InteractionCast" type="RayCast3D" parent="CameraController/Camera3D" unique_id=812891900]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -1.5)
 script = ExtResource("4_tg6sc")
 
-[node name="Knife" type="Node3D" parent="CameraController/Camera3D"]
+[node name="Knife" type="Node3D" parent="CameraController/Camera3D" unique_id=1638509952]
 transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 1, -0.4, -0.675, 0)
 visible = false
 
-[node name="Knife Mesh" type="MeshInstance3D" parent="CameraController/Camera3D/Knife"]
+[node name="Knife Mesh" type="MeshInstance3D" parent="CameraController/Camera3D/Knife" unique_id=1142022039]
 transform = Transform3D(1.74846e-07, 1.52855e-14, 4, 3.49691e-07, -4, 0, 4, 3.49691e-07, -1.74846e-07, 0, 0, 0)
 mesh = ExtResource("5_h7h5r")
 
-[node name="Knife Hand" type="MeshInstance3D" parent="CameraController/Camera3D/Knife"]
+[node name="Knife Hand" type="MeshInstance3D" parent="CameraController/Camera3D/Knife" unique_id=289737336]
 transform = Transform3D(1, -3.55272e-15, 4.37115e-08, 3.55272e-15, 1, 3.10589e-22, -4.37114e-08, -1.55294e-22, 1, -0.025, 0.300001, 0.3)
 mesh = SubResource("ArrayMesh_cnri8")
-skeleton = NodePath("")
 metadata/extras = {
 "MeasureGenerator": [{
 "measureit_num": 1.0,
@@ -2834,20 +2829,19 @@ metadata/extras = {
 "flip_fluid": {}
 }
 
-[node name="Bullet Spawn" type="Node3D" parent="CameraController/Camera3D"]
+[node name="Bullet Spawn" type="Node3D" parent="CameraController/Camera3D" unique_id=1705414174]
 
-[node name="Perk Bottle" type="Node3D" parent="CameraController/Camera3D"]
+[node name="Perk Bottle" type="Node3D" parent="CameraController/Camera3D" unique_id=379020830]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0.575, -0.6, 0)
 visible = false
 
-[node name="Bottle Cap" type="MeshInstance3D" parent="CameraController/Camera3D/Perk Bottle"]
+[node name="Bottle Cap" type="MeshInstance3D" parent="CameraController/Camera3D/Perk Bottle" unique_id=810504092]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
 mesh = ExtResource("6_5b0ob")
 
-[node name="Left Hand" type="MeshInstance3D" parent="CameraController/Camera3D/Perk Bottle/Bottle Cap"]
-transform = Transform3D(0.906308, 0.00139777, -0.422616, -0.0747631, 0.984753, -0.157074, 0.415953, 0.173953, 0.892593, -1.5, -0.0500823, 0.025858)
+[node name="Left Hand" type="MeshInstance3D" parent="CameraController/Camera3D/Perk Bottle/Bottle Cap" unique_id=451337807]
+transform = Transform3D(0.90630805, 0.0013977662, -0.4226158, -0.07476313, 0.98475295, -0.15707374, 0.415953, 0.17395331, 0.89259315, -1.5, -0.0500823, 0.025858)
 mesh = SubResource("ArrayMesh_cnri8")
-skeleton = NodePath("")
 metadata/extras = {
 "MeasureGenerator": [{
 "measureit_num": 1.0,
@@ -2872,13 +2866,12 @@ metadata/extras = {
 "flip_fluid": {}
 }
 
-[node name="Bottle" type="MeshInstance3D" parent="CameraController/Camera3D/Perk Bottle"]
+[node name="Bottle" type="MeshInstance3D" parent="CameraController/Camera3D/Perk Bottle" unique_id=1099636880]
 mesh = ExtResource("7_5s75f")
 
-[node name="Right Hand" type="MeshInstance3D" parent="CameraController/Camera3D/Perk Bottle"]
+[node name="Right Hand" type="MeshInstance3D" parent="CameraController/Camera3D/Perk Bottle" unique_id=1118335290]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.0248346, 0.0500824)
 mesh = SubResource("ArrayMesh_q8qji")
-skeleton = NodePath("")
 metadata/extras = {
 "MeasureGenerator": [{
 "measureit_num": 1.0,
@@ -2903,20 +2896,18 @@ metadata/extras = {
 "flip_fluid": {}
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_t6fw5")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1186564527]
+libraries/ = SubResource("AnimationLibrary_t6fw5")
 blend_times = [&"Sliding", &"RESET", 0.5, &"Sliding", &"Sliding", 0.5, &"Sliding", &"Sprinting", 0.5, &"Sliding", &"Walking", 0.5, &"Sliding", &"crouch", 0.5, &"crouch", &"Sliding", 0.25]
 
-[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+[node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=280808976]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
 shape = SubResource("SphereShape3D_ca8e7")
 target_position = Vector3(0, 0.5, 0)
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="UserInterface" type="Control" parent="."]
+[node name="UserInterface" type="Control" parent="." unique_id=39472071]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -2925,7 +2916,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Reticle" type="CenterContainer" parent="UserInterface" node_paths=PackedStringArray("reticleLines", "playerController")]
+[node name="Reticle" type="CenterContainer" parent="UserInterface" unique_id=1947103081 node_paths=PackedStringArray("reticleLines", "playerController")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2942,27 +2933,27 @@ script = ExtResource("3_xc2pf")
 reticleLines = [NodePath("Top"), NodePath("Right"), NodePath("Bottom"), NodePath("Left")]
 playerController = NodePath("../..")
 
-[node name="Top" type="Line2D" parent="UserInterface/Reticle"]
+[node name="Top" type="Line2D" parent="UserInterface/Reticle" unique_id=665402929]
 position = Vector2(20, 20)
 points = PackedVector2Array(0, -5, 0, -15)
 width = 2.0
 
-[node name="Bottom" type="Line2D" parent="UserInterface/Reticle"]
+[node name="Bottom" type="Line2D" parent="UserInterface/Reticle" unique_id=1730478268]
 position = Vector2(20, 20)
 points = PackedVector2Array(0, 5, 0, 15)
 width = 2.0
 
-[node name="Right" type="Line2D" parent="UserInterface/Reticle"]
+[node name="Right" type="Line2D" parent="UserInterface/Reticle" unique_id=674934617]
 position = Vector2(20, 20)
 points = PackedVector2Array(5, 0, 15, 0)
 width = 2.0
 
-[node name="Left" type="Line2D" parent="UserInterface/Reticle"]
+[node name="Left" type="Line2D" parent="UserInterface/Reticle" unique_id=819306488]
 position = Vector2(20, 20)
 points = PackedVector2Array(-5, 0, -15, 0)
 width = 2.0
 
-[node name="DebugPanel" type="PanelContainer" parent="UserInterface"]
+[node name="DebugPanel" type="PanelContainer" parent="UserInterface" unique_id=704878414]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
 offset_left = 10.0
@@ -2972,14 +2963,14 @@ offset_bottom = 50.0
 theme = ExtResource("4_y677r")
 script = ExtResource("5_co0pi")
 
-[node name="MarginContainer" type="MarginContainer" parent="UserInterface/DebugPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="UserInterface/DebugPanel" unique_id=1927985390]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UserInterface/DebugPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UserInterface/DebugPanel/MarginContainer" unique_id=1101029116]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Ammo" type="HBoxContainer" parent="UserInterface"]
+[node name="Ammo" type="HBoxContainer" parent="UserInterface" unique_id=486040163]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -2993,25 +2984,25 @@ offset_bottom = -54.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Clip" type="Label" parent="UserInterface/Ammo"]
+[node name="Clip" type="Label" parent="UserInterface/Ammo" unique_id=989685387]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "8"
 label_settings = ExtResource("8_fyafc")
 
-[node name="Label" type="Label" parent="UserInterface/Ammo"]
+[node name="Label" type="Label" parent="UserInterface/Ammo" unique_id=1720202331]
 layout_mode = 2
 text = "/"
 label_settings = ExtResource("8_fyafc")
 
-[node name="Reserve" type="Label" parent="UserInterface/Ammo"]
+[node name="Reserve" type="Label" parent="UserInterface/Ammo" unique_id=1110473068]
 unique_name_in_owner = true
 layout_mode = 2
 text = "32"
 label_settings = ExtResource("8_fyafc")
 
-[node name="Points" type="HBoxContainer" parent="UserInterface"]
+[node name="Points" type="HBoxContainer" parent="UserInterface" unique_id=710836264]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -3022,13 +3013,13 @@ offset_right = 170.0
 offset_bottom = -171.0
 grow_vertical = 0
 
-[node name="Points" type="Label" parent="UserInterface/Points"]
+[node name="Points" type="Label" parent="UserInterface/Points" unique_id=143764667]
 unique_name_in_owner = true
 layout_mode = 2
 text = "500"
 label_settings = ExtResource("8_fyafc")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UserInterface"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UserInterface" unique_id=980999521]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -3039,13 +3030,13 @@ offset_right = 61.0
 offset_bottom = -47.0
 grow_vertical = 0
 
-[node name="RoundLabel" type="Label" parent="UserInterface/HBoxContainer"]
+[node name="RoundLabel" type="Label" parent="UserInterface/HBoxContainer" unique_id=1434649610]
 unique_name_in_owner = true
 layout_mode = 2
 text = "1"
 label_settings = ExtResource("8_tg6sc")
 
-[node name="InteractionHbox" type="HBoxContainer" parent="UserInterface"]
+[node name="InteractionHbox" type="HBoxContainer" parent="UserInterface" unique_id=95371132]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -3059,7 +3050,7 @@ offset_bottom = -127.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="InteractionLabel" type="Label" parent="UserInterface/InteractionHbox"]
+[node name="InteractionLabel" type="Label" parent="UserInterface/InteractionHbox" unique_id=1799148638]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
@@ -3067,46 +3058,46 @@ label_settings = ExtResource("10_yvtcv")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState")]
+[node name="PlayerStateMachine" type="Node" parent="." unique_id=1463377585 node_paths=PackedStringArray("currentState")]
 script = ExtResource("6_co0pi")
 currentState = NodePath("IdlePlayerState")
 
-[node name="IdlePlayerState" type="Node" parent="PlayerStateMachine"]
+[node name="IdlePlayerState" type="Node" parent="PlayerStateMachine" unique_id=947958679]
 script = ExtResource("7_gshig")
 
-[node name="WalkingPlayerState" type="Node" parent="PlayerStateMachine"]
+[node name="WalkingPlayerState" type="Node" parent="PlayerStateMachine" unique_id=306579458]
 script = ExtResource("8_jmoha")
 weaponBobH = 4.0
 weaponBobV = 3.0
 
-[node name="SprintingPlayerState" type="Node" parent="PlayerStateMachine"]
+[node name="SprintingPlayerState" type="Node" parent="PlayerStateMachine" unique_id=1582953247]
 script = ExtResource("9_bneyr")
 weaponBobH = 16.0
 weaponBobV = 8.0
 metadata/_custom_type_script = "uid://chrx5rfmff27h"
 
-[node name="CrouchingPlayerState" type="Node" parent="PlayerStateMachine"]
+[node name="CrouchingPlayerState" type="Node" parent="PlayerStateMachine" unique_id=1743864190]
 script = ExtResource("10_jdr2h")
 weaponBobSpeed = 4.0
 weaponBobH = 0.75
 weaponBobV = 0.5
 
-[node name="SlidingPlayerState" type="Node" parent="PlayerStateMachine"]
+[node name="SlidingPlayerState" type="Node" parent="PlayerStateMachine" unique_id=118341386]
 script = ExtResource("11_rk4xh")
 speed = 6.0
 metadata/_custom_type_script = "uid://chrx5rfmff27h"
 
-[node name="JumpingPlayerState" type="Node" parent="PlayerStateMachine"]
+[node name="JumpingPlayerState" type="Node" parent="PlayerStateMachine" unique_id=301972339]
 script = ExtResource("12_uovkr")
 metadata/_custom_type_script = "uid://chrx5rfmff27h"
 
-[node name="FallingPlayerState" type="Node" parent="PlayerStateMachine"]
+[node name="FallingPlayerState" type="Node" parent="PlayerStateMachine" unique_id=1664250743]
 script = ExtResource("13_l8yvu")
 metadata/_custom_type_script = "uid://chrx5rfmff27h"
 
-[node name="Shoot Timer" type="Timer" parent="."]
+[node name="Shoot Timer" type="Timer" parent="." unique_id=1152346693]
 
-[node name="Health Regen Timer" type="Timer" parent="."]
+[node name="Health Regen Timer" type="Timer" parent="." unique_id=1078375346]
 wait_time = 3.0
 one_shot = true
 

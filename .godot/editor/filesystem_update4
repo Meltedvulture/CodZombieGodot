@@ -1,18 +1,43 @@
+res://Models/Blender/Knife/Knife.res
+res://Models/Blender/M14/M14Bolt.res
+res://Models/Blender/M14/M14 Magazine.res
+res://Models/Blender/M14/M14.res
+res://Models/Blender/1911/1911 Body.res
+res://Models/Blender/1911/1911 Slide.res
+res://Models/Blender/1911/1911 Magazine.res
+res://Models/Blender/Perks/Juggernog/Juggernog Machine.res
+res://Models/Blender/Perks/Juggernog/Juggernog Bottle.res
+res://Models/Blender/Perks/Juggernog/Juggernog Cap.res
+res://Models/Weapons/crowbar_0.jpg
+res://Models/Weapons/crowbarMesh.res
+res://Models/Blender/Buyable Doors/BuyableDoor.res
+res://Models/Blender/Mystery Box/Mystery Box.res
+res://Models/Blender/Mystery Box/Mystery Box Lid.res
+res://Models/Blender/Mystery Box/Mystery Box Platform.res
+res://addons/anthonyec.camera_preview/preview.tscn
+res://controllers/fps_controller.tscn
 res://levels/level_001.tscn
 res://environment/WE_test.tres
 res://materials/grid.tres
-res://Themes/UI/debugStyleBoxFlat.tres
-res://Themes/UI/Debug.tres
-res://Models/Blender/Knife/Knife.res
+res://levels/WE_test.tscn
+res://Prefabs/Barrier.tscn
+res://Prefabs/Buyable Door.tscn
+res://Prefabs/Juggernog Machine.tscn
+res://Prefabs/Mystery Box Location.tscn
+res://Prefabs/Wall Weapon.tscn
+res://Prefabs/Zombie Spawnpoint.tscn
+res://Prefabs/ZombieRoundManager.tscn
+res://Scenes/Bullet Hole.tscn
+res://Scenes/Zombie.tscn
+res://Weapons/Weapon.tscn
 res://materials/Ammo Counter Label Settings.tres
+res://materials/InteractionLabelSettings.tres
+res://materials/player.tres
 res://materials/RoundLabelSettings.tres
-res://Models/Weapons/crowbarMesh.res
+res://textures/Weapon Noise.tres
+res://Themes/UI/Debug.tres
+res://Themes/UI/debugStyleBoxFlat.tres
+res://Weapons/1911.tres
 res://Weapons/Crowbar.tres
-res://Models/Blender/M14/M14.res
 res://Weapons/M14.tres
 res://Weapons/weaponPools/DefaultWeaponPool.tres
-res://controllers/fps_controller.tscn
-res://Prefabs/Wall Weapon.tscn
-res://Prefabs/Mystery Box Location.tscn
-res://Prefabs/Juggernog Machine.tscn
-res://Weapons/Weapon.tscn

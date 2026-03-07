@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Weapons" load_steps=5 format=3 uid="uid://5gnc6q6yd4rc"]
+[gd_resource type="Resource" script_class="Weapons" format=3 uid="uid://5gnc6q6yd4rc"]
 
 [ext_resource type="ArrayMesh" uid="uid://bysuauilrvaka" path="res://Models/Blender/M14/M14Bolt.res" id="1_67e7q"]
 [ext_resource type="ArrayMesh" uid="uid://br8ovbrcgtnua" path="res://Models/Blender/M14/M14 Magazine.res" id="2_rhanj"]
@@ -9,39 +9,24 @@
 script = ExtResource("4_dct0k")
 name = &"M14"
 Damage = 80
-clip = 8
-maxClip = 8
 reserve = 160
 maxReserve = 160
 rpm = 700
 Accuracy = 4.0
-melee = false
-sightMode = "IronSight"
 sightPosition = Vector3(-0.25, 0.135, 0.075)
 sightSpeed = 0.2
-shotgun = false
-reloadMode = "Magazine"
-fireMode = "Semi"
 bulletPhysics = "Hitscan"
 bulletScene = null
 position = Vector3(0.25, -0.25, -0.5)
-rotation = Vector3(0, 0, 0)
 scale = Vector3(2, 2, 2)
 sway_min = Vector2(-30, -20)
 sway_max = Vector2(30, 20)
 swaySpeedPosition = 0.06
-swaySpeedRotation = 0.1
-swayAmountPosition = 0.1
 swayAmountRotation = 15.0
-idleSwayAdjustment = 1.0
-idleSwayRotationStrength = 300.0
 randomSwayAmount = 2.0
 verticalRecoil = 1.5
-horizontalRecoil = 0.0
 mesh = ExtResource("3_r8yw6")
 magazine = ExtResource("2_rhanj")
 bolt = ExtResource("1_67e7q")
 shadow = true
-pullOutAnimation = "pistolPullout"
-storeAnimation = "pistolStore"
 metadata/_custom_type_script = "uid://c0afljd65dkhp"

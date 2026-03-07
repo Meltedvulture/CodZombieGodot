@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://ciegvrj52uiac"]
+[gd_scene format=4 uid="uid://ciegvrj52uiac"]
 
 [ext_resource type="Texture2D" uid="uid://blwx7yunkg0re" path="res://Models/Blender/Barrier/textures/Sand Bags.png" id="2_rk56m"]
 [ext_resource type="Script" uid="uid://dtw6lnlvl1qa3" path="res://Scripts/barrier.gd" id="2_v48vq"]
@@ -624,7 +624,7 @@ If you like our assets, consider supporting us on patreon.com/sharetextures",
 "url": "https://www.blenderkit.com/api/v1/assets/fc4a30fa-9fe1-4a5b-a78b-40920c4486f0/",
 "verificationStatus": "validated",
 "versionNumber": 1.0,
-"webpGeneratedTimestamp": 1.69786e+09
+"webpGeneratedTimestamp": 1697860000.0
 },
 "blenderkit": {
 "asset_base_id": "35421bc9-a49d-4979-8d93-0c13e9eba371",
@@ -869,90 +869,82 @@ size = Vector3(1, 1, 0.49)
 [sub_resource type="BoxShape3D" id="BoxShape3D_rk56m"]
 size = Vector3(1, 2, 0.5)
 
-[node name="Barrier" type="StaticBody3D"]
+[node name="Barrier" type="StaticBody3D" unique_id=764154966]
 collision_layer = 2
 script = ExtResource("2_v48vq")
 
-[node name="PlankAnimations" type="AnimationPlayer" parent="."]
+[node name="PlankAnimations" type="AnimationPlayer" parent="." unique_id=1715229000]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_7pft6")
-}
+libraries/ = SubResource("AnimationLibrary_7pft6")
 
-[node name="Damage Collision" type="CollisionShape3D" parent="."]
+[node name="Damage Collision" type="CollisionShape3D" parent="." unique_id=330818356]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.3)
 shape = SubResource("BoxShape3D_ihc4n")
 
-[node name="Plank1" type="MeshInstance3D" parent="."]
+[node name="Plank1" type="MeshInstance3D" parent="." unique_id=1716628739]
 unique_name_in_owner = true
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1, -0.2, 1.5, 0.11)
 mesh = SubResource("ArrayMesh_6vdgl")
-skeleton = NodePath("")
 metadata/extras = {
 "flip_fluid": {}
 }
 
-[node name="Plank2" type="MeshInstance3D" parent="."]
+[node name="Plank2" type="MeshInstance3D" parent="." unique_id=330178787]
 unique_name_in_owner = true
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1, 0.2, 1.5, 0.11)
 mesh = SubResource("ArrayMesh_atybq")
-skeleton = NodePath("")
 metadata/extras = {
 "flip_fluid": {}
 }
 
-[node name="Plank3" type="MeshInstance3D" parent="."]
+[node name="Plank3" type="MeshInstance3D" parent="." unique_id=580604673]
 unique_name_in_owner = true
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 1.17, 0.15)
 mesh = SubResource("ArrayMesh_2lnr7")
-skeleton = NodePath("")
 metadata/extras = {
 "flip_fluid": {}
 }
 
-[node name="Plank4" type="MeshInstance3D" parent="."]
+[node name="Plank4" type="MeshInstance3D" parent="." unique_id=1307052558]
 unique_name_in_owner = true
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 1.57, 0.15)
 mesh = SubResource("ArrayMesh_wg3jv")
-skeleton = NodePath("")
 metadata/extras = {
 "flip_fluid": {}
 }
 
-[node name="Plank5" type="MeshInstance3D" parent="."]
+[node name="Plank5" type="MeshInstance3D" parent="." unique_id=1661341830]
 unique_name_in_owner = true
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 1.87, 0.15)
 mesh = SubResource("ArrayMesh_f4kf0")
-skeleton = NodePath("")
 metadata/extras = {
 "flip_fluid": {}
 }
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=745751932]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 
-[node name="Sandbags" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="Sandbags" type="MeshInstance3D" parent="StaticBody3D" unique_id=1820182953]
 transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_loxkr")
-skeleton = NodePath("")
 metadata/extras = {
 "flip_fluid": {}
 }
 
-[node name="ZombieCollision" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="ZombieCollision" type="CollisionShape3D" parent="StaticBody3D" unique_id=1891133230]
 shape = SubResource("BoxShape3D_r0rvd")
 
-[node name="Player Area" type="Area3D" parent="."]
+[node name="Player Area" type="Area3D" parent="." unique_id=1041606594]
 
-[node name="Player Detection" type="CollisionShape3D" parent="Player Area"]
+[node name="Player Detection" type="CollisionShape3D" parent="Player Area" unique_id=1793368871]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.3)
 shape = SubResource("BoxShape3D_7pft6")
 
-[node name="Player Collider" type="StaticBody3D" parent="."]
+[node name="Player Collider" type="StaticBody3D" parent="." unique_id=1478858258]
 collision_layer = 2
 collision_mask = 2
 
-[node name="Player Collision" type="CollisionShape3D" parent="Player Collider"]
+[node name="Player Collision" type="CollisionShape3D" parent="Player Collider" unique_id=1224695316]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 shape = SubResource("BoxShape3D_rk56m")
 

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponPool" load_steps=6 format=3 uid="uid://c7rguvm8xiyxx"]
+[gd_resource type="Resource" script_class="WeaponPool" format=3 uid="uid://c7rguvm8xiyxx"]
 
 [ext_resource type="Script" uid="uid://do2suyictwkg3" path="res://Weapons/weaponPool.gd" id="1_1tr7n"]
 [ext_resource type="Script" uid="uid://c0afljd65dkhp" path="res://Weapons/Weapons.gd" id="2_317iu"]

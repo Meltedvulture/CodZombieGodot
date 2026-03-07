@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cf0eo6vohkej"]
+[gd_scene format=4 uid="uid://cf0eo6vohkej"]
 
 [ext_resource type="ArrayMesh" uid="uid://bw7edhxrprg5b" path="res://Models/Blender/Mystery Box/Mystery Box Platform.res" id="1_a80k1"]
 [ext_resource type="Script" uid="uid://d1g3jax2jx6g8" path="res://Scripts/Mystery Box.gd" id="1_eduwl"]
@@ -543,56 +543,54 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_rsbnb"]
 size = Vector3(2.5, 0.9, 0.5)
 
-[node name="MysteryBoxLocation" type="StaticBody3D" groups=["BuyableObject"]]
+[node name="MysteryBoxLocation" type="StaticBody3D" unique_id=1043853104 groups=["BuyableObject"]]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 script = ExtResource("1_eduwl")
 
-[node name="MysteryBoxPlatform" type="MeshInstance3D" parent="."]
+[node name="MysteryBoxPlatform" type="MeshInstance3D" parent="." unique_id=832636610]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 mesh = ExtResource("1_a80k1")
 
-[node name="Interact Collision" type="CollisionShape3D" parent="."]
+[node name="Interact Collision" type="CollisionShape3D" parent="." unique_id=2117560579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 shape = SubResource("BoxShape3D_3l40s")
 disabled = true
 
-[node name="Mystery Box" type="Node3D" parent="."]
+[node name="Mystery Box" type="Node3D" parent="." unique_id=2065387713]
 
-[node name="MysteryBox" type="MeshInstance3D" parent="Mystery Box"]
+[node name="MysteryBox" type="MeshInstance3D" parent="Mystery Box" unique_id=630703792]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 mesh = ExtResource("2_rsbnb")
 skeleton = NodePath("../..")
 
-[node name="MysteryBoxLid" type="MeshInstance3D" parent="Mystery Box"]
+[node name="MysteryBoxLid" type="MeshInstance3D" parent="Mystery Box" unique_id=712179253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.295, -0.267)
 mesh = ExtResource("3_nnmi6")
 skeleton = NodePath("../..")
 
-[node name="Weapon" type="Node3D" parent="Mystery Box"]
+[node name="Weapon" type="Node3D" parent="Mystery Box" unique_id=1271915550]
 transform = Transform3D(-0.75, 4.49996e-07, -1.13247e-07, 4.49996e-07, 0.75, -4.49996e-07, 1.13247e-07, -4.49996e-07, -0.75, 0.16, 0.1, 0)
 
-[node name="WeaponMesh" type="MeshInstance3D" parent="Mystery Box/Weapon"]
+[node name="WeaponMesh" type="MeshInstance3D" parent="Mystery Box/Weapon" unique_id=1237737961]
 unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_vxpx6")
 
-[node name="WeaponMagazine" type="MeshInstance3D" parent="Mystery Box/Weapon"]
+[node name="WeaponMagazine" type="MeshInstance3D" parent="Mystery Box/Weapon" unique_id=511261669]
 unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_r6g0f")
 
-[node name="WeaponBolt" type="MeshInstance3D" parent="Mystery Box/Weapon"]
+[node name="WeaponBolt" type="MeshInstance3D" parent="Mystery Box/Weapon" unique_id=1698774330]
 unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_ll5q2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_vlksg")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1689166173]
+libraries/ = SubResource("AnimationLibrary_vlksg")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=704256394]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=176479640]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 shape = SubResource("BoxShape3D_rsbnb")
 
-[node name="Change Delay" type="Timer" parent="."]
+[node name="Change Delay" type="Timer" parent="." unique_id=1512917568]
 one_shot = true
