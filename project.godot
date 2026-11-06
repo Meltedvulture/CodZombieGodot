@@ -12,7 +12,7 @@ config_version=5
 
 config/name="CodZombiesGodot"
 run/main_scene="res://levels/level_001.tscn"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
 
@@ -26,6 +26,10 @@ window/size/viewport_width=1360
 window/size/viewport_height=768
 window/size/borderless=true
 window/size/always_on_top=true
+
+[dotnet]
+
+project/assembly_name="CodZombiesGodot"
 
 [editor_plugins]
 

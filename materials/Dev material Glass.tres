@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://fpgiqq8ummwa"]
+
+[ext_resource type="Texture2D" uid="uid://my4j2c7r4cgr" path="res://addons/kenney_prototype_textures/light/texture_07.png" id="1_0sc15"]
+
+[resource]
+transparency = 1
+albedo_color = Color(0.38431373, 1, 1, 0.20392157)
+albedo_texture = ExtResource("1_0sc15")

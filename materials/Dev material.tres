@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cipnbx8j3em41"]
+
+[ext_resource type="Texture2D" uid="uid://dyts2spc0r0wv" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="1_6m7pq"]
+
+[resource]
+albedo_texture = ExtResource("1_6m7pq")
+ao_enabled = true
+uv1_scale = Vector3(4, 4, 4)

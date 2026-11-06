@@ -311,13 +311,13 @@ func shoot() -> void:
 						hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
 					
 					#Apply decal
-					#if result:
-						#var instance = bulletHole.instantiate()
-						#get_tree().root.add_child(instance)
-						#instance.global_position = hitPosition
-						#instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
-						#instance.rotate_object_local(Vector3(1,0,0), 90)
-						#removeHitMark(instance)
+					if result:
+						var instance = bulletHole.instantiate()
+						get_tree().root.add_child(instance)
+						instance.global_position = hitPosition
+						instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
+						instance.rotate_object_local(Vector3(1,0,0), 90)
+						removeHitMark(instance)
 			else:
 				var accuracyAdjustment = Vector3 (
 					rng.randf_range(-weaponAccuracy, weaponAccuracy),
@@ -338,13 +338,15 @@ func shoot() -> void:
 					hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
 					
 				#Apply decal
-				#if result:
-					#var instance = bulletHole.instantiate()
-					#get_tree().root.add_child(instance)
-					#instance.global_position = hitPosition
-					#instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
-					#instance.rotate_object_local(Vector3(1,0,0), 90)
-					#removeHitMark(instance)
+				if result:
+					var instance = bulletHole.instantiate()
+					get_tree().root.add_child(instance)
+					instance.global_position = hitPosition
+					instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
+					instance.rotate_object_local(Vector3(1,0,0), 90)
+					instance.reparent(hitBody)
+					removeHitMark(instance)
+					
 		elif weaponBulletPhysics == "Projectile":
 			var bulletInstance = weaponBulletScene.instantiate()
 			var accuracyAdjustment = Vector3 (
@@ -373,7 +375,10 @@ func shoot() -> void:
 			await weaponAnimationPlayer.animation_finished
 			
 
-
+func removeHitMark(instance):
+	await get_tree().create_timer(4).timeout
+	if instance:
+		instance.queue_free()
 
 func reloadWeapon():
 	if actionable == true:
@@ -551,7 +556,7 @@ func givePerk(perk, bottleMesh, capMesh, cost):
 
 func playDrinkAnimation():
 	actionable = false
-	weaponAnimationPlayer.play(weaponName + "/" + "pullout")
+	weaponAnimationPlayer.play(weaponName + "/" + "store")
 	await weaponAnimationPlayer.animation_finished
 	weaponAnimationPlayer.play("Drink Perk")
 	await weaponAnimationPlayer.animation_finished
