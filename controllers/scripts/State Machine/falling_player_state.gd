@@ -17,6 +17,7 @@ func update(delta: float) -> void:
 	PLAYER.updateVelocity()
 
 	if PLAYER.is_on_floor():
+		PLAYER.landAnimation()
 		transition.emit("IdlePlayerState")
 
 	if Input.is_action_pressed("knife"):

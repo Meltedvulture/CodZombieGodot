@@ -52,4 +52,4 @@ func exit():
 
 func setAnimationSpeed(spd):
 	var alpha = remap(spd, 0.0, speed, 0.0, 1.0)
-	animation.speed_scale = lerp(0.0, 1.0, alpha)
+	animation.speed_scale = lerp(0.5, 1.0, alpha)

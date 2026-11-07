@@ -11,6 +11,7 @@ extends CharacterBody3D
 @export var weaponController : WeaponController
 
 @onready var healthTimer = $"Health Regen Timer"
+@onready var weaponRig = $CameraController/Camera3D/WeaponRig
 
 var cameraOffset : Vector3
 
@@ -83,7 +84,7 @@ func _ready():
 	#Prevents player from activating crouch cast
 	CROUCH_SHAPECAST.add_exception($".")
 
-func _physics_process(delta):
+func _process(delta):
 	_update_camera(delta)
 	# Update camera movement based on mouse movement
 	CAMERA_CONTROLLER.rotation = lerp(CAMERA_CONTROLLER.rotation, CAMERA_CONTROLLER.rotation + cameraOffset, 0.025)
@@ -133,4 +134,8 @@ func meleeLunge():
 func takePlayerDamage(damage):
 	health -= damage
 	healthTimer.start(3)
-	
+
+func landAnimation():
+	var landingTween = create_tween()
+	landingTween.tween_property(weaponRig, "position", Vector3(0,-0.2,0), 0.15)
+	landingTween.tween_property(weaponRig, "position", Vector3(0,0,0), 0.3)

@@ -1,13 +1,10 @@
-res://controllers/fps_controller.tscn
-res://environment/WE_test.tres
-res://materials/grid.tres
-res://Weapons/WeaponManager.gd
+res://Models/Blender/M14/M14Bolt.res
+res://Models/Blender/M14/M14.res
+res://Models/Blender/M14/M14 Magazine.res
 res://levels/level_001.tscn
-res://textures/Weapon Noise.tres
-res://materials/Dev material 2.tres
-res://materials/Dev material 3.tres
-res://materials/Dev material 4.tres
-res://materials/Dev material Glass.tres
-res://materials/Dev material Grey Glass.tres
-res://materials/Dev material.tres
+res://environment/WE_test.tres
 res://Scripts/barrier.gd
+res://controllers/scripts/fps_controller.gd
+res://controllers/fps_controller.tscn
+res://controllers/scripts/State Machine/falling_player_state.gd
+res://controllers/scripts/State Machine/spriting_player_state.gd

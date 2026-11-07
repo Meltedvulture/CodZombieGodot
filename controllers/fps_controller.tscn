@@ -772,8 +772,8 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "handle_modes": PackedInt32Array(0, 3, 3, 3, 3, 3, 0, 0),
-"points": PackedFloat32Array(0.375, -0.25, 0, 0.25, 0, 0.375, -0.0625, 0, 0.0625, 0, 0.375, -0.05, -0.0125, 0.05, 0.0125, 0.425, -0.05, -0.16373, 0.05, 0.16373, 1.02992, -0.0625, -0.148331, 0.0625, 0.148331, 1.01833, -0.0625, 0.00289828, 0.0625, -0.00289828, 1.01833, -0.0625, 0.00289828, 0.0625, -0.00289828, 0.375, -0.0625, 0, 0.0625, 0),
-"times": PackedFloat32Array(0, 0.583333, 0.833333, 1.03333, 1.28333, 1.53333, 3, 3.23333)
+"points": PackedFloat32Array(0.375, -0.25, 0, 0.25, 0, 0.375, -0.0625, 0, 0.0625, 0, 0.375, -0.05, -0.0125, 0.05, 0.0125, 0.425, -0.10928106, -0.02303496, 0.10928106, 0.02303496, 0.5817047, -0.0625, -0.148331, 0.0625, 0.148331, 1.01833, -0.0625, 0.00289828, 0.0625, -0.00289828, 1.01833, -0.0625, 0.00289828, 0.0625, -0.00289828, 0.375, -0.0625, 0, 0.0625, 0),
+"times": PackedFloat32Array(0, 0.583333, 0.833333, 1.03333, 1.2666667, 1.53333, 3, 3.23333)
 }
 tracks/11/type = "bezier"
 tracks/11/imported = false
@@ -782,8 +782,8 @@ tracks/11/path = NodePath("../Perk Bottle/Bottle Cap:position:z")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"handle_modes": PackedInt32Array(0, 3, 3, 3, 3, 3, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.0625, 0, 0.0625, 0, 0, -0.05, 0, 0.05, 0, 0, -0.05, -0.280565, 0.05, 0.280565, 1.12226, -0.0625, -0.0985516, 0.0625, 0.0985516, 0.394206, -0.0625, 0.182014, 0.0625, -0.182014, 0.394206, -0.0625, 0.182014, 0.0625, -0.182014, 0, -0.0625, 0, 0.0625, 0),
+"handle_modes": PackedInt32Array(0, 3, 3, 0, 3, 3, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.0625, 0, 0.0625, 0, 0, -0.05, 0, 0.05, 0, 0, -0.1210227, -0.005435876, 0.14564395, 0.16482289, 1.12226, -0.0625, -0.0985516, 0.0625, 0.0985516, 0.394206, -0.0625, 0.182014, 0.0625, -0.182014, 0.394206, -0.0625, 0.182014, 0.0625, -0.182014, 0, -0.0625, 0, 0.0625, 0),
 "times": PackedFloat32Array(0, 0.583333, 0.833333, 1.03333, 1.28333, 1.53333, 3, 3.23333)
 }
 tracks/12/type = "bezier"
@@ -883,10 +883,10 @@ tracks/20/path = NodePath("../Perk Bottle/Bottle Cap/Left Hand:position")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.966667, 1.5, 2, 3.23333),
-"transitions": PackedFloat32Array(1, 2, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.6, 3.23333),
+"transitions": PackedFloat32Array(1, 2, 1),
 "update": 0,
-"values": [Vector3(-1.5, -0.0500823, 0.275858), Vector3(-0.340991, 0.0356319, -0.0711748), Vector3(-0.394826, -0.0987412, -0.281721), Vector3(0.497172, 0.230428, -0.514682), Vector3(0.123254, 0.0333073, -0.383617), Vector3(-1.5, -0.0500823, 0.275858)]
+"values": [Vector3(-1.5, -0.0500823, 0.275858), Vector3(-0.340991, 0.0356319, -0.0711748), Vector3(-1.5, -0.0500823, 0.275858)]
 }
 tracks/21/type = "value"
 tracks/21/imported = false
@@ -895,10 +895,10 @@ tracks/21/path = NodePath("../Perk Bottle/Bottle Cap/Left Hand:rotation")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.966667, 1.5, 2, 3.23333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.6, 3.23333),
+"transitions": PackedFloat32Array(1, 0.5, 1),
 "update": 0,
-"values": [Vector3(0.157727, -0.442199, -0.0757753), Vector3(0.198088, -1.62798, -1.66349), Vector3(0.569552, -2.10193, -1.33259), Vector3(-0.155612, -1.2569, -0.655287), Vector3(-0.155612, -1.2569, -0.655287), Vector3(0.157727, -0.442199, -0.0757753)]
+"values": [Vector3(0.157727, -0.442199, -0.0757753), Vector3(0.198088, -1.62798, -1.66349), Vector3(0.157727, -0.442199, -0.0757753)]
 }
 tracks/22/type = "value"
 tracks/22/imported = false
@@ -1025,7 +1025,7 @@ tracks/2/path = NodePath("Weapon")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.733333),
+"times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -2687,7 +2687,7 @@ _data = {
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_pgc1p")
-MOUSE_SENSITIVITY = 0.15
+MOUSE_SENSITIVITY = 0.1
 CAMERA_CONTROLLER = NodePath("CameraController/Camera3D")
 ANIMATIONPLAYER = NodePath("AnimationPlayer")
 CROUCH_SHAPECAST = NodePath("ShapeCast3D")
@@ -2840,7 +2840,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
 mesh = ExtResource("6_5b0ob")
 
 [node name="Left Hand" type="MeshInstance3D" parent="CameraController/Camera3D/Perk Bottle/Bottle Cap" unique_id=451337807]
-transform = Transform3D(0.90630805, 0.0013977662, -0.4226158, -0.07476313, 0.98475295, -0.15707374, 0.415953, 0.17395331, 0.89259315, -1.5, -0.0500823, 0.025858)
+transform = Transform3D(0.906308, 0.001397766, -0.42261574, -0.07476311, 0.9847529, -0.1570737, 0.41595295, 0.1739533, 0.892593, -1.5, -0.0500823, 0.025858)
 mesh = SubResource("ArrayMesh_cnri8")
 metadata/extras = {
 "MeasureGenerator": [{

@@ -9,21 +9,19 @@ class_name Barrier
 var maxHealth = 5
 var isDead = false
 var touchingPlayer = false
-var doingAction = false
 #FIX THIS PLEASE MAKE IT SO ONLY ONE ACTION AT A TIME PLS
 
 func repairBarrier():
-	if health != 5:
+	if health != 5 and animationPlayer.current_animation == "":
 		health += 1
 		animationPlayer.play("Plank" + str(health) + "_Repair", -1, 1.5)
 		Global.points += 10
 		Global.updatePoints()
 		collision.disabled = false
 		isDead = false
-		
 
 func takeDamage():
-	if health > 0:
+	if health > 0 and animationPlayer.current_animation == "":
 		animationPlayer.play("Plank" + str(health) + "_Falloff")
 		health -= 1
 	elif health == 0:
