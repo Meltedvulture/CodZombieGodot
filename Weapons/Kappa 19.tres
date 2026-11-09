@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Weapons" format=3 uid="uid://bedgkscpknf0u"]
+
+[ext_resource type="ArrayMesh" uid="uid://d3fq3hoy6pkj4" path="res://Models/Blender/1911/1911 Slide.res" id="1_desea"]
+[ext_resource type="ArrayMesh" uid="uid://bdj60y1k4akba" path="res://Models/Blender/1911/1911 Magazine.res" id="2_13cea"]
+[ext_resource type="ArrayMesh" uid="uid://crind40400uiw" path="res://Models/Blender/1911/1911 Body.res" id="3_pootr"]
+[ext_resource type="Script" uid="uid://c0afljd65dkhp" path="res://Weapons/Weapons.gd" id="4_xa2pf"]
+
+[resource]
+script = ExtResource("4_xa2pf")
+name = &"Kappa 19"
+Damage = 35
+clip = 15
+maxClip = 15
+reserve = 90
+maxReserve = 90
+rpm = 650
+Accuracy = 4.0
+sightPosition = Vector3(-0.25, 0.2, 0.1)
+sightSpeed = 0.3
+fireMode = "Auto"
+bulletPhysics = "Hitscan"
+bulletScene = "<null>"
+position = Vector3(0.25, -0.4, -0.5)
+sway_min = Vector2(-30, -20)
+sway_max = Vector2(30, 20)
+swaySpeedPosition = 0.06
+swaySpeedRotation = 0.05
+swayAmountPosition = 0.2
+randomSwayAmount = 2.0
+verticalRecoil = 1.0
+mesh = ExtResource("3_pootr")
+magazine = ExtResource("2_13cea")
+bolt = ExtResource("1_desea")
+shadow = true
+metadata/_custom_type_script = "uid://c0afljd65dkhp"

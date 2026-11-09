@@ -55,3 +55,4 @@ extends Resource
 @export_category("Animation Settings")
 @export var pullOutAnimation : String = "pistolPullout"
 @export var storeAnimation : String = "pistolStore"
+@export var animationName : String = "1911"

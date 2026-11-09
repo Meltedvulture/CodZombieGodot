@@ -2840,7 +2840,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
 mesh = ExtResource("6_5b0ob")
 
 [node name="Left Hand" type="MeshInstance3D" parent="CameraController/Camera3D/Perk Bottle/Bottle Cap" unique_id=451337807]
-transform = Transform3D(0.906308, 0.001397766, -0.42261574, -0.07476311, 0.9847529, -0.1570737, 0.41595295, 0.1739533, 0.892593, -1.5, -0.0500823, 0.025858)
+transform = Transform3D(0.906308, 0.001397766, -0.4226157, -0.07476311, 0.9847529, -0.1570737, 0.41595295, 0.1739533, 0.89259297, -1.5, -0.0500823, 0.025858)
 mesh = SubResource("ArrayMesh_cnri8")
 metadata/extras = {
 "MeasureGenerator": [{

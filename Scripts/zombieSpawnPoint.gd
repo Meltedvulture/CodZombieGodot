@@ -21,10 +21,10 @@ func _process(delta: float) -> void:
 
 func spawnZombie():
 	if zombieRoundManager.zombiesToSpawn > 0 and spawnEnabled == true:
+		zombieRoundManager.zombiesToSpawn -= 1
+		zombieRoundManager.currentZombies += 1
 		var zombieInstance = zombie.instantiate()
 		add_child(zombieInstance)
 		zombieInstance.barrier = barrier
 		zombieInstance.target = barrier
 		zombieInstance.global_transform.origin = global_position
-		zombieRoundManager.zombiesToSpawn -= 1
-		zombieRoundManager.currentZombies += 1

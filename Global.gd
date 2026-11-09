@@ -6,7 +6,7 @@ signal roundChange
 var debug
 var player
 var weaponManager
-var points = 5000
+var points = 500
 var reserveLabel : Label
 var clipLabel : Label
 var pointsLabel : Label
