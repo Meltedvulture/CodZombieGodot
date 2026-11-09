@@ -1,5 +1,3 @@
-res://levels/level_001.tscn
+res://Prefabs/Barrier.tscn
 res://environment/WE_test.tres
-res://Weapons/Kappa 19.tres
-res://Weapons/Weapons.gd
 res://Weapons/WeaponManager.gd

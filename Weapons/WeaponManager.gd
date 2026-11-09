@@ -230,7 +230,8 @@ func loadWeapon():
 func sway_weapon(delta, isIdle: bool) -> void:
 	if weaponType == null:
 		return
-		
+	if not actionable:
+		return
 	# Clamp mouse movement
 	mouseMovement.x = clamp(mouseMovement.x, weaponType.sway_min.x, weaponType.sway_max.x)
 	mouseMovement.y = clamp(mouseMovement.y, weaponType.sway_min.y, weaponType.sway_max.y)

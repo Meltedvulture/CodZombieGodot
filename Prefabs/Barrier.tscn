@@ -861,7 +861,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_v0wdp")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r0rvd"]
-size = Vector3(1, 1, 0.5)
+size = Vector3(1, 1, 0.7)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7pft6"]
 size = Vector3(1, 1, 0.49)
