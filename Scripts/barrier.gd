@@ -9,7 +9,6 @@ class_name Barrier
 var maxHealth = 5
 var isDead = false
 var touchingPlayer = false
-#FIX THIS PLEASE MAKE IT SO ONLY ONE ACTION AT A TIME PLS
 
 func repairBarrier():
 	if health != 5 and animationPlayer.current_animation == "":

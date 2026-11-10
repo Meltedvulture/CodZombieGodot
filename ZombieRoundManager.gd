@@ -1,20 +1,18 @@
 extends Node
 
-class_name ZombieRoundManager
-
 #var roundLabel = Global.player.get_node("/root/RoundLabel")
 
-@export var round = 1
-@export var baseZombies = 4
-@export var mysteryBoxPool = preload("res://Weapons/weaponPools/DefaultWeaponPool.tres")
-@export var boxLocations : Array[mysteryBoxLocation]
+var round = 1
+var baseZombies = 4
+var mysteryBoxPool = preload("res://Weapons/weaponPools/DefaultWeaponPool.tres")
+var boxLocations = []
+
 var zombiesToSpawn = 6
 var currentZombies = 0
 var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	Global.zombieDied.connect(zombieDied)
-	Global.zombieRoundManager = self
 
 func _process(delta):
 	pass

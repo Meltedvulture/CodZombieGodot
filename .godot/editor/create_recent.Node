@@ -1,6 +1,6 @@
+Node3D
 BoneAttachment3D
 MeshInstance3D
-Node3D
 Timer
 CollisionShape3D
 StaticBody3D
@@ -12,4 +12,3 @@ NavigationObstacle3D
 Label
 HBoxContainer
 RayCast3D
-NavigationRegion3D

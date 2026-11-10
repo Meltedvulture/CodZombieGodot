@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://Global.gd"
+ZombieRoundManager="*uid://d0frvk5yhjni5"
 
 [display]
 

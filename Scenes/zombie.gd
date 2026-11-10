@@ -15,9 +15,9 @@ var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	current_health = max_health + (Global.zombieRoundManager.round * 50)
+	current_health = max_health + (ZombieRoundManager.round * 50)
 	print(current_health)
-	move_speed = clamp(rng.randf_range(0.5, 0.5 + (Global.zombieRoundManager.round * 0.5)), 0.5, 4)
+	move_speed = clamp(rng.randf_range(0.5, 0.5 + (ZombieRoundManager.round * 0.5)), 0.5, 4)
 
 # Called every frame.
 func _physics_process(delta):

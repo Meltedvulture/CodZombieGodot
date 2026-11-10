@@ -1,3 +1,10 @@
-res://Prefabs/Barrier.tscn
+res://levels/level_001.tscn
 res://environment/WE_test.tres
-res://Weapons/WeaponManager.gd
+res://Scripts/barrier.gd
+res://Scripts/ZombieRoundManager.gd
+res://ZombieRoundManager.gd
+res://Scripts/zombieSpawnPoint.gd
+res://levels/MapController.gd
+res://Global.gd
+res://Scripts/Mystery Box.gd
+res://Scenes/zombie.gd

@@ -64,7 +64,7 @@ func finishedRolling():
 	pickedWeaponText = "Hold F to take " + str(loadedWeapon.name)
 	choseWeapon = true
 	
-	if rng.randi_range(timesrolled, 20) == 20 and Global.zombieRoundManager.boxLocations.size() > 1:
+	if rng.randi_range(timesrolled, 20) == 20 and ZombieRoundManager.boxLocations.size() > 1:
 		timesrolled = 0
 		choseWeapon = false
 		loadedWeapon = null
@@ -74,7 +74,7 @@ func finishedRolling():
 		hasBox = false
 		changeDelayTimer.start(8)
 		await changeDelayTimer.timeout
-		Global.zombieRoundManager.changeBoxLocation(self)
+		ZombieRoundManager.changeBoxLocation(self)
 		
 
 func randomizeWeapon():
@@ -87,7 +87,7 @@ func randomizeWeapon():
 	
 
 func startBox():
-	mysteryBoxPool = Global.zombieRoundManager.mysteryBoxPool.weaponPool
+	mysteryBoxPool = ZombieRoundManager.mysteryBoxPool.weaponPool
 	interactCollision.disabled = true
 	choseWeapon = false
 	opened = false
