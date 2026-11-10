@@ -120,7 +120,7 @@ func addWeapon(WeaponPath: String):
 		weaponInventory.append(WeaponPath)
 		var weapon = load(WeaponPath)
 		weaponAmmoInventory.append([weapon.clip, weapon.reserve])
-		currentWeaponIndex = weaponAmmoInventory.find(weapon)
+		currentWeaponIndex = weaponInventory.size() - 1
 	else:
 		weaponInventory[currentWeaponIndex] = WeaponPath
 		var weapon = load(WeaponPath)
@@ -356,8 +356,9 @@ func spawnHitmarker(result):
 	get_tree().root.add_child(instance)
 	instance.global_position = hitPosition
 	instance.look_at(instance.global_transform.origin + hitNormal, Vector3.UP)
-	instance.rotate_object_local(Vector3(1,0,0), 90)
-	instance.reparent(hitBody)
+	instance.rotate_object_local(Vector3(1,0,0), deg_to_rad(90))
+	if hitBody:
+		instance.reparent(hitBody)
 	removeHitMark(instance)
 
 
@@ -438,9 +439,9 @@ func _process(delta: float) -> void:
 			weaponRig.position = (lerp(weaponRig.position, Vector3.ZERO, sightSpeed))
 
 		if Global.player.sprinting == true:
-			weaponRig.rotation_degrees = (lerp(weaponRig.rotation_degrees, Vector3(-10,40,0), 0.125))
+			weaponRig.rotation_degrees = (lerp(weaponRig.rotation_degrees, Vector3(-10,40,0), 0.125 * delta))
 		else:
-			weaponRig.rotation = (lerp(weaponRig.rotation, Vector3.ZERO, 0.125))
+			weaponRig.rotation = (lerp(weaponRig.rotation, Vector3.ZERO, 0.125 * delta))
 
 
 
@@ -549,9 +550,3 @@ func playDrinkAnimation():
 	weaponAnimationPlayer.play(weaponAnimationName + "/" + "pullout")
 	actionable = true
 	return
-
-
-
-
-	
-#✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅

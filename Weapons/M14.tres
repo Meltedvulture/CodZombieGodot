@@ -18,7 +18,6 @@ sightSpeed = 0.2
 bulletPhysics = "Hitscan"
 bulletScene = null
 position = Vector3(0.25, -0.25, -0.5)
-scale = Vector3(2, 2, 2)
 sway_min = Vector2(-30, -20)
 sway_max = Vector2(30, 20)
 swaySpeedPosition = 0.06
