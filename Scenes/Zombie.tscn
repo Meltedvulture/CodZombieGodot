@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c0j88kyj1aapm"]
 
-[ext_resource type="Script" uid="uid://dhwq3tlnft4fk" path="res://Scenes/zombie.gd" id="1_4ru28"]
+[ext_resource type="Script" uid="uid://dhwq3tlnft4fk" path="res://Scripts/zombie.gd" id="1_4ru28"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_h15oy"]
 height = 1.75
@@ -57,3 +57,4 @@ autostart = true
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_2_body_entered"]
+[connection signal="body_exited" from="Area3D2" to="." method="_on_area_3d_2_body_exited"]

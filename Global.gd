@@ -14,6 +14,7 @@ var roundLabel
 var playerStateMachine
 var currentStateName : String
 var referenceFPS = 60
+var inputAllowed = true
 
 func _ready():
 	call_deferred("updatePoints")

@@ -1,5 +1,8 @@
-res://controllers/scripts/fps_controller.gd
-res://controllers/fps_controller.tscn
-res://environment/WE_test.tres
 res://Scenes/Zombie.tscn
+res://environment/WE_test.tres
 res://Scenes/zombie.gd
+res://Scripts/zombie.gd
+res://controllers/fps_controller.tscn
+res://controllers/scripts/fps_controller.gd
+res://Global.gd
+res://controllers/scripts/State Machine/stateMachine.gd

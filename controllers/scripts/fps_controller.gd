@@ -35,6 +35,7 @@ var sprintUse : float = 24.0
 
 
 var currentRotation : float
+var playerDead = false
 
 
 var red = Color(0.75,0.0,0.0,1.0)
@@ -57,22 +58,23 @@ func _input(event):
 		get_tree().quit()
 
 func _update_camera(delta):
-	# Rotates camera using euler rotation
-	currentRotation = _rotation_input
-	_mouse_rotation.x += _tilt_input * delta
-	_mouse_rotation.x = clamp(_mouse_rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
-	_mouse_rotation.y += _rotation_input * delta
-	
-	_player_rotation = Vector3(0.0,_mouse_rotation.y,0.0)
-	_camera_rotation = Vector3(_mouse_rotation.x,0.0,0.0)
+	if Global.inputAllowed == true:
+		# Rotates camera using euler rotation
+		currentRotation = _rotation_input
+		_mouse_rotation.x += _tilt_input * delta
+		_mouse_rotation.x = clamp(_mouse_rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
+		_mouse_rotation.y += _rotation_input * delta
+		
+		_player_rotation = Vector3(0.0,_mouse_rotation.y,0.0)
+		_camera_rotation = Vector3(_mouse_rotation.x,0.0,0.0)
 
-	CAMERA_CONTROLLER.transform.basis = Basis.from_euler(_camera_rotation)
-	global_transform.basis = Basis.from_euler(_player_rotation)
-	
-	CAMERA_CONTROLLER.rotation.z = 0.0
+		CAMERA_CONTROLLER.transform.basis = Basis.from_euler(_camera_rotation)
+		global_transform.basis = Basis.from_euler(_player_rotation)
+		
+		CAMERA_CONTROLLER.rotation.z = 0.0
 
-	_rotation_input = 0.0
-	_tilt_input = 0.0
+		_rotation_input = 0.0
+		_tilt_input = 0.0
 	
 func _ready():
 	Global.roundLabel = %RoundLabel
@@ -86,20 +88,21 @@ func _ready():
 
 func _process(delta):
 	_update_camera(delta)
-	damageVignette.material.set_shader_parameter("intensity", move_toward(damageVignette.material.get_shader_parameter("intensity"), 0.0, 0.01))
+	damageVignette.material.set_shader_parameter("intensity", move_toward(damageVignette.material.get_shader_parameter("intensity"), 0.0, Global.fiLerp(0.01, delta)))
 	# Update camera movement based on mouse movement
 	CAMERA_CONTROLLER.rotation = lerp(CAMERA_CONTROLLER.rotation, CAMERA_CONTROLLER.rotation + cameraOffset, Global.fiLerp(0.025, delta))
 	cameraOffset = lerp(cameraOffset, Vector3(0,0,0), Global.fiLerp(0.05, delta))
 	
 
-	if stamina < maxStamina and Global.currentStateName == "SprintingPlayerState":
-		stamina += sprintRecovery * delta
+	if stamina < maxStamina and Global.currentStateName != "SprintingPlayerState":
+		stamina = min(stamina + sprintRecovery * delta, maxStamina)
 		
-	if health < maxHealth and healthTimer.get_time_left() == 0:
-		health += healthRecovery * delta
+		
+	if health < maxHealth and healthTimer.is_stopped():
+		health = min(health + healthRecovery * delta, maxHealth)
 	
-	if health / maxHealth < 0.33:
-		damageVignette.material.set_shader_parameter("intensity",0.75)
+	if health / maxHealth < 0.33 and playerDead == false:
+		damageVignette.material.set_shader_parameter("intensity",0.5)
 
 
 func updateGravity(delta) -> void:
@@ -138,7 +141,16 @@ func meleeLunge():
 func takePlayerDamage(damage):
 	health -= damage
 	damageVignette.material.set_shader_parameter("intensity",0.5)
-	healthTimer.start(3)
+	if health > 0:
+		healthTimer.start(3)
+	else:
+		deathAnimation()
+
+func deathAnimation():
+	playerDead = true
+	Global.inputAllowed = false
+	weaponRig.visible = false
+	ANIMATIONPLAYER.play("crouch", -1.0, 2)
 
 func landAnimation():
 	var landingTween = create_tween()

@@ -17,11 +17,13 @@ func _ready():
 	currentState.enter(null)
 
 func _process(delta):
-	currentState.update(delta)
-	Global.debug.addProperty("Current State",currentState, 3)
+	if Global.inputAllowed == true:
+		currentState.update(delta)
+		Global.debug.addProperty("Current State",currentState, 3)
 	
 func _physics_process(delta):
-	currentState.physics_update(delta)
+	if Global.inputAllowed == true:
+		currentState.physics_update(delta)
 	
 func onChildTransition(new_state_name: StringName):
 	var newState = states.get(new_state_name)

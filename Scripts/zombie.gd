@@ -10,6 +10,7 @@ extends CharacterBody3D
 var target: Node3D  # Reference to the player
 var barrier : Node3D
 var canMove = true
+var attacking = false
 
 # Internal variables
 var current_health: int
@@ -19,6 +20,7 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	current_health = max_health + (ZombieRoundManager.round * 50)
 	move_speed = clamp(rng.randf_range(0.5, 0.5 + (ZombieRoundManager.round * 0.5)), 0.5, 4)
+	rng.randomize()
 
 # Called every frame.
 func _physics_process(delta):
@@ -37,6 +39,9 @@ func _physics_process(delta):
 	# Use move_and_slide to handle movement and gravity
 	if canMove == true:
 		move_and_slide()
+
+func _process(delta: float) -> void:
+	pass
 
 # Function to handle taking damage
 func take_damage(amount: int):
@@ -65,8 +70,24 @@ func damageBarrier():
 
 
 func _on_area_3d_2_body_entered(body: Node3D) -> void:
-	canMove = false
-	damageTimer.start(rng.randf_range(0.3, 0.75))
-	if body and body.has_method("takePlayerDamage"):
-		body.takePlayerDamage(60)
-	canMove = true
+	if body == Global.player:
+		attacking = true
+		attack(body)
+		
+func attack(body):
+		canMove = false
+		damageTimer.start(rng.randf_range(0.3, 0.75))
+		await damageTimer.timeout
+		if body and body.has_method("takePlayerDamage"):
+			body.takePlayerDamage(60)
+		damageTimer.start(rng.randf_range(0.75, 2))
+		await damageTimer.timeout
+		if attacking == true and Global.player.playerDead == false:
+			attack(body)
+		else:
+			canMove = true
+
+
+func _on_area_3d_2_body_exited(body: Node3D) -> void:
+	if body == Global.player:
+		attacking = false
