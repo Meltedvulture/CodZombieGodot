@@ -6,6 +6,7 @@ extends Node
 var states: Dictionary = {}
 
 func _ready():
+	Global.playerStateMachine = self
 	for child in get_children():
 		if child is State:
 			states[child.name] = child
@@ -29,5 +30,6 @@ func onChildTransition(new_state_name: StringName):
 			currentState.exit()
 			newState.enter(currentState)
 			currentState = newState
+			Global.currentStateName = newState.name
 	else:
 		push_warning("State does not exist HELP!!")

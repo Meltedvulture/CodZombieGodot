@@ -12,6 +12,7 @@ extends CharacterBody3D
 
 @onready var healthTimer = $"Health Regen Timer"
 @onready var weaponRig = $CameraController/Camera3D/WeaponRig
+@onready var damageVignette = $CameraController/Camera3D/CanvasLayer/DamageVignette
 
 var cameraOffset : Vector3
 
@@ -31,7 +32,6 @@ var stamina : float = 100
 var maxStamina : float = 100
 var sprintRecovery : float = 16.0
 var sprintUse : float = 24.0
-var sprinting : bool = false
 
 
 var currentRotation : float
@@ -86,12 +86,13 @@ func _ready():
 
 func _process(delta):
 	_update_camera(delta)
+	damageVignette.material.set_shader_parameter("intensity", move_toward(damageVignette.material.get_shader_parameter("intensity"), 0.0, 0.01))
 	# Update camera movement based on mouse movement
-	CAMERA_CONTROLLER.rotation = lerp(CAMERA_CONTROLLER.rotation, CAMERA_CONTROLLER.rotation + cameraOffset, 0.025)
-	cameraOffset = lerp(cameraOffset, Vector3(0,0,0), 0.05)
+	CAMERA_CONTROLLER.rotation = lerp(CAMERA_CONTROLLER.rotation, CAMERA_CONTROLLER.rotation + cameraOffset, Global.fiLerp(0.025, delta))
+	cameraOffset = lerp(cameraOffset, Vector3(0,0,0), Global.fiLerp(0.05, delta))
 	
 
-	if stamina < maxStamina and sprinting == false:
+	if stamina < maxStamina and Global.currentStateName == "SprintingPlayerState":
 		stamina += sprintRecovery * delta
 		
 	if health < maxHealth and healthTimer.get_time_left() == 0:
@@ -109,14 +110,14 @@ func updateInput(speed: float, acceleration: float, deceleration: float) -> void
 	
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	Global.debug.addProperty("Movement Speed",speed, 2)
-	
+	var delta = get_process_delta_time()
 	
 	if direction:
-		velocity.x = lerp(velocity.x,direction.x * speed, acceleration)
-		velocity.z = lerp(velocity.z,direction.z * speed, acceleration)
+		velocity.x = lerp(velocity.x,direction.x * speed, Global.fiLerp(acceleration, delta))
+		velocity.z = lerp(velocity.z,direction.z * speed, Global.fiLerp(acceleration, delta))
 	else:
-		velocity.x = move_toward(velocity.x, 0, deceleration)
-		velocity.z = move_toward(velocity.z, 0, deceleration)
+		velocity.x = move_toward(velocity.x, 0, Global.fiLerp(deceleration, delta))
+		velocity.z = move_toward(velocity.z, 0, Global.fiLerp(deceleration, delta))
 
 func updateVelocity() -> void:
 		move_and_slide()

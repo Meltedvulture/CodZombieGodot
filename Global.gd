@@ -6,15 +6,26 @@ signal roundChange
 var debug
 var player
 var weaponManager
-var points = 5000
+var points = 500
 var reserveLabel : Label
 var clipLabel : Label
 var pointsLabel : Label
 var roundLabel
+var playerStateMachine
+var currentStateName : String
+var referenceFPS = 60
 
 func _ready():
 	call_deferred("updatePoints")
 
+func fiLerp(weight: float, delta: float) -> float:
+	if delta <= 0.0:
+		return 0.0
+	var w: float = clamp(weight, 0.0, 1.0)
+	if w >= 1.0:
+		w = 1.0
+	
+	return 1.0 - pow(1.0 - w, delta * referenceFPS)
 
 func updateLabels():
 	clipLabel.text = str(Global.weaponManager.clipAmmo)

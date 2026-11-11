@@ -51,4 +51,4 @@ func update(delta):
 		
 func setAnimationSpeed(spd):
 	var alpha = remap(spd, 0.0, speed, 0.0, 1.0)
-	animation.speed_scale = lerp(0.0, topAnimSpeed, alpha)
+	animation.speed_scale = lerp(0.0, topAnimSpeed, Global.fiLerp(alpha, get_process_delta_time()))

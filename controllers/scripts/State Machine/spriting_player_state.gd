@@ -12,7 +12,6 @@ extends PlayerMovementState
 
 func enter(previousState) -> void:
 	animation.play("Sprinting", -1, 1)
-	Global.player.sprinting = true
 	Global.weaponManager.canSight = false
 	setAnimationSpeed(PLAYER.velocity.length())
 
@@ -47,7 +46,6 @@ func update(delta):
 		transition.emit("FallingPlayerState")
 
 func exit():
-	Global.player.sprinting = false
 	Global.weaponManager.canSight = true
 
 func setAnimationSpeed(spd):

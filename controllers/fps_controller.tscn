@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://cednwk8gblcux" path="res://controllers/scripts/State Machine/sliding_player_state.gd" id="11_rk4xh"]
 [ext_resource type="Script" uid="uid://bttldsvuv6dwb" path="res://controllers/scripts/State Machine/jumping_player_state.gd" id="12_uovkr"]
 [ext_resource type="Script" uid="uid://ts5ba16nqwfv" path="res://controllers/scripts/State Machine/falling_player_state.gd" id="13_l8yvu"]
+[ext_resource type="Shader" uid="uid://bee3fntyowr7x" path="res://shaders/damageVignette.gdshader" id="14_0dq5s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u6tj1"]
 
@@ -1995,7 +1996,7 @@ tracks/4/path = NodePath("Weapon:position")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.05, 0.2),
+"times": PackedFloat32Array(0, 0.033333335, 0.050000004, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.25, -0.4, -0.5), Vector3(0.25, -0.35, -0.475), Vector3(0.25, -0.3602, -0.4676), Vector3(0.25, -0.4, -0.5)]
@@ -2007,7 +2008,7 @@ tracks/5/path = NodePath("Weapon:rotation")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.25),
+"times": PackedFloat32Array(0, 0.050000004, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.174533, 2.82312e-16, 1.62577e-15), Vector3(0, 0, 0)]
@@ -2019,10 +2020,10 @@ tracks/6/path = NodePath("Weapon/WeaponBolt:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.0166667, 0.15),
+"times": PackedFloat32Array(0, 0.033333335, 0.15),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-2.32831e-10, 0, 0), Vector3(0, 0, 0.125), Vector3(-2.32831e-10, 0, 0)]
+"values": [Vector3(-2.32831e-10, 0, 0), Vector3(1.3969875e-10, 0, 0.2), Vector3(-2.32831e-10, 0, 0)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -2342,6 +2343,11 @@ _data = {
 &"fullReload": SubResource("Animation_rcx31"),
 &"shoot": SubResource("Animation_5s75f")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3l3k"]
+shader = ExtResource("14_0dq5s")
+shader_parameter/vignette_color = Color(1, 0, 0, 1)
+shader_parameter/intensity = 0.0
 
 [sub_resource type="Animation" id="Animation_xc2pf"]
 length = 0.001
@@ -2710,7 +2716,7 @@ fov = 80.0
 [node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D" unique_id=1206810531]
 
 [node name="Weapon" parent="CameraController/Camera3D/WeaponRig" unique_id=1001647002 node_paths=PackedStringArray("weaponRig", "weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.4, -0.5)
+transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999997, 0.25, -0.4, -0.5)
 weaponRig = NodePath("..")
 weaponAnimationPlayer = NodePath("../weaponAnimations")
 
@@ -2895,6 +2901,17 @@ metadata/extras = {
 "ant_landscape": {},
 "flip_fluid": {}
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CameraController/Camera3D" unique_id=1956826853]
+
+[node name="DamageVignette" type="ColorRect" parent="CameraController/Camera3D/CanvasLayer" unique_id=110410340]
+material = SubResource("ShaderMaterial_k3l3k")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1186564527]
 libraries/ = SubResource("AnimationLibrary_t6fw5")

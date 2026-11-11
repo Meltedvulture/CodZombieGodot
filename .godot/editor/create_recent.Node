@@ -1,3 +1,5 @@
+ColorRect
+CanvasLayer
 Node3D
 BoneAttachment3D
 MeshInstance3D
@@ -11,4 +13,3 @@ Area3D
 NavigationObstacle3D
 Label
 HBoxContainer
-RayCast3D
