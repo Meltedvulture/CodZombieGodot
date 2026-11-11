@@ -2,12 +2,14 @@ extends CharacterBody3D
 
 
 @onready var navAgent = $NavigationAgent3D
+@onready var damageTimer = $DamageTimer
 # Exported variables
 @export var max_health: int = 100
 @export var move_speed: float = 1.0
 @export var gravity: float = 9.8  # Gravity strength (adjust as needed)
 var target: Node3D  # Reference to the player
 var barrier : Node3D
+var canMove = true
 
 # Internal variables
 var current_health: int
@@ -16,7 +18,6 @@ var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_health = max_health + (ZombieRoundManager.round * 50)
-	print(current_health)
 	move_speed = clamp(rng.randf_range(0.5, 0.5 + (ZombieRoundManager.round * 0.5)), 0.5, 4)
 
 # Called every frame.
@@ -29,10 +30,13 @@ func _physics_process(delta):
 	
 	var nextLocation = navAgent.get_next_path_position()
 	velocity = (nextLocation-global_position).normalized() * move_speed
-	
+	look_at(navAgent.get_next_path_position())
+	rotation.x = 0
+	rotation.z = 0
 	
 	# Use move_and_slide to handle movement and gravity
-	move_and_slide()
+	if canMove == true:
+		move_and_slide()
 
 # Function to handle taking damage
 func take_damage(amount: int):
@@ -58,3 +62,11 @@ func damageBarrier():
 		damageBarrier()
 	else:
 		target = Global.player
+
+
+func _on_area_3d_2_body_entered(body: Node3D) -> void:
+	canMove = false
+	damageTimer.start(rng.randf_range(0.3, 0.75))
+	if body and body.has_method("takePlayerDamage"):
+		body.takePlayerDamage(60)
+	canMove = true

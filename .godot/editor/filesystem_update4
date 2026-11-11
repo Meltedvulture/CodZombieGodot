@@ -1,11 +1,5 @@
-res://levels/level_001.tscn
-res://environment/WE_test.tres
-res://Weapons/WeaponManager.gd
-res://controllers/fps_controller.tscn
-res://controllers/scripts/State Machine/falling_player_state.gd
-res://controllers/scripts/State Machine/jumping_player_state.gd
-res://controllers/scripts/State Machine/stateMachine.gd
-res://Global.gd
 res://controllers/scripts/fps_controller.gd
-res://controllers/scripts/State Machine/spriting_player_state.gd
-res://controllers/scripts/State Machine/walking_player_state.gd
+res://controllers/fps_controller.tscn
+res://environment/WE_test.tres
+res://Scenes/Zombie.tscn
+res://Scenes/zombie.gd

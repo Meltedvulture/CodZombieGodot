@@ -97,6 +97,9 @@ func _process(delta):
 		
 	if health < maxHealth and healthTimer.get_time_left() == 0:
 		health += healthRecovery * delta
+	
+	if health / maxHealth < 0.33:
+		damageVignette.material.set_shader_parameter("intensity",0.75)
 
 
 func updateGravity(delta) -> void:
@@ -134,6 +137,7 @@ func meleeLunge():
 
 func takePlayerDamage(damage):
 	health -= damage
+	damageVignette.material.set_shader_parameter("intensity",0.5)
 	healthTimer.start(3)
 
 func landAnimation():

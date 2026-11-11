@@ -2,21 +2,38 @@
 
 [ext_resource type="Script" uid="uid://dhwq3tlnft4fk" path="res://Scenes/zombie.gd" id="1_4ru28"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h15oy"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_h15oy"]
+height = 1.75
 radius = 0.25
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_yf4vm"]
 top_radius = 0.25
 bottom_radius = 0.25
+height = 1.75
+
+[sub_resource type="BoxMesh" id="BoxMesh_xrivr"]
+size = Vector3(0.33, 0.25, 0.33)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h15oy"]
+radius = 0.25
+height = 1.75
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_13qdw"]
+size = Vector3(0.655, 0.5, 0.5)
 
 [node name="Zombie" type="CharacterBody3D" unique_id=517889778]
 script = ExtResource("1_4ru28")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1198202508]
-shape = SubResource("CapsuleShape3D_h15oy")
+shape = SubResource("CylinderShape3D_h15oy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1782347466]
 mesh = SubResource("CylinderMesh_yf4vm")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1508698460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.2)
+mesh = SubResource("BoxMesh_xrivr")
 skeleton = NodePath("../..")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=459192334]
@@ -28,4 +45,15 @@ collision_mask = 3
 transform = Transform3D(0.965926, -1.13133e-08, -0.258819, 1.13133e-08, 1, -1.48943e-09, 0.258819, -1.48943e-09, 0.965926, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_h15oy")
 
+[node name="Area3D2" type="Area3D" parent="." unique_id=366183429]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2" unique_id=579927680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.5)
+shape = SubResource("BoxShape3D_13qdw")
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=1879165509]
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_2_body_entered"]
