@@ -78,6 +78,8 @@ func attack(body):
 		canMove = false
 		damageTimer.start(rng.randf_range(0.3, 1))
 		await damageTimer.timeout
+		if Global.player.playerDead == true:
+			return
 		if body and body.has_method("takePlayerDamage"):
 			body.takePlayerDamage(60)
 		damageTimer.start(rng.randf_range(0.75, 2))

@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1794462714
+::res://::1794477367
 export_presets.cfg::TextFile::-1::1747379296::0::1::::<><><>0<>0<><>::
 Global.gd::GDScript::2763096555857727694::1794461708::0::1::::<>Node<><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::8444505666706689092::1696380588::1772894581::1::::<><><>0<>0<>a668b572b9d9da47f66dae191fd36e26<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
@@ -244,11 +244,11 @@ RoundLabelSettings.tres::LabelSettings::3270184185222422003::1772894602::0::1:::
 1911 Normal.png::CompressedTexture2D/CompressedTexture2D::5132103233884767247::1768407762::1772894581::1::::<><><>0<>0<>4f27d41cdb700e23b02d5a6251e8ca11<>res://.godot/imported/1911 Normal.png-9a26bb0c10aaf05ce57d3b01a10a4806.s3tc.ctex::
 1911 Slide.res::ArrayMesh::9135893426251300191::1772894602::0::1::::<><><>0<>0<><>::uid://o8b4xv05e645::::res://Models/Blender/1911/1911 Diffuse.png<>uid://cfea8w70hpyx0::::res://Models/Blender/1911/1911 Normal.png
 1911.blend::PackedScene/PackedScene::8958334900145241686::1768464497::1772894587::1::::<><><>0<>0<>ba769e02e6f1df86235fe5632014ff58<>res://.godot/imported/1911.blend-d87b7259068126ffccf6a4dab5558434.scn::uid://crind40400uiw::::res://Models/Blender/1911/1911 Body.res<>uid://d3fq3hoy6pkj4::::res://Models/Blender/1911/1911 Slide.res<>uid://bdj60y1k4akba::::res://Models/Blender/1911/1911 Magazine.res
-::res://Models/Blender/B2023R/::1794467840
-B2023R.blend::PackedScene::812542925496187570::1794467840::1794467848::1::::<><><>0<>0<>dffbcca79d0e72102127c99c8842e76d<>res://.godot/imported/B2023R.blend-1682c36d8e9302c81a7857d9dacadffc.scn::uid://dadld7hdsklr3::::res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_002.res<>uid://bs06cgwuso4nf::::res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_004.res<>uid://c6huuil1d2y4o::::res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_003.res
-B2023R_t6_wpn_pistol_b2023r_view_LOD_0_002.res::ArrayMesh::7166130120365230490::1794467848::0::1::::<><><>0<>0<><>::res://../../../Games/All BO2 Zombies xModels (.MA, .OBJ, .XE, .SMD)/BO2 Zombies Weapon Texture Models/.dds & .tga Files/~~-gmtl_t6_wpn_pistol_b2023r_~11bb827b.dds<>res://../../../Games/All BO2 Zombies xModels (.MA, .OBJ, .XE, .SMD)/BO2 Zombies Weapon Texture Models/.dds & .tga Files/~mtl_t6_wpn_pistol_b2023r_ao-~c0cac63b.dds
-B2023R_t6_wpn_pistol_b2023r_view_LOD_0_004.res::ArrayMesh::3703315461451893315::1794467848::0::1::::<><><>0<>0<><>::res://../../../Games/All BO2 Zombies xModels (.MA, .OBJ, .XE, .SMD)/BO2 Zombies Weapon Texture Models/.dds & .tga Files/~~-gmtl_t6_wpn_pistol_b2023r_~11bb827b.dds<>res://../../../Games/All BO2 Zombies xModels (.MA, .OBJ, .XE, .SMD)/BO2 Zombies Weapon Texture Models/.dds & .tga Files/~mtl_t6_wpn_pistol_b2023r_ao-~c0cac63b.dds
-B2023R_t6_wpn_pistol_b2023r_view_LOD_0_003.res::ArrayMesh::6964396658543121360::1794467848::0::1::::<><><>0<>0<><>::res://../../../Games/All BO2 Zombies xModels (.MA, .OBJ, .XE, .SMD)/BO2 Zombies Weapon Texture Models/.dds & .tga Files/~~-gmtl_t6_wpn_pistol_b2023r_~11bb827b.dds<>res://../../../Games/All BO2 Zombies xModels (.MA, .OBJ, .XE, .SMD)/BO2 Zombies Weapon Texture Models/.dds & .tga Files/~mtl_t6_wpn_pistol_b2023r_ao-~c0cac63b.dds
+::res://Models/Blender/B2023R/::1794477774
+B2023R.blend::PackedScene::812542925496187570::1794477774::1794477780::1::::<><><>0<>0<>dffbcca79d0e72102127c99c8842e76d<>res://.godot/imported/B2023R.blend-1682c36d8e9302c81a7857d9dacadffc.scn::uid://fqxge4uy87gr::::res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_002.res<>uid://b2wlu65w3l2sr::::res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_004.res<>uid://7jrmpgdgy07b::::res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_003.res
+B2023R_t6_wpn_pistol_b2023r_view_LOD_0_002.res::ArrayMesh::385381723687019813::1794477779::0::1::::<><><>0<>0<><>::res://../../../Games/All BO2 Zombies xModels (.MA, .OBJ, .XE, .SMD)/BO2 Zombies Weapon Texture Models/.dds & .tga Files/~~-gmtl_t6_wpn_pistol_b2023r_~11bb827b.dds<>res://../../../Games/All BO2 Zombies xModels (.MA, .OBJ, .XE, .SMD)/BO2 Zombies Weapon Texture Models/.dds & .tga Files/~mtl_t6_wpn_pistol_b2023r_ao-~c0cac63b.dds
+B2023R_t6_wpn_pistol_b2023r_view_LOD_0_003.res::ArrayMesh::2265676811871839141::1794477779::0::1::::<><><>0<>0<><>::res://../../../Games/All BO2 Zombies xModels (.MA, .OBJ, .XE, .SMD)/BO2 Zombies Weapon Texture Models/.dds & .tga Files/~~-gmtl_t6_wpn_pistol_b2023r_~11bb827b.dds<>res://../../../Games/All BO2 Zombies xModels (.MA, .OBJ, .XE, .SMD)/BO2 Zombies Weapon Texture Models/.dds & .tga Files/~mtl_t6_wpn_pistol_b2023r_ao-~c0cac63b.dds
+B2023R_t6_wpn_pistol_b2023r_view_LOD_0_004.res::ArrayMesh::4327641050913267385::1794477779::0::1::::<><><>0<>0<><>::res://../../../Games/All BO2 Zombies xModels (.MA, .OBJ, .XE, .SMD)/BO2 Zombies Weapon Texture Models/.dds & .tga Files/~~-gmtl_t6_wpn_pistol_b2023r_~11bb827b.dds<>res://../../../Games/All BO2 Zombies xModels (.MA, .OBJ, .XE, .SMD)/BO2 Zombies Weapon Texture Models/.dds & .tga Files/~mtl_t6_wpn_pistol_b2023r_ao-~c0cac63b.dds
 ::res://Models/Blender/Barrier/::1772894587
 Barrier.blend::PackedScene/PackedScene::5583090085937413293::1764168141::1772894587::1::::<><><>0<>0<>59336b19d435fe619021e159ad593442<>res://.godot/imported/Barrier.blend-891ab3dda04e6acca802120c515e449a.scn::uid://v6kv71wqa82v::::res://Models/Blender/Barrier/textures/woodcreator_1_basecolor.jpg<>uid://cyw8sc0cne762::::res://Models/Blender/Barrier/textures/woodcreator_1_roughness.jpg<>uid://d22ycl2e3wh5h::::res://Models/Blender/Barrier/textures/woodcreator_1_normal.jpg<>uid://blwx7yunkg0re::::res://Models/Blender/Barrier/textures/Sand Bags.png
 ::res://Models/Blender/Barrier/assets/::1745926561
@@ -394,22 +394,22 @@ crowbarMesh.res::ArrayMesh::2807694131857016636::1772894604::0::1::::<><><>0<>0<
 crowbar_0.jpg::CompressedTexture2D::8129549902711787239::1772894588::1772894588::1::::<><><>0<>0<>b9c0f179fdcf533f66096dc720e061fd<>res://.godot/imported/crowbar_0.jpg-ac33ca9d606b2bdfe4124fe232df2385.s3tc.ctex::
 crowbar_1.png::CompressedTexture2D/CompressedTexture2D::608647336323435154::1745031722::1772894579::1::::<><><>0<>0<>4359c7c3000be237c7e912af0f141348<>res://.godot/imported/crowbar_1.png-4695e384ab281e25ab489d339bc40255.s3tc.ctex::
 crowbar_2.png::CompressedTexture2D/CompressedTexture2D::6400867523979913931::1745031723::1772894579::1::::<><><>0<>0<>b3decbfcc6379a167ebe4b4161497403<>res://.godot/imported/crowbar_2.png-53645684ed11c8a139d96858b0a09d15.s3tc.ctex::
-::res://Prefabs/::1794288404
+::res://Prefabs/::1794468019
 Barrier.tscn::PackedScene::5343012339335433202::1794222668::0::1::::<><><>0<>0<><>::uid://blwx7yunkg0re::::res://Models/Blender/Barrier/textures/Sand Bags.png<>uid://dtw6lnlvl1qa3::::res://Scripts/barrier.gd<>uid://v6kv71wqa82v::::res://Models/Blender/Barrier/textures/woodcreator_1_basecolor.jpg<>uid://cyw8sc0cne762::::res://Models/Blender/Barrier/textures/woodcreator_1_roughness.jpg<>uid://d22ycl2e3wh5h::::res://Models/Blender/Barrier/textures/woodcreator_1_normal.jpg
 Buyable Door.tscn::PackedScene::100491587781450698::1772894596::0::1::::<><><>0<>0<><>::uid://dmnsp2wm3u85g::::res://Scripts/buyableDoor.gd<>uid://hl85rb0vp1a5::::res://Models/Blender/Buyable Doors/BuyableDoor.res
 Juggernog Machine.tscn::PackedScene::430760055189837015::1772894597::0::1::::<><><>0<>0<><>::uid://cv5pwb6lheysl::::res://Models/Blender/Perks/Juggernog/Juggernog Machine.res<>uid://24xfep347dqq::::res://Scripts/Perks/Machines/Juggernog Machine.gd
 Mystery Box Location.tscn::PackedScene::152225428230123185::1772894598::0::1::::<><><>0<>0<><>::uid://bw7edhxrprg5b::::res://Models/Blender/Mystery Box/Mystery Box Platform.res<>uid://d1g3jax2jx6g8::::res://Scripts/Mystery Box.gd<>uid://b71g088x3ieml::::res://Models/Blender/Mystery Box/Mystery Box.res<>uid://cuiuf0jd1vsmt::::res://Models/Blender/Mystery Box/Mystery Box Lid.res<>uid://o8b4xv05e645::::res://Models/Blender/1911/1911 Diffuse.png<>uid://dxji113s3pll2::::res://Models/Blender/1911/1911 Roughness.png<>uid://cfea8w70hpyx0::::res://Models/Blender/1911/1911 Normal.png
-Wall Weapon.tscn::PackedScene::7547645967618281590::1772894598::0::1::::<><><>0<>0<><>::uid://din4bshtvrbrb::::res://Scripts/wallWeapon.gd
+Wall Weapon.tscn::PackedScene::7547645967618281590::1794468019::0::1::::<><><>0<>0<><>::uid://din4bshtvrbrb::::res://Scripts/wallWeapon.gd
 Zombie Spawnpoint.tscn::PackedScene::7071569727296889640::1772894599::0::1::::<><><>0<>0<><>::uid://c32i1l36loome::::res://Scripts/zombieSpawnPoint.gd
 ZombieRoundManager.tscn::PackedScene::6051194576695007678::1794288404::0::1::::<><><>0<>0<><>::uid://d0frvk5yhjni5::::res://ZombieRoundManager.gd
 ::res://Scenes/::1794467332
 Bullet Hole.tscn::PackedScene::2286284350540549235::1772894600::0::1::::<><><>0<>0<><>::uid://cahtc4qhj5g21::::res://textures/bullet_hole_0.png
 Zombie.tscn::PackedScene::6548205012836176074::1794467332::0::1::::<><><>0<>0<><>::uid://dhwq3tlnft4fk::::res://Scripts/zombie.gd
-::res://Scripts/::1794464073
+::res://Scripts/::1794467956
 barrier.gd::GDScript::8540168962066232252::1794288404::0::1::::Barrier<>Node3D<><>0<>0<><>::
 buyableDoor.gd::GDScript::8029486231016457446::1764337468::0::1::::<>StaticBody3D<><>0<>0<><>::
 Mystery Box.gd::GDScript::8998274436905333969::1794288404::0::1::::mysteryBoxLocation<>StaticBody3D<><>0<>0<><>::
-wallWeapon.gd::GDScript::7749373246696411199::1765716108::0::1::::<>StaticBody3D<><>0<>0<><>::
+wallWeapon.gd::GDScript::7749373246696411199::1794467956::0::1::::<>StaticBody3D<><>0<>0<><>::
 zombie.gd::GDScript::7697022756783069424::1794464073::0::1::::<>CharacterBody3D<><>0<>0<><>::
 zombieSpawnPoint.gd::GDScript::6794399977629521748::1794288404::0::1::::ZombieSpawnPoint<>Node3D<><>0<>0<><>::
 ::res://Scripts/Perks/::1764486560
@@ -428,8 +428,8 @@ Weapon Noise.tres::NoiseTexture2D::8740860091541894666::1772894604::0::1::::<><>
 ::res://Themes/UI/::1772894604
 Debug.tres::Theme::7496552662147399736::1772894604::0::1::::<><><>0<>0<><>::uid://bay56jufqvixq::::res://Themes/UI/debugStyleBoxFlat.tres
 debugStyleBoxFlat.tres::StyleBoxFlat::2437843123040214918::1772894604::0::1::::<><><>0<>0<><>::
-::res://Weapons/::1794467744
-1911.tres::Resource/Weapons::3637660601200984671::1794024205::0::1::::<><><>0<>0<><>::uid://d3fq3hoy6pkj4::::res://Models/Blender/1911/1911 Slide.res<>uid://c0afljd65dkhp::::res://Weapons/Weapons.gd<>uid://bdj60y1k4akba::::res://Models/Blender/1911/1911 Magazine.res<>uid://crind40400uiw::::res://Models/Blender/1911/1911 Body.res
+::res://Weapons/::1794468019
+1911.tres::Resource/Weapons::3637660601200984671::1794468019::0::1::::<><><>0<>0<><>::uid://d3fq3hoy6pkj4::::res://Models/Blender/1911/1911 Slide.res<>uid://c0afljd65dkhp::::res://Weapons/Weapons.gd<>uid://bdj60y1k4akba::::res://Models/Blender/1911/1911 Magazine.res<>uid://crind40400uiw::::res://Models/Blender/1911/1911 Body.res
 Crowbar.tres::Resource/Weapons::7002209131198789115::1772894604::0::1::::<><><>0<>0<><>::uid://bgacku3pgbu6g::::res://Models/Weapons/crowbarMesh.res<>uid://c0afljd65dkhp::::res://Weapons/Weapons.gd
 Kappa 19.tres::Resource/Weapons::2673752300608381410::1794467744::0::1::::<><><>0<>0<><>::uid://c6huuil1d2y4o::::res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_003.res<>uid://bs06cgwuso4nf::::res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_004.res<>uid://dadld7hdsklr3::::res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_002.res<>uid://c0afljd65dkhp::::res://Weapons/Weapons.gd
 M14.tres::Resource/Weapons::2118846122540551344::1794291591::0::1::::<><><>0<>0<><>::uid://bysuauilrvaka::::res://Models/Blender/M14/M14Bolt.res<>uid://br8ovbrcgtnua::::res://Models/Blender/M14/M14 Magazine.res<>uid://b2y1omvurvvrg::::res://Models/Blender/M14/M14.res<>uid://c0afljd65dkhp::::res://Weapons/Weapons.gd
