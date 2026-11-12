@@ -76,7 +76,7 @@ func _on_area_3d_2_body_entered(body: Node3D) -> void:
 		
 func attack(body):
 		canMove = false
-		damageTimer.start(rng.randf_range(0.3, 0.75))
+		damageTimer.start(rng.randf_range(0.3, 1))
 		await damageTimer.timeout
 		if body and body.has_method("takePlayerDamage"):
 			body.takePlayerDamage(60)

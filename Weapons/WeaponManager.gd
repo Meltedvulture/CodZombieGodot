@@ -468,7 +468,7 @@ func knife():
 		var spaceState = camera.get_world_3d().direct_space_state
 		var screenCenter = get_viewport().size / 2
 		var origin = camera.project_ray_origin(screenCenter)
-		var endpoint = origin + camera.project_ray_normal(screenCenter) * 1.25
+		var endpoint = origin + camera.project_ray_normal(screenCenter) * 1.33
 		var query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
 		query.collide_with_bodies = true
 		var result = spaceState.intersect_ray(query)
@@ -499,7 +499,7 @@ func knifeDamage():
 	var spaceState = camera.get_world_3d().direct_space_state
 	var screenCenter = get_viewport().size / 2
 	var origin = camera.project_ray_origin(screenCenter)
-	var endpoint = origin + camera.project_ray_normal(screenCenter) * 1.25
+	var endpoint = origin + camera.project_ray_normal(screenCenter) * 1.33
 	var query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
 	query.collide_with_bodies = true
 	var result = spaceState.intersect_ray(query)

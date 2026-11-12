@@ -77,8 +77,8 @@ func _update_camera(delta):
 		_tilt_input = 0.0
 	
 func _ready():
-	Global.roundLabel = %RoundLabel
 	Global.player = self
+	Global.roundLabel = %RoundLabel
 	Global.roundChange.connect(flashLabel)
 	health = 100
 	maxHealth = 100
@@ -131,7 +131,7 @@ func updateVelocity() -> void:
 
 func flashLabel():
 	var tween = create_tween()
-	tween.set_loops(3)
+	tween.set_loops(5)
 	tween.tween_property(%RoundLabel.label_settings, "font_color", white, 1.0)
 	tween.tween_property(%RoundLabel.label_settings, "font_color", red, 1.0)
 
@@ -150,7 +150,7 @@ func deathAnimation():
 	playerDead = true
 	Global.inputAllowed = false
 	weaponRig.visible = false
-	ANIMATIONPLAYER.play("crouch", -1.0, 2)
+	ANIMATIONPLAYER.play("crouch", -1.0, 1)
 
 func landAnimation():
 	var landingTween = create_tween()

@@ -1,8 +1,14 @@
-res://Scenes/Zombie.tscn
-res://environment/WE_test.tres
-res://Scenes/zombie.gd
-res://Scripts/zombie.gd
 res://controllers/fps_controller.tscn
+res://environment/WE_test.tres
 res://controllers/scripts/fps_controller.gd
-res://Global.gd
-res://controllers/scripts/State Machine/stateMachine.gd
+res://Scenes/Zombie.tscn
+res://Scripts/zombie.gd
+res://Weapons/WeaponManager.gd
+res://controllers/scripts/State Machine/jumping_player_state.gd
+res://Weapons/Kappa 19.tres
+res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_002.res
+res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_004.res
+res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_003.res
+res://Prefabs/Wall Weapon.tscn
+res://Scripts/wallWeapon.gd
+res://Weapons/1911.tres

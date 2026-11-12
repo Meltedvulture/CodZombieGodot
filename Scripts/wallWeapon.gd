@@ -15,10 +15,11 @@ func hoverText():
 
 func purchase():
 	if Global.points >= cost and !Global.weaponManager.weaponInventory.has(str(weapon.resource_path)):
-		Global.points -= cost
-		Global.updatePoints() 
-		cost = ammoCost
-		Global.weaponManager.addWeapon(str(weapon.resource_path))
-	else:
-		Global.weaponManager.reserveAmmo = weapon.reserve
-		Global.updateLabels()
+		if Global.weaponManager.actionable:
+			Global.points -= cost
+			Global.updatePoints() 
+			cost = ammoCost
+			Global.weaponManager.addWeapon(str(weapon.resource_path))
+		else:
+			Global.weaponManager.reserveAmmo = weapon.reserve
+			Global.updateLabels()

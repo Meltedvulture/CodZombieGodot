@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dhwq3tlnft4fk" path="res://Scripts/zombie.gd" id="1_4ru28"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_h15oy"]
-height = 1.75
-radius = 0.25
+[sub_resource type="BoxShape3D" id="BoxShape3D_0dq5s"]
+size = Vector3(0.5, 1.75, 0.5)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_yf4vm"]
 top_radius = 0.25
@@ -19,13 +18,13 @@ radius = 0.25
 height = 1.75
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_13qdw"]
-size = Vector3(0.655, 0.5, 0.5)
+size = Vector3(0.5, 0.5, 0.5)
 
 [node name="Zombie" type="CharacterBody3D" unique_id=517889778]
 script = ExtResource("1_4ru28")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1198202508]
-shape = SubResource("CylinderShape3D_h15oy")
+shape = SubResource("BoxShape3D_0dq5s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1782347466]
 mesh = SubResource("CylinderMesh_yf4vm")
