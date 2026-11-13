@@ -19,26 +19,56 @@ var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_health = max_health + (ZombieRoundManager.round * 50)
-	move_speed = clamp(rng.randf_range(0.5, 0.5 + (ZombieRoundManager.round * 0.5)), 0.5, 4)
+	move_speed = clamp(rng.randf_range(0.5, 0.5 + (ZombieRoundManager.round * 0.5)), 0.5, 2)
 	rng.randomize()
 
 # Called every frame.
+var path_update_timer := 0.0
+var path_update_interval := 0.2 # Update path 5 times a second instead of 60
+
 func _physics_process(delta):
-	if not is_on_floor():  # Apply gravity if not on the floor
+	# 1. Apply gravity properly
+	if not is_on_floor():
 		velocity.y -= gravity * delta
-	
-	if target:
-		navAgent.set_target_position(target.global_position)
-	
-	var nextLocation = navAgent.get_next_path_position()
-	velocity = (nextLocation-global_position).normalized() * move_speed
-	look_at(navAgent.get_next_path_position())
-	rotation.x = 0
-	rotation.z = 0
-	
-	# Use move_and_slide to handle movement and gravity
-	if canMove == true:
+	else:
+		velocity.y = 0.0
+
+	if not target or not canMove:
 		move_and_slide()
+		return
+
+	# 2. Throttle target updates to prevent jitter and save performance
+	path_update_timer -= delta
+	if path_update_timer <= 0.0:
+		navAgent.target_position = target.global_position
+		path_update_timer = path_update_interval
+
+	# 3. Stop moving if we've reached the player
+	if navAgent.is_navigation_finished():
+		velocity.x = 0.0
+		velocity.z = 0.0
+		move_and_slide()
+		return
+
+	# 4. Calculate horizontal direction ONLY (ignore Y axis)
+	var next_location = navAgent.get_next_path_position()
+	var direction = next_location - global_position
+	direction.y = 0.0 
+	
+	if direction.length() > 0.01:
+		direction = direction.normalized()
+		velocity.x = direction.x * move_speed
+		velocity.z = direction.z * move_speed
+		
+		# Safely rotate towards movement direction
+		var target_angle = atan2(-direction.x, -direction.z)
+		rotation.y = lerp_angle(rotation.y, target_angle, 10.0 * delta)
+	else:
+		velocity.x = 0.0
+		velocity.z = 0.0
+
+	move_and_slide()
+
 
 func _process(delta: float) -> void:
 	pass

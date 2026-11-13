@@ -2,7 +2,7 @@ extends Node
 
 #var roundLabel = Global.player.get_node("/root/RoundLabel")
 
-var round = 1
+var round = 10
 var baseZombies = 4
 var mysteryBoxPool = preload("res://Weapons/weaponPools/DefaultWeaponPool.tres")
 var boxLocations = []

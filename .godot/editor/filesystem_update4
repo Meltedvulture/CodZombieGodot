@@ -3,3 +3,6 @@ res://levels/level_001.tscn
 res://Weapons/Kappa 19.tres
 res://environment/WE_test.tres
 res://Scripts/wallWeapon.gd
+res://Scripts/zombie.gd
+res://ZombieRoundManager.gd
+res://Scenes/Zombie.tscn
