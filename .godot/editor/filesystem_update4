@@ -1,9 +1,5 @@
-res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_002.res
-res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_004.res
-res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_003.res
-res://Prefabs/Wall Weapon.tscn
-res://environment/WE_test.tres
 res://controllers/fps_controller.tscn
-res://Scripts/zombie.gd
-res://controllers/scripts/fps_controller.gd
+res://levels/level_001.tscn
+res://Weapons/Kappa 19.tres
+res://environment/WE_test.tres
 res://Scripts/wallWeapon.gd

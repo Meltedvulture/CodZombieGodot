@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Weapons" format=3 uid="uid://bedgkscpknf0u"]
 
-[ext_resource type="ArrayMesh" uid="uid://c6huuil1d2y4o" path="res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_003.res" id="1_desea"]
-[ext_resource type="ArrayMesh" uid="uid://bs06cgwuso4nf" path="res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_004.res" id="2_13cea"]
-[ext_resource type="ArrayMesh" uid="uid://dadld7hdsklr3" path="res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_002.res" id="3_pootr"]
+[ext_resource type="ArrayMesh" uid="uid://d3fq3hoy6pkj4" path="res://Models/Blender/1911/1911 Slide.res" id="1_desea"]
+[ext_resource type="ArrayMesh" uid="uid://bdj60y1k4akba" path="res://Models/Blender/1911/1911 Magazine.res" id="2_13cea"]
+[ext_resource type="ArrayMesh" uid="uid://crind40400uiw" path="res://Models/Blender/1911/1911 Body.res" id="3_pootr"]
 [ext_resource type="Script" uid="uid://c0afljd65dkhp" path="res://Weapons/Weapons.gd" id="4_xa2pf"]
 
 [resource]

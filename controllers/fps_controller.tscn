@@ -4,18 +4,17 @@
 [ext_resource type="Material" uid="uid://b4gwd5h7ixvct" path="res://materials/player.tres" id="2_gldw4"]
 [ext_resource type="PackedScene" uid="uid://csj7vcqrenjsi" path="res://Weapons/Weapon.tscn" id="3_5w0k0"]
 [ext_resource type="Script" uid="uid://da4bqfupciool" path="res://controllers/reticle.gd" id="3_xc2pf"]
-[ext_resource type="Resource" uid="uid://bedgkscpknf0u" path="res://Weapons/Kappa 19.tres" id="4_k3l3k"]
+[ext_resource type="ArrayMesh" uid="uid://crind40400uiw" path="res://Models/Blender/1911/1911 Body.res" id="4_0dq5s"]
 [ext_resource type="Script" uid="uid://chelsy2m60l2o" path="res://controllers/scripts/interaction_cast.gd" id="4_tg6sc"]
 [ext_resource type="Theme" uid="uid://de2nek577lf7m" path="res://Themes/UI/Debug.tres" id="4_y677r"]
 [ext_resource type="Script" uid="uid://dvspsmhr73myh" path="res://controllers/scripts/debug_panel.gd" id="5_co0pi"]
 [ext_resource type="ArrayMesh" uid="uid://bo7iq3wjmi3yv" path="res://Models/Blender/Knife/Knife.res" id="5_h7h5r"]
-[ext_resource type="ArrayMesh" uid="uid://fqxge4uy87gr" path="res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_002.res" id="5_q1hwh"]
+[ext_resource type="ArrayMesh" uid="uid://bdj60y1k4akba" path="res://Models/Blender/1911/1911 Magazine.res" id="5_k3l3k"]
 [ext_resource type="ArrayMesh" uid="uid://ckkclf5ql1i2n" path="res://Models/Blender/Perks/Juggernog/Juggernog Cap.res" id="6_5b0ob"]
 [ext_resource type="Script" uid="uid://dkk1lhseynn15" path="res://controllers/scripts/State Machine/stateMachine.gd" id="6_co0pi"]
-[ext_resource type="ArrayMesh" uid="uid://b2wlu65w3l2sr" path="res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_004.res" id="6_mqjtl"]
+[ext_resource type="ArrayMesh" uid="uid://d3fq3hoy6pkj4" path="res://Models/Blender/1911/1911 Slide.res" id="6_q1hwh"]
 [ext_resource type="ArrayMesh" uid="uid://cickm620g1cto" path="res://Models/Blender/Perks/Juggernog/Juggernog Bottle.res" id="7_5s75f"]
 [ext_resource type="Script" uid="uid://dd8ov1iyaklk5" path="res://controllers/scripts/State Machine/idle_player_state.gd" id="7_gshig"]
-[ext_resource type="ArrayMesh" uid="uid://7jrmpgdgy07b" path="res://Models/Blender/B2023R/B2023R_t6_wpn_pistol_b2023r_view_LOD_0_003.res" id="7_qmwy2"]
 [ext_resource type="LabelSettings" uid="uid://dskxen8j6183q" path="res://materials/Ammo Counter Label Settings.tres" id="8_fyafc"]
 [ext_resource type="Script" uid="uid://dv2uyfesuk4fh" path="res://controllers/scripts/State Machine/walking_player_state.gd" id="8_jmoha"]
 [ext_resource type="Texture2D" uid="uid://n2u2agk07ehh" path="res://Models/Blender/Hands/Hands Diffuse.png" id="8_rcx31"]
@@ -2718,23 +2717,22 @@ fov = 80.0
 
 [node name="Weapon" parent="CameraController/Camera3D/WeaponRig" unique_id=1001647002 node_paths=PackedStringArray("weaponRig", "weaponAnimationPlayer") instance=ExtResource("3_5w0k0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.4, -0.5)
-weaponType = ExtResource("4_k3l3k")
 reset = true
 weaponRig = NodePath("..")
 weaponAnimationPlayer = NodePath("../weaponAnimations")
 
 [node name="WeaponMesh" parent="CameraController/Camera3D/WeaponRig/Weapon" index="0" unique_id=704944856]
-mesh = ExtResource("5_q1hwh")
+mesh = ExtResource("4_0dq5s")
 
 [node name="WeaponMagazine" parent="CameraController/Camera3D/WeaponRig/Weapon" index="1" unique_id=333909495]
-mesh = ExtResource("6_mqjtl")
+mesh = ExtResource("5_k3l3k")
 
 [node name="WeaponBolt" parent="CameraController/Camera3D/WeaponRig/Weapon" index="2" unique_id=1494700676]
 transform = Transform3D(1, 0, 1.86265e-09, 0, 1, 0, -1.86265e-09, 0, 1, 0, 0, 0)
-mesh = ExtResource("7_qmwy2")
+mesh = ExtResource("6_q1hwh")
 
 [node name="WeaponShadow" parent="CameraController/Camera3D/WeaponRig/Weapon" index="3" unique_id=897984139]
-mesh = ExtResource("5_q1hwh")
+mesh = ExtResource("4_0dq5s")
 
 [node name="Hands" type="Node3D" parent="CameraController/Camera3D/WeaponRig/Weapon" unique_id=1054873702]
 transform = Transform3D(1, 6.78812e-30, 0, 6.78812e-30, 1, 0, 0, 0, 1, -0.25, -0.1, 0.25)
