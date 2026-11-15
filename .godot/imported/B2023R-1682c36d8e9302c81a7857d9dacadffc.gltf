@@ -453,17 +453,17 @@
 		{
 			"mimeType":"image/png",
 			"name":"mtl_t6_wpn_pistol_b2023r_nml.tga",
-			"uri":"../../../../../Games/All%20BO2%20Zombies%20xModels%20%28.MA%2C%20.OBJ%2C%20.XE%2C%20.SMD%29/BO2%20Zombies%20Weapon%20Texture%20Models/.dds%20%26%20.tga%20Files/mtl_t6_wpn_pistol_b2023r_nml.tga"
+			"uri":"../../Models/Blender/B2023R/mtl_t6_wpn_pistol_b2023r_nml.png"
 		},
 		{
 			"mimeType":"image/png",
 			"name":"~~-gmtl_t6_wpn_pistol_b2023r_~11bb827b.dds",
-			"uri":"../../../../../Games/All%20BO2%20Zombies%20xModels%20%28.MA%2C%20.OBJ%2C%20.XE%2C%20.SMD%29/BO2%20Zombies%20Weapon%20Texture%20Models/.dds%20%26%20.tga%20Files/~~-gmtl_t6_wpn_pistol_b2023r_~11bb827b.dds"
+			"uri":"../../Models/Blender/B2023R/~~-gmtl_t6_wpn_pistol_b2023r_~11bb827b.png"
 		},
 		{
 			"mimeType":"image/png",
-			"name":"~mtl_t6_wpn_pistol_b2023r_ao-~c0cac63b.dds",
-			"uri":"../../../../../Games/All%20BO2%20Zombies%20xModels%20%28.MA%2C%20.OBJ%2C%20.XE%2C%20.SMD%29/BO2%20Zombies%20Weapon%20Texture%20Models/.dds%20%26%20.tga%20Files/~mtl_t6_wpn_pistol_b2023r_ao-~c0cac63b.dds"
+			"name":"~mtl_t6_wpn_pistol_b2023r_ao-~c0cac63b.png",
+			"uri":"../../Models/Blender/B2023R/~mtl_t6_wpn_pistol_b2023r_ao-~c0cac63b.png"
 		}
 	],
 	"accessors":[

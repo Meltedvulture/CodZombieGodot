@@ -1,14 +1,14 @@
-Timer
+MeshInstance3D
 CollisionShape3D
+AudioStreamPlayer
+Timer
 Area3D
 ColorRect
 CanvasLayer
 Node3D
 BoneAttachment3D
-MeshInstance3D
 StaticBody3D
 AnimationPlayer
 Window
 AnimationTree
 NavigationObstacle3D
-Label

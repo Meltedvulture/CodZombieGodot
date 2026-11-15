@@ -1,8 +1,5 @@
-res://controllers/fps_controller.tscn
-res://levels/level_001.tscn
-res://Weapons/Kappa 19.tres
-res://environment/WE_test.tres
-res://Scripts/wallWeapon.gd
-res://Scripts/zombie.gd
-res://ZombieRoundManager.gd
 res://Scenes/Zombie.tscn
+res://Environment/WE_test.tres
+res://Models/Blender/Zombie/Zombie_Body.res
+res://Models/Blender/Zombie/Zombie_Head.res
+res://Models/Blender/Zombie/Zombie_LEgs.res

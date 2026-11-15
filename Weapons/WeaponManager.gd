@@ -87,7 +87,6 @@ var horizontalRecoil
 var weaponBulletPhysics
 var weaponBulletScene
 var weaponAnimationName
-var referenceFPS = 60
 
 @export var weaponAnimationPlayer : AnimationPlayer
 
@@ -110,21 +109,9 @@ func _input(event):
 	if event.is_action_pressed("weaponUp"):
 		if !weaponAnimationPlayer.is_playing():
 			switchWeapon(-1)
-	
-		
 
 	if event is InputEventMouseMotion:
 		mouseMovement = event.relative
-
-func fiLerp(weight: float, delta: float) -> float:
-	if delta <= 0.0:
-		return 0.0
-	var w: float = clamp(weight, 0.0, 1.0)
-	
-	if w >= 1.0:
-		w = 1.0
-		
-	return 1.0 - pow(1.0 - w, delta * referenceFPS)
 
 func addWeapon(WeaponPath: String):
 	if weaponInventory.size() < maxInventorySize:
@@ -265,21 +252,21 @@ func sway_weapon(delta, isIdle: bool) -> void:
 			randomSwayX /= randomSwayAmount
 			randomSwayY /= randomSwayAmount
 		if canSwayPosition and isSighting == false:
-			position.x = lerp(position.x, weaponType.position.x + (mouseMovement.x * weaponType.swayAmountPosition + randomSwayX) * delta, fiLerp(weaponType.swaySpeedPosition, delta))
-			position.y = lerp(position.y, weaponType.position.y - (mouseMovement.y * weaponType.swayAmountPosition + randomSwayY) * delta, fiLerp(weaponType.swaySpeedPosition, delta))
+			position.x = lerp(position.x, weaponType.position.x + (mouseMovement.x * weaponType.swayAmountPosition + randomSwayX) * delta, Global.fiLerp(weaponType.swaySpeedPosition, delta))
+			position.y = lerp(position.y, weaponType.position.y - (mouseMovement.y * weaponType.swayAmountPosition + randomSwayY) * delta, Global.fiLerp(weaponType.swaySpeedPosition, delta))
 
 		# Lerp weapon rotation
-		rotation_degrees.y = lerp(rotation_degrees.y, weaponType.rotation.y - (mouseMovement.x * weaponType.swayAmountRotation) * delta, fiLerp(weaponType.swaySpeedRotation, delta))
-		rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x - (mouseMovement.y * weaponType.swayAmountRotation) * delta, fiLerp(weaponType.swaySpeedRotation, delta))
+		rotation_degrees.y = lerp(rotation_degrees.y, weaponType.rotation.y - (mouseMovement.x * weaponType.swayAmountRotation) * delta, Global.fiLerp(weaponType.swaySpeedRotation, delta))
+		rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x - (mouseMovement.y * weaponType.swayAmountRotation) * delta, Global.fiLerp(weaponType.swaySpeedRotation, delta))
 	
 	#Movement bob (Not idle)
 	else:
 		if canSwayPosition and isSighting == false:
-			position.x = lerp(position.x, weaponType.position.x + (mouseMovement.x * weaponType.swayAmountPosition + weaponBobAmount.x) * delta, fiLerp(weaponType.swaySpeedPosition, delta))
-			position.y = lerp(position.y, weaponType.position.y - (mouseMovement.y * weaponType.swayAmountPosition + weaponBobAmount.y) * delta, fiLerp(weaponType.swaySpeedPosition, delta))
+			position.x = lerp(position.x, weaponType.position.x + (mouseMovement.x * weaponType.swayAmountPosition + weaponBobAmount.x) * delta, Global.fiLerp(weaponType.swaySpeedPosition, delta))
+			position.y = lerp(position.y, weaponType.position.y - (mouseMovement.y * weaponType.swayAmountPosition + weaponBobAmount.y) * delta, Global.fiLerp(weaponType.swaySpeedPosition, delta))
 		# Lerp weapon rotation
-		rotation_degrees.y = lerp(rotation_degrees.y, weaponType.rotation.y - (mouseMovement.x * weaponType.swayAmountRotation) * delta, fiLerp(weaponType.swaySpeedRotation, delta))
-		rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x + (mouseMovement.y * weaponType.swayAmountRotation) * delta, fiLerp(weaponType.swaySpeedRotation, delta))
+		rotation_degrees.y = lerp(rotation_degrees.y, weaponType.rotation.y - (mouseMovement.x * weaponType.swayAmountRotation) * delta, Global.fiLerp(weaponType.swaySpeedRotation, delta))
+		rotation_degrees.x = lerp(rotation_degrees.x, weaponType.rotation.x + (mouseMovement.y * weaponType.swayAmountRotation) * delta, Global.fiLerp(weaponType.swaySpeedRotation, delta))
 
 func weaponBob(delta, bobSpeed: float, hbobAmount: float, vbobAmount) -> void:
 	time += delta
@@ -441,17 +428,17 @@ func _process(delta: float) -> void:
 			weaponAccuracy = weaponType.Accuracy / 4
 			position = weaponType.position
 			rotation_degrees = weaponType.rotation
-			weaponRig.position = (lerp(weaponRig.position, sightPosition, fiLerp(sightSpeed, delta)))
+			weaponRig.position = (lerp(weaponRig.position, sightPosition, Global.fiLerp(sightSpeed, delta)))
 		else:
 			isSighting = false
 			reticle.visible = true
 			weaponAccuracy = weaponType.Accuracy
-			weaponRig.position = (lerp(weaponRig.position, Vector3.ZERO, fiLerp(sightSpeed, delta)))
+			weaponRig.position = (lerp(weaponRig.position, Vector3.ZERO, Global.fiLerp(sightSpeed, delta)))
 
 		if Global.currentStateName == "SprintingPlayerState":
-			weaponRig.rotation_degrees = (lerp(weaponRig.rotation_degrees, Vector3(-10,40,0), fiLerp(0.125, delta)))
+			weaponRig.rotation_degrees = (lerp(weaponRig.rotation_degrees, Vector3(-10,40,0), Global.fiLerp(0.125, delta)))
 		else:
-			weaponRig.rotation = (lerp(weaponRig.rotation, Vector3.ZERO, fiLerp(0.125, delta)))
+			weaponRig.rotation = (lerp(weaponRig.rotation, Vector3.ZERO, Global.fiLerp(0.125, delta)))
 
 
 
@@ -548,6 +535,7 @@ func givePerk(perk, bottleMesh, capMesh, cost):
 			"juggernog":
 				await playDrinkAnimation()
 				Global.player.maxHealth = 250
+				Global.player.health = 250
 			"speedCola":
 				pass
 

@@ -2,30 +2,29 @@ extends StaticBody3D
 
 class_name mysteryBoxLocation
 
-@onready var animationPlayer = $AnimationPlayer
-@onready var mysteryBox = $"Mystery Box"
-@onready var interactCollision = $"Interact Collision"
-
-@onready var weaponMesh = %WeaponMesh
-@onready var weaponMagazine = %WeaponMagazine
-@onready var weaponBolt = %WeaponBolt
-@onready var weaponNode = $"Mystery Box/Weapon"
-@onready var changeDelayTimer = $"Change Delay"
+@onready var animationPlayer : AnimationPlayer = $AnimationPlayer
+@onready var mysteryBox : Node3D = $"Mystery Box"
+@onready var interactCollision : CollisionShape3D = $"Interact Collision"
+@onready var weaponMesh : MeshInstance3D = %WeaponMesh
+@onready var weaponMagazine : MeshInstance3D = %WeaponMagazine
+@onready var weaponBolt : MeshInstance3D = %WeaponBolt
+@onready var weaponNode : Node3D = $"Mystery Box/Weapon"
+@onready var changeDelayTimer : Timer = $"Change Delay"
 
 @export var objectName : String = "Mystery Box"
-@export var hasBox = false
-@export var cost = 950
+@export var hasBox : bool = false
+@export var cost : int = 950
 
-var defaultText = "Hold F to roll the " + objectName + " Cost: " + str(cost)
-var pickedWeaponText = "You should not be seeing this text, THIS IS AN ERROR WAAAHH"
+var defaultText : String = "Hold F to roll the " + objectName + " Cost: " + str(cost)
+var pickedWeaponText : String = "You should not be seeing this text, THIS IS AN ERROR WAAAHH"
 
-var opened = false
-var tookWeapon = false
-var choseWeapon = false
+var opened : bool = false
+var tookWeapon : bool = false
+var choseWeapon : bool = false
 var mysteryBoxPool = null
 var rng = RandomNumberGenerator.new()
 var loadedWeapon
-var timesrolled = 0
+var timesrolled : int = 0
 
 func _ready() -> void:
 	startBox()
@@ -43,7 +42,7 @@ func update():
 func purchase():
 	if Global.points >= cost and opened == false:
 		Global.points -= cost
-		Global.updatePoints()
+		Global.updateLabels()
 		opened = true
 		timesrolled += 1
 		animationPlayer.play("Open", -1, 1)

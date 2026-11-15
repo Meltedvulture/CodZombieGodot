@@ -1,8 +1,8 @@
 extends StaticBody3D
 
-@onready var animationPlayer = $AnimationPlayer
+@onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 @export var objectName : String = "Door"
-@export var cost = 1000
+@export var cost : int = 1000
 @export var spawnPoints: Array[ZombieSpawnPoint]
 
 func update():
@@ -14,7 +14,7 @@ func hoverText():
 func purchase():
 	if Global.points >= cost:
 		Global.points -= cost
-		Global.updatePoints() 
+		Global.updateLabels()
 		animationPlayer.play("open", -1, 1)
 		for spawnPoint in spawnPoints:
 			spawnPoint.spawnEnabled = true

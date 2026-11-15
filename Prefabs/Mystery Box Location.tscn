@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cf0eo6vohkej"]
 
 [ext_resource type="ArrayMesh" uid="uid://bw7edhxrprg5b" path="res://Models/Blender/Mystery Box/Mystery Box Platform.res" id="1_a80k1"]
-[ext_resource type="Script" uid="uid://d1g3jax2jx6g8" path="res://Scripts/Mystery Box.gd" id="1_eduwl"]
+[ext_resource type="Script" uid="uid://d1g3jax2jx6g8" path="res://Scripts/mysteryBox.gd" id="1_eduwl"]
 [ext_resource type="ArrayMesh" uid="uid://b71g088x3ieml" path="res://Models/Blender/Mystery Box/Mystery Box.res" id="2_rsbnb"]
 [ext_resource type="ArrayMesh" uid="uid://cuiuf0jd1vsmt" path="res://Models/Blender/Mystery Box/Mystery Box Lid.res" id="3_nnmi6"]
 [ext_resource type="Texture2D" uid="uid://o8b4xv05e645" path="res://Models/Blender/1911/1911 Diffuse.png" id="5_3l40s"]

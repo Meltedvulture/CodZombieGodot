@@ -4,20 +4,20 @@ signal zombieDied
 signal roundChange
 
 var debug
-var player
-var weaponManager
-var points = 500
+var player : CharacterBody3D
+var weaponManager : Node3D
+var points : int = 5000
 var reserveLabel : Label
 var clipLabel : Label
 var pointsLabel : Label
-var roundLabel
+var roundLabel : Label
 var playerStateMachine
 var currentStateName : String
-var referenceFPS = 60
-var inputAllowed = true
+var referenceFPS : int = 60
+var inputAllowed : bool = true
 
 func _ready():
-	call_deferred("updatePoints")
+	call_deferred("updateLabels")
 
 func fiLerp(weight: float, delta: float) -> float:
 	if delta <= 0.0:
@@ -32,12 +32,9 @@ func updateLabels():
 	clipLabel.text = str(Global.weaponManager.clipAmmo)
 	reserveLabel.text = str(Global.weaponManager.reserveAmmo)
 	pointsLabel.text = str(points)
-
-func updatePoints():
+	roundLabel.text = str(ZombieRoundManager.round)
 	pointsLabel.text = str(points)
 
-func updateRound():
-	roundLabel.text = str(ZombieRoundManager.round)
 
 
 

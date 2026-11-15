@@ -2,7 +2,7 @@ extends Node
 
 #var roundLabel = Global.player.get_node("/root/RoundLabel")
 
-var round = 10
+var round = 1
 var baseZombies = 4
 var mysteryBoxPool = preload("res://Weapons/weaponPools/DefaultWeaponPool.tres")
 var boxLocations = []
@@ -12,6 +12,7 @@ var currentZombies = 0
 var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	zombiesToSpawn = baseZombies + int(2 * pow(round, 1.5))
 	Global.zombieDied.connect(zombieDied)
 
 func _process(delta):
@@ -21,14 +22,15 @@ func zombieDied():
 	currentZombies -= 1
 	if zombiesToSpawn == 0 and currentZombies == 0:
 		Global.player.flashLabel()
-		#INSERET SOUND EFFECT HERER
-		await get_tree().create_timer(10).timeout
+		Global.player.playPlayerSFX(preload("res://Audio/mus_zombie_round_over.SN65.pc.snd.wav"), -8.0)
+		await get_tree().create_timer(12).timeout
+		Global.player.playPlayerSFX(preload("res://Audio/mus_zombie_round_start.SN65.pc.snd.wav"), -8.0)
 		newRound()
 
 func newRound():
 	Global.emit_signal("roundChange")
 	round += 1
-	Global.updateRound()
+	Global.updateLabels()
 	zombiesToSpawn = baseZombies + int(2 * pow(round, 1.5))
 
 func changeBoxLocation(currentBoxLocation):

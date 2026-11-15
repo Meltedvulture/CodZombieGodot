@@ -77,11 +77,11 @@ func _process(delta: float) -> void:
 func take_damage(amount: int):
 	current_health -= amount
 	Global.points += 10
-	Global.updatePoints()
+	Global.updateLabels()
 	# Check if the enemy is dead
 	if current_health <= 0:
 		Global.points += 130
-		Global.updatePoints()
+		Global.updateLabels()
 		Global.emit_signal("zombieDied")
 		queue_free()  # Remove the enemy from the scene when dead
 
@@ -111,7 +111,7 @@ func attack(body):
 		if Global.player.playerDead == true:
 			return
 		if body and body.has_method("takePlayerDamage"):
-			body.takePlayerDamage(60)
+			body.takePlayerDamage(50)
 		damageTimer.start(rng.randf_range(0.75, 2))
 		await damageTimer.timeout
 		if attacking == true and Global.player.playerDead == false:

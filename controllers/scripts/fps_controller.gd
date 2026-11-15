@@ -10,9 +10,10 @@ extends CharacterBody3D
 @export var CROUCH_SHAPECAST : Node3D
 @export var weaponController : WeaponController
 
-@onready var healthTimer = $"Health Regen Timer"
-@onready var weaponRig = $CameraController/Camera3D/WeaponRig
-@onready var damageVignette = $CameraController/Camera3D/CanvasLayer/DamageVignette
+@onready var healthTimer : Timer = $"Health Regen Timer"
+@onready var weaponRig : Node3D = $CameraController/Camera3D/WeaponRig
+@onready var damageVignette : ColorRect = $CameraController/Camera3D/CanvasLayer/DamageVignette
+@onready var sfxPlayer : AudioStreamPlayer = $AudioStreamPlayer
 
 var cameraOffset : Vector3
 
@@ -26,7 +27,7 @@ var isCrouching : bool = false
 
 var health : float = 100
 var maxHealth : float = 100
-var healthRecovery : float = 12.0
+var healthRecovery : float = 40.0
 
 var stamina : float = 100
 var maxStamina : float = 100
@@ -35,15 +36,15 @@ var sprintUse : float = 24.0
 
 
 var currentRotation : float
-var playerDead = false
+var playerDead : bool = false
 
 
-var red = Color(0.75,0.0,0.0,1.0)
-var white = Color(1.0,1.0,1.0,1.0)
+var red : Color = Color(0.75,0.0,0.0,1.0)
+var white : Color = Color(1.0,1.0,1.0,1.0)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var gravity = 14
+var gravity : float = 14.0
 
 func _unhandled_input(event: InputEvent) -> void:
 	
@@ -140,6 +141,7 @@ func meleeLunge():
 
 func takePlayerDamage(damage):
 	health -= damage
+	print(health)
 	damageVignette.material.set_shader_parameter("intensity",0.5)
 	if health > 0:
 		healthTimer.start(3)
@@ -156,3 +158,10 @@ func landAnimation():
 	var landingTween = create_tween()
 	landingTween.tween_property(weaponRig, "position", Vector3(0,-0.2,0), 0.15)
 	landingTween.tween_property(weaponRig, "position", Vector3(0,0,0), 0.3)
+
+# Example inside AudioManager.gd (Autoload)
+func playPlayerSFX(stream: AudioStream, volumeDB: float = 0.0) -> void:
+	sfxPlayer.stream = stream
+	sfxPlayer.volume_db = volumeDB
+	add_child(sfxPlayer)
+	sfxPlayer.play()

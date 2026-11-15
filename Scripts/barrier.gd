@@ -2,20 +2,22 @@ extends Node3D
 
 class_name Barrier
 
-@onready var planks = [$Plank1, $Plank2, $Plank3, $Plank4, %Plank5]
+@onready var planks : Array = [$Plank1, $Plank2, $Plank3, $Plank4, %Plank5]
+@onready var animationPlayer : AnimationPlayer = %PlankAnimations
+@onready var collision : CollisionShape3D = $StaticBody3D/ZombieCollision
+
 @export var health : int = 5
-@onready var animationPlayer = %PlankAnimations
-@onready var collision = $StaticBody3D/ZombieCollision
-var maxHealth = 5
-var isDead = false
-var touchingPlayer = false
+
+var maxHealth : int = 5
+var isDead : bool = false
+var touchingPlayer : bool = false
 
 func repairBarrier():
 	if health != 5 and animationPlayer.current_animation == "":
 		health += 1
 		animationPlayer.play("Plank" + str(health) + "_Repair", -1, 1.5)
 		Global.points += 10
-		Global.updatePoints()
+		Global.updateLabels()
 		collision.disabled = false
 		isDead = false
 

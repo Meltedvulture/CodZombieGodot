@@ -2,9 +2,12 @@ extends StaticBody3D
 
 @export var weapon : Weapons
 @export var objectName : String = "Wall Weapon"
-@export var weaponCost = 1000
-@export var ammoCost = 500
-var cost = weaponCost
+@export var weaponCost : int = 1000
+@export var ammoCost : int = 500
+var cost : int = 0
+
+func _ready() -> void:
+	cost = weaponCost
 
 func update():
 	if !Global.weaponManager.weaponInventory.has(str(weapon.resource_path)):
@@ -16,7 +19,7 @@ func hoverText():
 func purchase():
 	if Global.points >= cost and !Global.weaponManager.weaponInventory.has(str(weapon.resource_path)) and Global.weaponManager.actionable:
 		Global.points -= cost
-		Global.updatePoints() 
+		Global.updateLabels()
 		cost = ammoCost
 		Global.weaponManager.addWeapon(str(weapon.resource_path))
 	elif Global.points >= cost and Global.weaponManager.weaponType == weapon and Global.weaponManager.actionable:

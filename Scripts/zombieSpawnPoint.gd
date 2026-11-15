@@ -9,7 +9,8 @@ var zombie = preload("res://Scenes/Zombie.tscn")
 var timer: float = 0
 var rng = RandomNumberGenerator.new()
 
-
+func _ready() -> void:
+	rng.randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
