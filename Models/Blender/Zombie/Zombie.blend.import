@@ -58,15 +58,6 @@ _subresources={
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://Models/Blender/Zombie/Zombie_Head.res",
 "save_to_file/path": "uid://07nw0lbpbrct"
-},
-"Zombie_LEgs": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Models/Blender/Zombie/Zombie_LEgs.res",
-"save_to_file/path": "uid://bhiel1slwmlcu"
 }
 }
 }

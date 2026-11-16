@@ -21,7 +21,7 @@ func _ready():
 	current_health = max_health + (ZombieRoundManager.round * 50)
 	move_speed = clamp(rng.randf_range(0.5, 0.5 + (ZombieRoundManager.round * 0.5)), 0.5, 2)
 	rng.randomize()
-
+	$Skeleton3D/PhysicalBoneSimulator3D.physical_bones_start_simulation(["HeadBone", "LegsBone"])
 # Called every frame.
 var path_update_timer := 0.0
 var path_update_interval := 0.2 # Update path 5 times a second instead of 60

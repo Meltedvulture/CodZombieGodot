@@ -1,5 +1,6 @@
-MeshInstance3D
+SpringBoneSimulator3D
 CollisionShape3D
+MeshInstance3D
 AudioStreamPlayer
 Timer
 Area3D

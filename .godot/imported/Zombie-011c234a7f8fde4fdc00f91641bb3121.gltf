@@ -1,6 +1,6 @@
 {
 	"asset":{
-		"generator":"Khronos glTF Blender I/O v5.2.39",
+		"generator":"Khronos glTF Blender I/O v5.2.40",
 		"version":"2.0"
 	},
 	"scene":0,
@@ -298,22 +298,49 @@
 			},
 			"name":"Scene",
 			"nodes":[
-				6,
-				7
+				8
 			]
 		}
 	],
 	"nodes":[
 		{
-			"name":"Head",
+			"name":"HeadEnd",
 			"translation":[
 				0,
-				0.7000000476837158,
+				0.5,
 				0
 			]
 		},
 		{
-			"name":"Legs",
+			"children":[
+				0
+			],
+			"name":"HeadBone",
+			"translation":[
+				0,
+				0.6700000762939453,
+				0
+			]
+		},
+		{
+			"name":"LegsEnd",
+			"rotation":[
+				0,
+				4.371138828673793e-08,
+				0,
+				1
+			],
+			"translation":[
+				0,
+				0.5,
+				0
+			]
+		},
+		{
+			"children":[
+				2
+			],
+			"name":"LegsBone",
 			"rotation":[
 				1,
 				0,
@@ -323,13 +350,13 @@
 		},
 		{
 			"children":[
-				0,
-				1
+				1,
+				3
 			],
-			"name":"Body",
+			"name":"BodyBone",
 			"translation":[
 				0,
-				-0.2500000298023224,
+				-0.3400000333786011,
 				0
 			]
 		},
@@ -350,24 +377,12 @@
 		},
 		{
 			"children":[
-				3,
-				4,
 				5,
-				2
+				6,
+				7,
+				4
 			],
-			"extras":{
-				"wiggle_enable":0
-			},
-			"name":"Armature",
-			"translation":[
-				0,
-				-0.10000002384185791,
-				0
-			]
-		},
-		{
-			"mesh":3,
-			"name":"Cylinder"
+			"name":"Armature"
 		}
 	],
 	"materials":[
@@ -426,7 +441,7 @@
 			]
 		},
 		{
-			"name":"LEgs",
+			"name":"Legs",
 			"primitives":[
 				{
 					"attributes":{
@@ -440,28 +455,17 @@
 					"material":0
 				}
 			]
-		},
-		{
-			"name":"Cylinder",
-			"primitives":[
-				{
-					"attributes":{
-						"POSITION":17,
-						"NORMAL":18,
-						"TEXCOORD_0":19
-					},
-					"indices":20
-				}
-			]
 		}
 	],
 	"skins":[
 		{
 			"inverseBindMatrices":6,
 			"joints":[
-				2,
+				4,
+				1,
 				0,
-				1
+				3,
+				2
 			],
 			"name":"Armature"
 		}
@@ -516,7 +520,7 @@
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":3,
+			"count":5,
 			"type":"MAT4"
 		},
 		{
@@ -525,12 +529,12 @@
 			"count":518,
 			"max":[
 				0.25,
-				0.9506373405456543,
+				0.8650801181793213,
 				0.25
 			],
 			"min":[
 				-0.25,
-				0.28203079104423523,
+				0.25664806365966797,
 				-0.25
 			],
 			"type":"VEC3"
@@ -565,12 +569,12 @@
 			"count":518,
 			"max":[
 				0.25,
-				-0.28203094005584717,
+				-0.25664815306663513,
 				0.25
 			],
 			"min":[
 				-0.25,
-				-0.9506375789642334,
+				-0.8650802373886108,
 				-0.25
 			],
 			"type":"VEC3"
@@ -598,40 +602,6 @@
 			"componentType":5126,
 			"count":518,
 			"type":"VEC4"
-		},
-		{
-			"bufferView":17,
-			"componentType":5126,
-			"count":192,
-			"max":[
-				0.25,
-				0.875,
-				0.25
-			],
-			"min":[
-				-0.25,
-				-0.875,
-				-0.25
-			],
-			"type":"VEC3"
-		},
-		{
-			"bufferView":18,
-			"componentType":5126,
-			"count":192,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":19,
-			"componentType":5126,
-			"count":192,
-			"type":"VEC2"
-		},
-		{
-			"bufferView":20,
-			"componentType":5123,
-			"count":372,
-			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
@@ -673,97 +643,73 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":192,
+			"byteLength":320,
 			"byteOffset":32288
 		},
 		{
 			"buffer":0,
 			"byteLength":6216,
-			"byteOffset":32480,
+			"byteOffset":32608,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":6216,
-			"byteOffset":38696,
+			"byteOffset":38824,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":4144,
-			"byteOffset":44912,
+			"byteOffset":45040,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":2072,
-			"byteOffset":49056,
+			"byteOffset":49184,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":8288,
-			"byteOffset":51128,
+			"byteOffset":51256,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":6216,
-			"byteOffset":59416,
+			"byteOffset":59544,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":6216,
-			"byteOffset":65632,
+			"byteOffset":65760,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":4144,
-			"byteOffset":71848,
+			"byteOffset":71976,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":2072,
-			"byteOffset":75992,
+			"byteOffset":76120,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":8288,
-			"byteOffset":78064,
+			"byteOffset":78192,
 			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":2304,
-			"byteOffset":86352,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":2304,
-			"byteOffset":88656,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":1536,
-			"byteOffset":90960,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":744,
-			"byteOffset":92496,
-			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":93240,
+			"byteLength":86480,
 			"uri":"Zombie-011c234a7f8fde4fdc00f91641bb3121.bin"
 		}
 	]

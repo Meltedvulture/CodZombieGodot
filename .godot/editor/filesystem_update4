@@ -1,5 +1,8 @@
-res://Scenes/Zombie.tscn
-res://Environment/WE_test.tres
 res://Models/Blender/Zombie/Zombie_Body.res
 res://Models/Blender/Zombie/Zombie_Head.res
 res://Models/Blender/Zombie/Zombie_LEgs.res
+res://Weapons/Weapon.tscn
+res://environment/WE_test.tres
+res://Scenes/Zombie.tscn
+res://Scripts/zombie.gd
+res://Scripts/zombieSpawnPoint.gd

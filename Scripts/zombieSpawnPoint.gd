@@ -27,4 +27,4 @@ func spawnZombie():
 		add_child(zombieInstance)
 		zombieInstance.barrier = barrier
 		zombieInstance.target = barrier
-		zombieInstance.global_transform.origin = global_position
+		zombieInstance.global_position = global_position
