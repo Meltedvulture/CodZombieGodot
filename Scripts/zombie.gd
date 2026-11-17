@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+signal zombieDamage(amount : float, bodyPart : String)
 
 @onready var navAgent = $NavigationAgent3D
 @onready var damageTimer = $DamageTimer
@@ -21,8 +22,10 @@ func _ready():
 	current_health = max_health + (ZombieRoundManager.round * 50)
 	move_speed = clamp(rng.randf_range(0.5, 0.5 + (ZombieRoundManager.round * 0.5)), 0.5, 2)
 	rng.randomize()
+	connect("zombieDamage", take_damage)
 	$Skeleton3D/PhysicalBoneSimulator3D.physical_bones_start_simulation(["HeadBone", "LegsBone"])
-# Called every frame.
+
+
 var path_update_timer := 0.0
 var path_update_interval := 0.2 # Update path 5 times a second instead of 60
 
@@ -74,16 +77,32 @@ func _process(delta: float) -> void:
 	pass
 
 # Function to handle taking damage
-func take_damage(amount: int):
-	current_health -= amount
-	Global.points += 10
-	Global.updateLabels()
+func take_damage(amount: float, bodyPart : String):
+	var multipliedDamage = 0
+	match bodyPart:
+		"Head":
+			multipliedDamage = amount * 2
+		"Body":
+			multipliedDamage = amount * 1.5
+		"Legs":
+			multipliedDamage = amount * 1
+	
+	current_health -= multipliedDamage
 	# Check if the enemy is dead
 	if current_health <= 0:
-		Global.points += 130
+		match bodyPart:
+			"Head":
+				Global.points += 100
+			"Body":
+				Global.points += 60
+			"Legs":
+				Global.points += 50
 		Global.updateLabels()
 		Global.emit_signal("zombieDied")
 		queue_free()  # Remove the enemy from the scene when dead
+	else:
+		Global.points += 10
+		Global.updateLabels()
 
 func _on_area_3d_body_entered(body):
 	if body == barrier:

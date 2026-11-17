@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dhwq3tlnft4fk" path="res://Scripts/zombie.gd" id="1_4ru28"]
 [ext_resource type="ArrayMesh" uid="uid://crlmo1m3p5lms" path="res://Models/Blender/Zombie/Zombie_Body.res" id="2_mntmy"]
 [ext_resource type="ArrayMesh" uid="uid://07nw0lbpbrct" path="res://Models/Blender/Zombie/Zombie_Head.res" id="3_2dktg"]
+[ext_resource type="Script" uid="uid://c2lpsp3asojho" path="res://Scripts/DamageBodyPart.gd" id="4_mntmy"]
 
 [sub_resource type="Skin" id="Skin_77850"]
 resource_name = "Skin"
@@ -56,16 +57,16 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yf4vm"]
-radius = 0.06700001
+radius = 0.25
 height = 0.6700001
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mntmy"]
-radius = 0.05
+radius = 0.25
 height = 0.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2dktg"]
-radius = 0.05
-height = 0.4
+radius = 0.25
+height = 0.5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yf4vm"]
 height = 0.1
@@ -140,6 +141,7 @@ transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, -0.004999995, 0)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.33500004)
 body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.33500004, 0)
 bone_name = "BodyBone"
+script = ExtResource("4_mntmy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone BodyBone" unique_id=633001070]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
@@ -156,6 +158,7 @@ bone_name = "HeadBone"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
 joint_constraints/impulse_clamp = 0.0
+script = ExtResource("4_mntmy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone HeadBone" unique_id=2118909800]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
@@ -171,6 +174,7 @@ bone_name = "LegsBone"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
 joint_constraints/impulse_clamp = 0.0
+script = ExtResource("4_mntmy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone LegsBone" unique_id=1788353159]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0.05)

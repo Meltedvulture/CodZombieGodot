@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1794783063
+::res://::1794873735
 export_presets.cfg::TextFile::-1::1794361547::0::1::::<><><>0<>0<><>::
 Global.gd::GDScript::2763096555857727694::1794782251::0::1::::<>Node<><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::8444505666706689092::1794361547::1794361547::1::::<><><>0<>0<>a668b572b9d9da47f66dae191fd36e26<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
@@ -394,7 +394,7 @@ Juggernog Machine Diffuse.png::CompressedTexture2D/CompressedTexture2D::67865696
 Juggernog Machine Roughness.png::CompressedTexture2D/CompressedTexture2D::5905415692033208547::1794361546::1794361546::1::::<><><>0<>0<>8455533a1e033b52d2a8e5bb3468d214<>res://.godot/imported/Juggernog Machine Roughness.png-f31b5d9ae973472d9b3ca8d354f68856.s3tc.ctex::
 Juggernog Machine.blend::PackedScene/PackedScene::5876021980442799498::1794361546::1794361546::1::::<><><>0<>0<>4a6e93b0427764c9a496abd7bc98f345<>res://.godot/imported/Juggernog Machine.blend-48fdb90a4333b46863fca6c257f1981f.scn::uid://cv5pwb6lheysl::::res://Models/Blender/Perks/Juggernog/Juggernog Machine.res<>uid://cickm620g1cto::::res://Models/Blender/Perks/Juggernog/Juggernog Bottle.res<>uid://ckkclf5ql1i2n::::res://Models/Blender/Perks/Juggernog/Juggernog Cap.res
 Juggernog Machine.res::ArrayMesh::6309688559685696767::1794361546::0::1::::<><><>0<>0<><>::uid://c3xp2s0wlmv1k::::res://Models/Blender/Perks/Juggernog/Juggernog Machine Diffuse.png<>uid://cqevllyag1b20::::res://Models/Blender/Perks/Juggernog/Juggernog Machine Roughness.png
-::res://Models/Blender/Zombie/::1794800468
+::res://Models/Blender/Zombie/::1794800477
 Zombie.blend::PackedScene::6899206501378041624::1794800468::1794800477::1::::<><><>0<>0<>5c5a62eb7263f299c4e1c279d6dd7ac6<>res://.godot/imported/Zombie.blend-011c234a7f8fde4fdc00f91641bb3121.scn::uid://crlmo1m3p5lms::::res://Models/Blender/Zombie/Zombie_Body.res<>uid://07nw0lbpbrct::::res://Models/Blender/Zombie/Zombie_Head.res
 Zombie_Body.res::ArrayMesh::5989514854993462198::1794800476::0::1::::<><><>0<>0<><>::
 Zombie_Head.res::ArrayMesh::1821611117594735859::1794800476::0::1::::<><><>0<>0<><>::
@@ -413,9 +413,9 @@ Mystery Box Location.tscn::PackedScene::152225428230123185::1794782251::0::1::::
 Wall Weapon.tscn::PackedScene::7547645967618281590::1794361546::0::1::::<><><>0<>0<><>::uid://din4bshtvrbrb::::res://Scripts/wallWeapon.gd
 Zombie Spawnpoint.tscn::PackedScene::7071569727296889640::1794361546::0::1::::<><><>0<>0<><>::uid://c32i1l36loome::::res://Scripts/zombieSpawnPoint.gd
 ZombieRoundManager.tscn::PackedScene::6051194576695007678::1794361546::0::1::::<><><>0<>0<><>::uid://d0frvk5yhjni5::::res://ZombieRoundManager.gd
-::res://Scenes/::1794800185
+::res://Scenes/::1794826358
 Bullet Hole.tscn::PackedScene::2286284350540549235::1794782251::0::1::::<><><>0<>0<><>::uid://cahtc4qhj5g21::::res://Textures/bullet_hole_0.png
-Zombie.tscn::PackedScene::6548205012836176074::1794800185::0::1::::<><><>0<>0<><>::uid://dhwq3tlnft4fk::::res://Scripts/zombie.gd<>uid://crlmo1m3p5lms::::res://Models/Blender/Zombie/Zombie_Body.res<>uid://07nw0lbpbrct::::res://Models/Blender/Zombie/Zombie_Head.res
+Zombie.tscn::PackedScene::6548205012836176074::1794826358::0::1::::<><><>0<>0<><>::uid://dhwq3tlnft4fk::::res://Scripts/zombie.gd<>uid://crlmo1m3p5lms::::res://Models/Blender/Zombie/Zombie_Body.res<>uid://07nw0lbpbrct::::res://Models/Blender/Zombie/Zombie_Head.res
 ::res://Scripts/::1794800060
 barrier.gd::GDScript::8540168962066232252::1794782251::0::1::::Barrier<>Node3D<><>0<>0<><>::
 buyableDoor.gd::GDScript::8029486231016457446::1794782251::0::1::::<>StaticBody3D<><>0<>0<><>::
