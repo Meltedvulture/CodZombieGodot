@@ -1,6 +1,6 @@
 {
 	"asset":{
-		"generator":"Khronos glTF Blender I/O v5.2.40",
+		"generator":"Khronos glTF Blender I/O v5.3.43",
 		"version":"2.0"
 	},
 	"scene":0,
@@ -294,6 +294,293 @@
 					"parent_armature":1,
 					"sub_level":1
 				},
+				"blenrig_guide.001":{
+					"state_keyframe_insert_available":0
+				},
+				"wiggle.001":{
+					"is_rendering":0
+				},
+				"vrm_addon_extension.001":{
+					"vrm0_material_gltf_property_names":[
+						{
+							"name":"_Color",
+							"value":"_Color"
+						},
+						{
+							"name":"_MainTex_ST",
+							"value":"_MainTex_ST"
+						},
+						{
+							"name":"_MainTex_ST_S",
+							"value":"_MainTex_ST_S"
+						},
+						{
+							"name":"_MainTex_ST_T",
+							"value":"_MainTex_ST_T"
+						},
+						{
+							"name":"_MetallicGlossMap_ST",
+							"value":"_MetallicGlossMap_ST"
+						},
+						{
+							"name":"_MetallicGlossMap_ST_S",
+							"value":"_MetallicGlossMap_ST_S"
+						},
+						{
+							"name":"_MetallicGlossMap_ST_T",
+							"value":"_MetallicGlossMap_ST_T"
+						},
+						{
+							"name":"_BumpMap_ST",
+							"value":"_BumpMap_ST"
+						},
+						{
+							"name":"_BumpMap_ST_S",
+							"value":"_BumpMap_ST_S"
+						},
+						{
+							"name":"_BumpMap_ST_T",
+							"value":"_BumpMap_ST_T"
+						},
+						{
+							"name":"_ParallaxMap_ST",
+							"value":"_ParallaxMap_ST"
+						},
+						{
+							"name":"_ParallaxMap_ST_S",
+							"value":"_ParallaxMap_ST_S"
+						},
+						{
+							"name":"_ParallaxMap_ST_T",
+							"value":"_ParallaxMap_ST_T"
+						},
+						{
+							"name":"_OcclusionMap_ST",
+							"value":"_OcclusionMap_ST"
+						},
+						{
+							"name":"_OcclusionMap_ST_S",
+							"value":"_OcclusionMap_ST_S"
+						},
+						{
+							"name":"_OcclusionMap_ST_T",
+							"value":"_OcclusionMap_ST_T"
+						},
+						{
+							"name":"_EmissionColor",
+							"value":"_EmissionColor"
+						},
+						{
+							"name":"_EmissionMap_ST",
+							"value":"_EmissionMap_ST"
+						},
+						{
+							"name":"_EmissionMap_ST_S",
+							"value":"_EmissionMap_ST_S"
+						},
+						{
+							"name":"_EmissionMap_ST_T",
+							"value":"_EmissionMap_ST_T"
+						},
+						{
+							"name":"_DetailMask_ST",
+							"value":"_DetailMask_ST"
+						},
+						{
+							"name":"_DetailMask_ST_S",
+							"value":"_DetailMask_ST_S"
+						},
+						{
+							"name":"_DetailMask_ST_T",
+							"value":"_DetailMask_ST_T"
+						},
+						{
+							"name":"_DetailAlbedoMap_ST",
+							"value":"_DetailAlbedoMap_ST"
+						},
+						{
+							"name":"_DetailAlbedoMap_ST_S",
+							"value":"_DetailAlbedoMap_ST_S"
+						},
+						{
+							"name":"_DetailAlbedoMap_ST_T",
+							"value":"_DetailAlbedoMap_ST_T"
+						},
+						{
+							"name":"_DetailNormalMap_ST",
+							"value":"_DetailNormalMap_ST"
+						},
+						{
+							"name":"_DetailNormalMap_ST_S",
+							"value":"_DetailNormalMap_ST_S"
+						},
+						{
+							"name":"_DetailNormalMap_ST_T",
+							"value":"_DetailNormalMap_ST_T"
+						}
+					],
+					"vrm0_material_mtoon0_property_names":[
+						{
+							"name":"_Color",
+							"value":"_Color"
+						},
+						{
+							"name":"_ShadeColor",
+							"value":"_ShadeColor"
+						},
+						{
+							"name":"_MainTex_ST",
+							"value":"_MainTex_ST"
+						},
+						{
+							"name":"_MainTex_ST_S",
+							"value":"_MainTex_ST_S"
+						},
+						{
+							"name":"_MainTex_ST_T",
+							"value":"_MainTex_ST_T"
+						},
+						{
+							"name":"_ShadeTexture_ST",
+							"value":"_ShadeTexture_ST"
+						},
+						{
+							"name":"_ShadeTexture_ST_S",
+							"value":"_ShadeTexture_ST_S"
+						},
+						{
+							"name":"_ShadeTexture_ST_T",
+							"value":"_ShadeTexture_ST_T"
+						},
+						{
+							"name":"_BumpMap_ST",
+							"value":"_BumpMap_ST"
+						},
+						{
+							"name":"_BumpMap_ST_S",
+							"value":"_BumpMap_ST_S"
+						},
+						{
+							"name":"_BumpMap_ST_T",
+							"value":"_BumpMap_ST_T"
+						},
+						{
+							"name":"_ReceiveShadowTexture_ST",
+							"value":"_ReceiveShadowTexture_ST"
+						},
+						{
+							"name":"_ReceiveShadowTexture_ST_S",
+							"value":"_ReceiveShadowTexture_ST_S"
+						},
+						{
+							"name":"_ReceiveShadowTexture_ST_T",
+							"value":"_ReceiveShadowTexture_ST_T"
+						},
+						{
+							"name":"_ShadingGradeTexture_ST",
+							"value":"_ShadingGradeTexture_ST"
+						},
+						{
+							"name":"_ShadingGradeTexture_ST_S",
+							"value":"_ShadingGradeTexture_ST_S"
+						},
+						{
+							"name":"_ShadingGradeTexture_ST_T",
+							"value":"_ShadingGradeTexture_ST_T"
+						},
+						{
+							"name":"_RimColor",
+							"value":"_RimColor"
+						},
+						{
+							"name":"_RimTexture_ST",
+							"value":"_RimTexture_ST"
+						},
+						{
+							"name":"_RimTexture_ST_S",
+							"value":"_RimTexture_ST_S"
+						},
+						{
+							"name":"_RimTexture_ST_T",
+							"value":"_RimTexture_ST_T"
+						},
+						{
+							"name":"_SphereAdd_ST",
+							"value":"_SphereAdd_ST"
+						},
+						{
+							"name":"_SphereAdd_ST_S",
+							"value":"_SphereAdd_ST_S"
+						},
+						{
+							"name":"_SphereAdd_ST_T",
+							"value":"_SphereAdd_ST_T"
+						},
+						{
+							"name":"_EmissionColor",
+							"value":"_EmissionColor"
+						},
+						{
+							"name":"_EmissionMap_ST",
+							"value":"_EmissionMap_ST"
+						},
+						{
+							"name":"_EmissionMap_ST_S",
+							"value":"_EmissionMap_ST_S"
+						},
+						{
+							"name":"_EmissionMap_ST_T",
+							"value":"_EmissionMap_ST_T"
+						},
+						{
+							"name":"_OutlineWidthTexture_ST",
+							"value":"_OutlineWidthTexture_ST"
+						},
+						{
+							"name":"_OutlineWidthTexture_ST_S",
+							"value":"_OutlineWidthTexture_ST_S"
+						},
+						{
+							"name":"_OutlineWidthTexture_ST_T",
+							"value":"_OutlineWidthTexture_ST_T"
+						},
+						{
+							"name":"_OutlineColor",
+							"value":"_OutlineColor"
+						},
+						{
+							"name":"_UvAnimMaskTexture_ST",
+							"value":"_UvAnimMaskTexture_ST"
+						},
+						{
+							"name":"_UvAnimMaskTexture_ST_S",
+							"value":"_UvAnimMaskTexture_ST_S"
+						},
+						{
+							"name":"_UvAnimMaskTexture_ST_T",
+							"value":"_UvAnimMaskTexture_ST_T"
+						}
+					],
+					"mesh_object_names":[
+						{
+							"name":"Cube",
+							"value":"Cube"
+						}
+					]
+				},
+				"MustardUI_Settings.001":{},
+				"uuid.001":"fa3c152b-1ba1-48ef-92ad-ff99a06530cb",
+				"assets reported.001":{},
+				"skinify.001":{
+					"connect_mesh":0,
+					"connect_parents":0,
+					"generate_all":0,
+					"thickness":0.800000011920929,
+					"finger_thickness":0.25,
+					"apply_mod":1,
+					"parent_armature":1,
+					"sub_level":1
+				},
 				"vseqf":{}
 			},
 			"name":"Scene",
@@ -304,6 +591,9 @@
 	],
 	"nodes":[
 		{
+			"extras":{
+				"wiggle_enable":0
+			},
 			"name":"HeadEnd",
 			"translation":[
 				0,
@@ -315,6 +605,9 @@
 			"children":[
 				0
 			],
+			"extras":{
+				"wiggle_enable":0
+			},
 			"name":"HeadBone",
 			"translation":[
 				0,
@@ -323,6 +616,9 @@
 			]
 		},
 		{
+			"extras":{
+				"wiggle_enable":0
+			},
 			"name":"LegsEnd",
 			"rotation":[
 				0,
@@ -340,6 +636,9 @@
 			"children":[
 				2
 			],
+			"extras":{
+				"wiggle_enable":0
+			},
 			"name":"LegsBone",
 			"rotation":[
 				1,
@@ -353,6 +652,9 @@
 				1,
 				3
 			],
+			"extras":{
+				"wiggle_enable":0
+			},
 			"name":"BodyBone",
 			"translation":[
 				0,
@@ -382,6 +684,9 @@
 				7,
 				4
 			],
+			"extras":{
+				"wiggle_enable":0
+			},
 			"name":"Armature"
 		}
 	],
@@ -390,6 +695,9 @@
 			"doubleSided":true,
 			"extras":{
 				"vrm_addon_extension":{
+					"mtoon1":{}
+				},
+				"vrm_addon_extension.001":{
 					"mtoon1":{}
 				},
 				"mmd_material":{}
@@ -435,7 +743,7 @@
 						"JOINTS_0":10,
 						"WEIGHTS_0":11
 					},
-					"indices":5,
+					"indices":12,
 					"material":0
 				}
 			]
@@ -445,11 +753,11 @@
 			"primitives":[
 				{
 					"attributes":{
-						"POSITION":12,
-						"NORMAL":13,
-						"TEXCOORD_0":14,
-						"JOINTS_0":15,
-						"WEIGHTS_0":16
+						"POSITION":13,
+						"NORMAL":14,
+						"TEXCOORD_0":15,
+						"JOINTS_0":16,
+						"WEIGHTS_0":17
 					},
 					"indices":5,
 					"material":0
@@ -526,7 +834,7 @@
 		{
 			"bufferView":7,
 			"componentType":5126,
-			"count":518,
+			"count":617,
 			"max":[
 				0.25,
 				0.8650801181793213,
@@ -542,29 +850,35 @@
 		{
 			"bufferView":8,
 			"componentType":5126,
-			"count":518,
+			"count":617,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":9,
 			"componentType":5126,
-			"count":518,
+			"count":617,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":10,
 			"componentType":5121,
-			"count":518,
+			"count":617,
 			"type":"VEC4"
 		},
 		{
 			"bufferView":11,
 			"componentType":5126,
-			"count":518,
+			"count":617,
 			"type":"VEC4"
 		},
 		{
 			"bufferView":12,
+			"componentType":5123,
+			"count":3252,
+			"type":"SCALAR"
+		},
+		{
+			"bufferView":13,
 			"componentType":5126,
 			"count":518,
 			"max":[
@@ -580,25 +894,25 @@
 			"type":"VEC3"
 		},
 		{
-			"bufferView":13,
+			"bufferView":14,
 			"componentType":5126,
 			"count":518,
 			"type":"VEC3"
 		},
 		{
-			"bufferView":14,
+			"bufferView":15,
 			"componentType":5126,
 			"count":518,
 			"type":"VEC2"
 		},
 		{
-			"bufferView":15,
+			"bufferView":16,
 			"componentType":5121,
 			"count":518,
 			"type":"VEC4"
 		},
 		{
-			"bufferView":16,
+			"bufferView":17,
 			"componentType":5126,
 			"count":518,
 			"type":"VEC4"
@@ -648,68 +962,74 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":6216,
+			"byteLength":7404,
 			"byteOffset":32608,
 			"target":34962
 		},
 		{
 			"buffer":0,
+			"byteLength":7404,
+			"byteOffset":40012,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":4936,
+			"byteOffset":47416,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":2468,
+			"byteOffset":52352,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":9872,
+			"byteOffset":54820,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":6504,
+			"byteOffset":64692,
+			"target":34963
+		},
+		{
+			"buffer":0,
 			"byteLength":6216,
-			"byteOffset":38824,
+			"byteOffset":71196,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":6216,
+			"byteOffset":77412,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":4144,
-			"byteOffset":45040,
+			"byteOffset":83628,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":2072,
-			"byteOffset":49184,
+			"byteOffset":87772,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":8288,
-			"byteOffset":51256,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":6216,
-			"byteOffset":59544,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":6216,
-			"byteOffset":65760,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":4144,
-			"byteOffset":71976,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":2072,
-			"byteOffset":76120,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":8288,
-			"byteOffset":78192,
+			"byteOffset":89844,
 			"target":34962
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":86480,
+			"byteLength":98132,
 			"uri":"Zombie-011c234a7f8fde4fdc00f91641bb3121.bin"
 		}
 	]

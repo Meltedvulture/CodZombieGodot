@@ -47,6 +47,7 @@ func update(delta):
 
 func exit():
 	Global.weaponManager.canSight = true
+	animation.speed_scale = 1.0
 
 func setAnimationSpeed(spd):
 	var alpha = remap(spd, 0.0, speed, 0.0, 1.0)

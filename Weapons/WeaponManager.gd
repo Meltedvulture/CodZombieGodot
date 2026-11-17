@@ -283,37 +283,24 @@ func shoot() -> void:
 		canShoot = false  # Prevent further shooting
 		cooldown_timer = time_per_shot  # Reset the cooldown timer
 		shootCooldown()
-		
 		if weaponBulletPhysics == "Hitscan":
-			#Run Raycast function
-			var camera = Global.player.CAMERA_CONTROLLER
-			var spaceState = camera.get_world_3d().direct_space_state
-			var screenCenter = get_viewport().size / 2
-			var origin = camera.project_ray_origin(screenCenter)
-			
 			if shotgun:
 				for i in 8:
-					var endpoint = origin + camera.project_ray_normal(screenCenter) * 1000 + calculateAccuracy() * 10
-					var query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
-					query.collide_with_bodies = true
-					var result = spaceState.intersect_ray(query)
-					var hitBody = result.get("collider")  # Get the object that was hit
-					if hitBody and hitBody.has_method("take_damage"):
-						hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
+					var result = raycastBullet(1000)
+					var hitBody = result.get("collider")
+					if hitBody and hitBody.has_method("takeDamage"):
+						hitBody.takeDamage(weaponType.Damage)  # Deal damage to the enemy
 					#Apply decal
 					if result:
 						spawnHitmarker(result)
 			else:
-				var endpoint = origin + camera.project_ray_normal(screenCenter) * 1000 + calculateAccuracy() * 10
-				var query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
-				query.collide_with_bodies = true
-				var result = spaceState.intersect_ray(query)
-				var hitBody = result.get("collider")  # Get the object that was hit
-				if hitBody and hitBody.has_method("take_damage"):
-					hitBody.take_damage(weaponType.Damage)  # Deal damage to the enemy
-				#Apply decal
-				if result:
-					spawnHitmarker(result)
+					var result = raycastBullet(1000)
+					var hitBody = result.get("collider")
+					if hitBody and hitBody.has_method("takeDamage"):
+						hitBody.takeDamage(weaponType.Damage)  # Deal damage to the enemy
+					#Apply decal
+					if result:
+						spawnHitmarker(result)
 					
 		elif weaponBulletPhysics == "Projectile":
 			var bulletInstance = weaponBulletScene.instantiate()
@@ -336,6 +323,18 @@ func shoot() -> void:
 			weaponAnimationPlayer.play(weaponAnimationName + "/" + "boltCycle", -1, 1, false)
 			await weaponAnimationPlayer.animation_finished
 			
+
+func raycastBullet(dist):
+	var camera = Global.player.CAMERA_CONTROLLER
+	var spaceState = camera.get_world_3d().direct_space_state
+	var screenCenter = get_viewport().size / 2
+	var origin = camera.project_ray_origin(screenCenter)
+	var endpoint = origin + camera.project_ray_normal(screenCenter) * 1000 + calculateAccuracy() * 10
+	var query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
+	query.collide_with_bodies = true
+	var result = spaceState.intersect_ray(query)
+	return result
+
 
 func calculateAccuracy():
 	var accuracyAdjustment = Vector3 (
@@ -461,7 +460,7 @@ func knife():
 		var result = spaceState.intersect_ray(query)
 		
 		var hitBody = result.get("collider")  # Get the object that was hit
-		if hitBody and hitBody.has_method("take_damage"):
+		if hitBody and hitBody.has_method("takeDamage"):
 			weaponAnimationPlayer.play("Melee", -1, 1.5)
 			
 		else:
@@ -469,7 +468,7 @@ func knife():
 			query = PhysicsRayQueryParameters3D.create(origin, endpoint, 4294967295 - 2)
 			result = spaceState.intersect_ray(query)
 			hitBody = result.get("collider")
-			if hitBody and hitBody.has_method("take_damage") and !Input.is_action_pressed("move_backward"):
+			if hitBody and hitBody.has_method("takeDamage") and !Input.is_action_pressed("move_backward"):
 				weaponAnimationPlayer.play("Melee Lunge", -1, 1.5)
 				Global.player.meleeLunge()
 			else:
@@ -492,8 +491,8 @@ func knifeDamage():
 	var result = spaceState.intersect_ray(query)
 		
 	var hitBody = result.get("collider")  # Get the object that was hit
-	if hitBody and hitBody.has_method("take_damage"):
-		hitBody.take_damage(150)
+	if hitBody and hitBody.has_method("takeDamage"):
+		hitBody.takeKnifeDamage(150)
 
 
 

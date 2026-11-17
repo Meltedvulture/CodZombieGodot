@@ -1,5 +1,10 @@
+res://Models/Blender/Zombie/Zombie_Body.res
+res://Models/Blender/Zombie/Zombie_Head.res
 res://Scenes/Zombie.tscn
-res://environment/WE_test.tres
-res://Scripts/DamageBodyPart.gd
-res://Global.gd
+res://Environment/WE_test.tres
+res://ZombieRoundManager.gd
+res://Scripts/zombieSpawnPoint.gd
 res://Scripts/zombie.gd
+res://Controllers/scripts/fps_controller.gd
+res://Controllers/fps_controller.tscn
+res://Controllers/scripts/State Machine/spriting_player_state.gd

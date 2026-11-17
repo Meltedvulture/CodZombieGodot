@@ -88,10 +88,14 @@ func _ready():
 	CROUCH_SHAPECAST.add_exception($".")
 
 func _process(delta):
-	_update_camera(delta)
 	damageVignette.material.set_shader_parameter("intensity", move_toward(damageVignette.material.get_shader_parameter("intensity"), 0.0, Global.fiLerp(0.01, delta)))
+	
+	if playerDead:
+		return
+		
+	_update_camera(delta)
 	# Update camera movement based on mouse movement
-	CAMERA_CONTROLLER.rotation = lerp(CAMERA_CONTROLLER.rotation, CAMERA_CONTROLLER.rotation + cameraOffset, Global.fiLerp(0.025, delta))
+	CAMERA_CONTROLLER.rotation = lerp(CAMERA_CONTROLLER.rotation, CAMERA_CONTROLLER.rotation + cameraOffset, Global.fiLerp(0.05, delta))
 	cameraOffset = lerp(cameraOffset, Vector3(0,0,0), Global.fiLerp(0.05, delta))
 	
 
@@ -149,10 +153,11 @@ func takePlayerDamage(damage):
 		deathAnimation()
 
 func deathAnimation():
+	ANIMATIONPLAYER.speed_scale = 1.0
 	playerDead = true
 	Global.inputAllowed = false
 	weaponRig.visible = false
-	ANIMATIONPLAYER.play("crouch", -1.0, 1)
+	ANIMATIONPLAYER.play("Death")
 
 func landAnimation():
 	var landingTween = create_tween()

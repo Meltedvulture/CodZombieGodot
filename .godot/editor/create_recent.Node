@@ -1,3 +1,4 @@
+AnimationPlayer
 SpringBoneSimulator3D
 CollisionShape3D
 MeshInstance3D
@@ -9,7 +10,5 @@ CanvasLayer
 Node3D
 BoneAttachment3D
 StaticBody3D
-AnimationPlayer
 Window
 AnimationTree
-NavigationObstacle3D

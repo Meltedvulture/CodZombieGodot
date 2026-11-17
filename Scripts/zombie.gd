@@ -4,7 +4,8 @@ signal zombieDamage(amount : float, bodyPart : String)
 
 @onready var navAgent = $NavigationAgent3D
 @onready var damageTimer = $DamageTimer
-# Exported variables
+@onready var animationPlayer : AnimationPlayer = $AnimationPlayer
+
 @export var max_health: int = 100
 @export var move_speed: float = 1.0
 @export var gravity: float = 9.8  # Gravity strength (adjust as needed)
@@ -22,7 +23,7 @@ func _ready():
 	current_health = max_health + (ZombieRoundManager.round * 50)
 	move_speed = clamp(rng.randf_range(0.5, 0.5 + (ZombieRoundManager.round * 0.5)), 0.5, 2)
 	rng.randomize()
-	connect("zombieDamage", take_damage)
+	connect("zombieDamage", calculateDamage)
 	$Skeleton3D/PhysicalBoneSimulator3D.physical_bones_start_simulation(["HeadBone", "LegsBone"])
 
 
@@ -46,13 +47,6 @@ func _physics_process(delta):
 		navAgent.target_position = target.global_position
 		path_update_timer = path_update_interval
 
-	# 3. Stop moving if we've reached the player
-	if navAgent.is_navigation_finished():
-		velocity.x = 0.0
-		velocity.z = 0.0
-		move_and_slide()
-		return
-
 	# 4. Calculate horizontal direction ONLY (ignore Y axis)
 	var next_location = navAgent.get_next_path_position()
 	var direction = next_location - global_position
@@ -62,13 +56,16 @@ func _physics_process(delta):
 		direction = direction.normalized()
 		velocity.x = direction.x * move_speed
 		velocity.z = direction.z * move_speed
-		
 		# Safely rotate towards movement direction
 		var target_angle = atan2(-direction.x, -direction.z)
 		rotation.y = lerp_angle(rotation.y, target_angle, 10.0 * delta)
 	else:
 		velocity.x = 0.0
 		velocity.z = 0.0
+	
+	if get_real_velocity().length() > 0.5:
+		if animationPlayer.is_playing() == false:
+			animationPlayer.play("walkStep")
 
 	move_and_slide()
 
@@ -77,13 +74,13 @@ func _process(delta: float) -> void:
 	pass
 
 # Function to handle taking damage
-func take_damage(amount: float, bodyPart : String):
+func calculateDamage(amount: float, bodyPart : String):
 	var multipliedDamage = 0
 	match bodyPart:
 		"Head":
 			multipliedDamage = amount * 2
 		"Body":
-			multipliedDamage = amount * 1.5
+			multipliedDamage = amount * 1
 		"Legs":
 			multipliedDamage = amount * 1
 	
@@ -131,6 +128,7 @@ func attack(body):
 			return
 		if body and body.has_method("takePlayerDamage"):
 			body.takePlayerDamage(50)
+			Global.player.cameraOffset += Vector3(6, rng.randi_range(-2, 2), 0)
 		damageTimer.start(rng.randf_range(0.75, 2))
 		await damageTimer.timeout
 		if attacking == true and Global.player.playerDead == false:

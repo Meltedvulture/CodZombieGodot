@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 		spawnZombie()
 
 func spawnZombie():
-	if ZombieRoundManager.zombiesToSpawn > 0 and spawnEnabled == true:
+	if ZombieRoundManager.zombiesToSpawn > 0 and spawnEnabled == true and ZombieRoundManager.currentZombies < 24:
 		ZombieRoundManager.zombiesToSpawn -= 1
 		ZombieRoundManager.currentZombies += 1
 		var zombieInstance = zombie.instantiate()

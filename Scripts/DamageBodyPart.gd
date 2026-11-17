@@ -13,5 +13,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func take_damage(amount: int):
-	emit_signal("zombieDamage", amount, bodyPart)
+func takeDamage(amount: int):
+	owner.emit_signal("zombieDamage", amount, bodyPart)
+
+func takeKnifeDamage(amount : int):
+	owner.emit_signal("zombieDamage", amount, "Body")

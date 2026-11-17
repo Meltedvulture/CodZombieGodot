@@ -2349,6 +2349,21 @@ shader = ExtResource("14_0dq5s")
 shader_parameter/vignette_color = Color(1, 0, 0, 1)
 shader_parameter/intensity = 0.0
 
+[sub_resource type="Animation" id="Animation_wevrk"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.43333334, 0.6, 0.76666665),
+"transitions": PackedFloat32Array(2, 0.5, 2, 1),
+"update": 0,
+"values": [Vector3(0, 1.5, 0), Vector3(-0.34187365, 0.6090559, 0), Vector3(-0.30119467, 0.6975737, 0), Vector3(-0.34187365, 0.6090559, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_xc2pf"]
 length = 0.001
 tracks/0/type = "value"
@@ -2680,6 +2695,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t6fw5"]
 _data = {
+&"Death": SubResource("Animation_wevrk"),
 &"RESET": SubResource("Animation_xc2pf"),
 &"Sliding": SubResource("Animation_rk4xh"),
 &"Sprinting": SubResource("Animation_bneyr"),
